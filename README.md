@@ -1,37 +1,103 @@
 # tp product-hunt
-![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
----
+
+## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
+
 ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
 
 ## todo
+
 see [board on Trello](https://trello.com/b/d41FFxTW/product-hunt)
 
 ## decisions log
+
 - Follow PSR-1 and PSR-12 coding standards.
 - Separate backend API and backend dynamic page generation.
-    + Backend API MUST use strict typing.
-    + Backend dynamic page generation SHOULD use strict typing.
-    + Backend dynamic page generation MUST NOT interact directly with the
-      database and MUST use the backend API to get its data.
-    + The App MAY use a single point of entry and a dispatcher to route 
-      requests.
+  - Backend API MUST use strict typing.
+  - Backend dynamic page generation SHOULD use strict typing.
+  - Backend dynamic page generation MUST NOT interact directly with the
+    database and MUST use the backend API to get its data.
+  - The App MAY use a single point of entry and a dispatcher to route
+    requests.
 - Use Ajax requests directed at the backend API to update page on the client
   and display modals.
 - Use Bootstrap to build layout and style pages.
 
-
 ## reference links
+
 https://api.producthunt.com/v2/docs  
 https://ph-graph-api-explorer.herokuapp.com/  
 http://api-v2-docs.producthunt.com.s3-website-us-east-1.amazonaws.com/operation/query/  
 https://github.com/producthunt/producthunt-api  
 https://graphql.org/learn/serving-over-http/
 
+## db setup wip
+
+### products
+
+- product_id INT(11)
+- created_at DATETIME
+- name VARCHAR(255)
+- summary VARCHAR(255)
+- website VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
+- description TEXT
+- thumbnail VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
+- media JSON
+
+### categories
+
+many-to-many between products and a categories table ?
+JSON field in products ?
+category list is not fixed so you can rule out enums, bitfields, etc ...
+
+### users
+- user_id INT(11)
+- name VARCHAR(63)  
+( - ip UNSIGNED INT )
+
+### votes + comments
+
+- action_id INT(11)
+- product_id INT(11)
+- user_id INT(11)
+- type ENUM('vote', 'comment')
+
+## API output
+
+### products
+
+```php
+$products =    [
+    [
+        "name" => "Rewind",
+        "id" => "199004",
+        "createdAt" => "2020-05-10T07:01:00Z",
+        "summary" => "Your bookmarks, by date, with thumbnails and instant search",
+        "website" => "https://www.rewind-website.com",
+        "description" => "Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It's totally free and it relies on your local bookmarks, you don't have to create an account.",
+        "thumbnail" => "https://ph-files.imgix.net/f500d84f-b9dc-47e0-aa54-d43ed79d09e3?auto=format&fit=crop",
+        "media" => [
+            "https://ph-files.imgix.net/a892b3b3-0397-44ac-b2c2-f583f7d8f668?auto=format&fit=crop",
+            "https://ph-files.imgix.net/95dcfbac-e159-48e4-91aa-f21933e14570?auto=format&fit=crop",
+            "https://ph-files.imgix.net/8a4f4f3c-7852-47f6-b675-b62db455e0bf?auto=format&fit=crop",
+            "https://ph-files.imgix.net/c5bfce52-32c6-4913-91fb-95d2c21b597e?auto=format&fit=crop",
+            "https://ph-files.imgix.net/f500d84f-b9dc-47e0-aa54-d43ed79d09e3?auto=format&fit=crop",
+        ],
+        "isCollected" => false, /* depends on user logged in */
+        "isVoted" => false,     /* depends on user logged in */
+        "votesCount" => 112,    /* try SELECT COUNT(*) FROM actions WHERE type = 'vote' GROUP BY product_id; */
+        "commentsCount" => 7,   /* try SELECT COUNT(*) FROM actions WHERE type = 'comment' GROUP BY product_id; */
+    ],
+];
+```
 
 ## sample data
+
 #### some users
+
 #### some comments
+
 #### first 10 posts
+
 ```graphQL
 {
   posts(first: 10) {
