@@ -1,28 +1,20 @@
 # tp product-hunt
 ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
+---
+![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
 
 ## todo
-- [ ] Use producthunt.com api reference as a starting point to sketch db
-  + [ ] Sample some posts, users, comments data and medias
-  + [ ] Mock a json from the sample
-  + [ ] Mock db entries from the sample
-- [ ] Inspect producthunt layout on all platforms
-- [ ] Add decisions log column to trello board
-- [x] Sketch diagram of the app
-- [ ] Create wireframe of each page
-  + [ ] Rough pages layout
-- [ ] Create a repo
-  + [ ] Bootstrap with folder structure, mock data
-  + [ ] Fork the repo
+see [board on Trello](https://trello.com/b/d41FFxTW/product-hunt)
 
 ## decisions log
 - Follow PSR-1 and PSR-12 coding standards.
 - Separate backend API and backend dynamic page generation.
-    + backend API MUST use strict typing.
-    + backend dynamic page generation SHOULD use strict typing.
-    + backend dynamic page generation MUST NOT interact directly with the
+    + Backend API MUST use strict typing.
+    + Backend dynamic page generation SHOULD use strict typing.
+    + Backend dynamic page generation MUST NOT interact directly with the
       database and MUST use the backend API to get its data.
-    + The App MAY use a single point of entry and a dispatcher to route requests
+    + The App MAY use a single point of entry and a dispatcher to route 
+      requests.
 - Use Ajax requests directed at the backend API to update page on the client
   and display modals.
 - Use Bootstrap to build layout and style pages.

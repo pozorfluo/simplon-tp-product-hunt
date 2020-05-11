@@ -17,7 +17,6 @@ define('DEV_GLOBALS_DUMP', true);
 
 require ROOT . 'src/Helpers/AutoLoader.php';
 
-
 //------------------------------------------------------------------ session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
