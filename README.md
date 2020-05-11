@@ -34,13 +34,18 @@ https://graphql.org/learn/serving-over-http/
 
 ### products
 
-- product_id INT(11)
-- created_at DATETIME
-- name VARCHAR(255)
-- summary VARCHAR(255)
+- product_id MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
+- created_at DATETIME NOT NULL
+- name VARCHAR(255) NOT NULL
+- summary VARCHAR(255) NOT NULL
 - website VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
+- thumbnail VARCHAR(255) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
+
+### details
+
+- detail_id MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
+- product_id MEDIUMINT UNSIGNED NOT NULL
 - description TEXT
-- thumbnail VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
 - media JSON
 
 ### categories
@@ -50,16 +55,19 @@ JSON field in products ?
 category list is not fixed so you can rule out enums, bitfields, etc ...
 
 ### users
-- user_id INT(11)
-- name VARCHAR(63)  
-( - ip UNSIGNED INT )
+
+- user_id MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
+- name CHAR(32) NOT NULL
+- created_at DATETIME NOT NULL
 
 ### votes + comments
 
-- action_id INT(11)
-- product_id INT(11)
-- user_id INT(11)
-- type ENUM('vote', 'comment')
+- action_id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
+- product_id MEDIUMINT UNSIGNED NOT NULL
+- user_id MEDIUMINT UNSIGNED NOT NULL
+- type ENUM('vote', 'comment') NOT NULL
+- created_at DATETIME NOT NULL
+- ip INT UNSIGNED NOT NULL 
 
 ## API output
 
