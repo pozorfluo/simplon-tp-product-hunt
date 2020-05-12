@@ -2,7 +2,7 @@
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
 
-![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
+## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
 
 ## todo
 
@@ -22,52 +22,9 @@ see [board on Trello](https://trello.com/b/d41FFxTW/product-hunt)
   and display modals.
 - Use Bootstrap to build layout and style pages.
 
-## reference links
-
-https://api.producthunt.com/v2/docs  
-https://ph-graph-api-explorer.herokuapp.com/  
-http://api-v2-docs.producthunt.com.s3-website-us-east-1.amazonaws.com/operation/query/  
-https://github.com/producthunt/producthunt-api  
-https://graphql.org/learn/serving-over-http/
-
 ## db setup wip
+![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-db.png)
 
-### products
-
-- product_id MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
-- created_at DATETIME NOT NULL
-- name VARCHAR(255) NOT NULL
-- summary VARCHAR(255) NOT NULL
-- website VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
-- thumbnail VARCHAR(255) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL
-
-### details
-
-- detail_id MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
-- product_id MEDIUMINT UNSIGNED NOT NULL
-- description TEXT
-- media JSON
-
-### categories
-
-many-to-many between products and a categories table ?
-JSON field in products ?
-category list is not fixed so you can rule out enums, bitfields, etc ...
-
-### users
-
-- user_id MEDIUMINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
-- name CHAR(32) NOT NULL
-- created_at DATETIME NOT NULL
-
-### votes + comments
-
-- action_id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT
-- product_id MEDIUMINT UNSIGNED NOT NULL
-- user_id MEDIUMINT UNSIGNED NOT NULL
-- type ENUM('vote', 'comment') NOT NULL
-- created_at DATETIME NOT NULL
-- ip INT UNSIGNED NOT NULL 
 
 ## API output
 
@@ -97,6 +54,13 @@ $products =    [
     ],
 ];
 ```
+## reference links
+
+https://api.producthunt.com/v2/docs  
+https://ph-graph-api-explorer.herokuapp.com/  
+http://api-v2-docs.producthunt.com.s3-website-us-east-1.amazonaws.com/operation/query/  
+https://github.com/producthunt/producthunt-api  
+https://graphql.org/learn/serving-over-http/
 
 ## sample data
 
