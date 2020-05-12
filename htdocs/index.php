@@ -26,15 +26,23 @@ if (session_status() === PHP_SESSION_NONE) {
     }
 }
 //------------------------------------------------------------------- config
-
-
-
+require ROOT . 'src/Helpers/Config.php';
+date_default_timezone_set('Europe/Paris');
 //--------------------------------------------------------------- playground
+echo 'hello';
 
 //---------------------------------------------------------------------- run
+$t = microtime(true);
+
+
+
+// $dispatcher = new Dispatcher($config);
+// $dispatcher->route()->cache();
+
+$time_spent['serving_page'] = (microtime(true) - $t);
+
 
 //------------------------------------------------------------------- config
-
-
-
+require ROOT . 'src/Helpers/SerializeConfig.php';
 //-------------------------------------------------------------------- debug
+require ROOT . 'src/Helpers/DebugInfo.php';
