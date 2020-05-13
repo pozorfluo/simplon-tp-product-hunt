@@ -2,7 +2,7 @@
 
 ## docs
 
-[wip](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Models-ProductHuntAPI.html)
+[ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Models-ProductHuntAPI.html)
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
 
