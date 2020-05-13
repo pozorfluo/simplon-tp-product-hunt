@@ -10,7 +10,7 @@ include ROOT . 'src/Partials/header.php'
 
 <main class='container-fluid d-flex justify-content-center flex-column pt-5 border '>
 
-    <h1 class="mb-5 text-center"> Product Hunt </h1>
+    <h1 class="mb-5 text-center"> Product Hunts </h1>
 
     <div class="row ">
 
