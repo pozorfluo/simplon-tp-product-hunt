@@ -161,7 +161,7 @@ abstract class API extends Controller
          *   Endpoint may access multiple sub-ressources with different methods
          */
         $this->args['method'] =
-            'op' . ($this->args['sub'] ?? '') . ($this->args['method'] ?? 'GET');
+            'op' . ($this->args['endpoint'] ?? ''). ($this->args['sub'] ?? '') . ($this->args['method'] ?? 'GET');
 
         /* use existing model or load one */
         if (method_exists(

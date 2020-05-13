@@ -126,6 +126,21 @@ Search.appendIndex(
             "summary": "note\n\u0020\u0020Prepend\u0020all\u0020model\u0020mode\u0020of\u0020operation\u0020meant\u0020to\u0020be\u0020callable\u0020by\u0020a\u0020request\n\u0020\u0020with\u0020\u0027op\u0027",
             "url": "../classes/Controllers-ProductHuntAPI.html#method_runDefault"
         },                {
+            "fqsen": "\\Controllers\\ProductHuntAPI\u003A\u003ArunProduct\u0028\u0029",
+            "name": "runProduct",
+            "summary": "todo\u0020Refactor\u0020ProductHuntAPI\u0020model,\u0020split\u0020internal\u0020and\u0020REST\u0020parts",
+            "url": "../classes/Controllers-ProductHuntAPI.html#method_runProduct"
+        },                {
+            "fqsen": "\\Controllers\\ProductHuntAPI\u003A\u003ArunComment\u0028\u0029",
+            "name": "runComment",
+            "summary": "todo\u0020Refactor\u0020ProductHuntAPI\u0020model,\u0020split\u0020internal\u0020and\u0020REST\u0020parts",
+            "url": "../classes/Controllers-ProductHuntAPI.html#method_runComment"
+        },                {
+            "fqsen": "\\Controllers\\ProductHuntAPI\u003A\u003ArunVote\u0028\u0029",
+            "name": "runVote",
+            "summary": "todo\u0020Refactor\u0020ProductHuntAPI\u0020model,\u0020split\u0020internal\u0020and\u0020REST\u0020parts",
+            "url": "../classes/Controllers-ProductHuntAPI.html#method_runVote"
+        },                {
             "fqsen": "\\Controllers\\ProductHuntAPI\u003A\u003Acache\u0028\u0029",
             "name": "cache",
             "summary": "note\n\u0020\u0020Overriding\u0020Controller\u002D\u003Ecache\u0028\u0029",
@@ -326,6 +341,11 @@ Search.appendIndex(
             "summary": "",
             "url": "../classes/Helpers-Dispatcher.html#method_load"
         },                {
+            "fqsen": "\\Helpers\\Dispatcher\u003A\u003AisCached\u0028\u0029",
+            "name": "isCached",
+            "summary": "",
+            "url": "../classes/Helpers-Dispatcher.html#method_isCached"
+        },                {
             "fqsen": "\\Helpers\\Dispatcher\u003A\u003ACACHE_TTL",
             "name": "CACHE_TTL",
             "summary": "",
@@ -426,6 +446,16 @@ Search.appendIndex(
             "summary": "ProductHunt\u0020RESTish\u0020API",
             "url": "../classes/Models-ProductHuntAPI.html"
         },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AfromConfig\u0028\u0029",
+            "name": "fromConfig",
+            "summary": "Create\u0020a\u0020new\u0020ProductHuntAPI\u0020instance\u0020from\u0020a\u0020decoded\u0020config\u0020json.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_fromConfig"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Create\u0020a\u0020new\u0020ProductHuntAPI\u0020instance.",
+            "url": "../classes/Models-ProductHuntAPI.html#method___construct"
+        },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetFreshProducts\u0028\u0029",
             "name": "getFreshProducts",
             "summary": "Get\u0020most\u0020recent\u0020products.",
@@ -445,6 +475,11 @@ Search.appendIndex(
             "name": "getCategory",
             "summary": "Get\u0020category\u0020info\u0020for\u0020a\u0020given\u0020category\u0020id.",
             "url": "../classes/Models-ProductHuntAPI.html#method_getCategory"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProduct\u0028\u0029",
+            "name": "getProduct",
+            "summary": "Get\u0020product\u0020content\u0020associated\u0020to\u0020a\u0020given\u0020product\u0020id.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getProduct"
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProductsCollection\u0028\u0029",
             "name": "getProductsCollection",
@@ -496,10 +531,20 @@ Search.appendIndex(
             "summary": "Register\u0020a\u0020comment\u0020for\u0020given\u0020user\u0020on\u0020given\u0020product.",
             "url": "../classes/Models-ProductHuntAPI.html#method_comment"
         },                {
-            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AopGET\u0028\u0029",
-            "name": "opGET",
-            "summary": "Return\u0020last\u0020few\u0020messages",
-            "url": "../classes/Models-ProductHuntAPI.html#method_opGET"
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AopProductGET\u0028\u0029",
+            "name": "opProductGET",
+            "summary": "RESTish\u0020API\u0020\u003A\u0020Get\u0020product\u0020content\u0020associated\u0020to\u0020a\u0020given\u0020product\u0020id.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_opProductGET"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AopProductFreshGET\u0028\u0029",
+            "name": "opProductFreshGET",
+            "summary": "RESTish\u0020API\u0020\u003A\u0020Get\u0020most\u0020recent\u0020products.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_opProductFreshGET"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AopProductPopularGET\u0028\u0029",
+            "name": "opProductPopularGET",
+            "summary": "RESTish\u0020API\u0020\u003A\u0020Get\u0020most\u0020popular\u0020products.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_opProductPopularGET"
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AopPOST\u0028\u0029",
             "name": "opPOST",

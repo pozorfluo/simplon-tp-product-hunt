@@ -49,7 +49,7 @@ class ProductHuntAPI extends DBPDO
         return new self($controller);
     }
 
-        
+
     /**
      * Create a new ProductHuntAPI instance.
      *
@@ -58,7 +58,7 @@ class ProductHuntAPI extends DBPDO
      */
     public function __construct(?Controller $controller = NULL)
     {
-        if(is_null($controller)) {
+        if (is_null($controller)) {
             $controller = new \Controllers\ProductHuntAPI();
         }
         parent::__construct($controller);
@@ -216,6 +216,31 @@ class ProductHuntAPI extends DBPDO
             'name'           => 'Tech',
             'summary'        => 'Hard, soft, high, low. Forward !',
             'thumbnail'      => 'public/images/products/thumbnails/virtual-reality.svg'
+        ];
+    }
+    /**
+     * Get product content associated to a given product id.
+     * 
+     * @api
+     * @todo Implement query
+     * @todo Return votes_count, comments_count, categories
+     * 
+     * @param  int $product_id
+     * 
+     * @return array <pre><code>[
+     *     'article_id'     => int,
+     *     'product_id'     => int,
+     *     'content'        => string,
+     *     'media'          => array[string, ...]
+     * ] </code></pre>
+     */
+    public function getProduct(int $product_id): array
+    {
+        return [
+            'article_id' => 1,
+            'product_id' => $product_id,
+            'content'    => 'Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It\'s totally free and it relies on your local bookmarks, you don\'t have to create an account.',
+            'media'      => '["public/images/products/1_Rewind_0.webp","public/images/products/1_Rewind_1.webp","public/images/products/1_Rewind_2.webp","public/images/products/1_Rewind_3.webp","public/images/products/1_Rewind_4.webp"]'
         ];
     }
 
@@ -573,34 +598,236 @@ class ProductHuntAPI extends DBPDO
         ];
     }
 
-    /**
-     * Return last few messages
+/**
+     * RESTish API : Get product content associated to a given product id.
+     * 
+     * @api ProductHuntAPI
+     * @endpoint Product
      *
-     * todo
-     *   - [ ] Translate PDO/MySQL errors into meaningful response for the
-     *         RESTish API
-     *   - [ ] Add a json cache/buffer
+     * 
+     * @query ?controller=ProductHuntAPI&endpoint=Product&product_id=
+     *
+     * @return array to be emitted as json by ProductHuntAPI controller
+     * 
+     * @Example
+     * @Response STATUS 200 - application/json
+     * OK
+     * <pre><code>
+     * {
+     *   "article_id": 1,
+     *   "product_id": 2,
+     *   "content": "Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It's totally free and it relies on your local bookmarks, you don't have to create an account.",
+     *   "media": "[\"public/images/products/1_Rewind_0.webp\",\"public/images/products/1_Rewind_1.webp\",\"public/images/products/1_Rewind_2.webp\",\"public/images/products/1_Rewind_3.webp\",\"public/images/products/1_Rewind_4.webp\"]"
+     * }
+     * </code></pre>
+     * 
+     * @Response STATUS 204 - application/json
+     * No Content
+     * <pre><code>
+     * []
+     * </code></pre>
+     * 
+     * @Response STATUS 500 - application/json
+     * Internal Server Error
+     * <pre><code>
+     * ['error : ...']
+     * </code></pre>
+     * 
+     * @todo Translate PDO/MySQL errors into meaningful response for the
+     *       RESTish API.
+     * @todo Add a json cache/buffer.
      */
-    public function opGET(): ?array
+    public function opProductGET(): ?array
     {
-        $msg_count = $this->controller->args['maxResults'] ?? 5;
-        // $order_by = $this->args['orderBy'] ?? 'created_at';
+        $product_id = intval($this->controller->args['product_id'] ?? 0);
         try {
-            $results = $this->execute(
-                'minichat',
-                'SELECT
-                    `messages`.`created_at`,
-                    `users`.`nickname`,
-                    `messages`.`message`
-                 FROM
-                    `messages`
-                 INNER JOIN `users` ON `messages`.`user_id` = `users`.`id`
-                 ORDER BY
-                    `messages`.`created_at` DESC
-                 LIMIT 
-                    ?',
-                [$msg_count]
-            );
+            $results = $this->getProduct($product_id);
+
+            if (empty($results)) {
+                /* No Content */
+                $this->controller->set(['status_code' => 204]);
+            } else {
+                /* OK */
+                $this->controller->set(['status_code' => 200]);
+            }
+            /* useful only if you want to do more than emit json */
+            // $this->controller->set(['data' => $results]);
+
+            return $results;
+        } catch (Exception $e) {
+            /*
+             * todo
+             *   - [ ] Have a look at PDO statement errorInfo()
+             */
+            /* Internal Server Error */
+            $this->controller->set(['status_code' => 500]);
+            return [$e->getMessage()];
+        }
+    }
+
+    /**
+     * RESTish API : Get most recent products.
+     * 
+     * @api ProductHuntAPI
+     * @endpoint Product
+     * @sub-resource Fresh
+     *
+     * Pagination option is available on this resource.
+     * 
+     * @query ?controller=ProductHuntAPI&endpoint=Products&sub=Fresh
+     * 
+     * @optional &maxResults= 
+     *           How many products to return (default = 10).
+     * 
+     * @optional &startAt= 
+     *           How many products to skip   (default = 0).
+     * 
+     * @return array to be emitted as json by ProductHuntAPI controller
+     * 
+     * @Example
+     * @Response STATUS 200 - application/json
+     * OK
+     * <pre><code>
+     * [
+     *   {
+     *     "product_id": 1,
+     *     "name": "Rewind",
+     *     "created_at": "2020-05-10 07:01:00",
+     *     "website": "https://rewind.netlify.app/?ref=producthunt",
+     *     "summary": "Your bookmarks, by date, with thumbnails and instant search",
+     *     "thumbnail": "public/images/products/thumbnails/1_Rewind.webp",
+     *     "votes_count": 0,
+     *     "comments_count": 0
+     *   },
+     *   {
+     *     "product_id": 2,
+     *     "name": "Buy For Life",
+     *     "created_at": "2020-05-10 07:01:00",
+     *     "website": "https://rewind.netlify.app/?ref=producthunt",
+     *     "summary": "Your bookmarks, by date, with thumbnails and instant search",
+     *     "thumbnail": "public/images/products/thumbnails/2_Buy-For-Life.webp",
+     *     "votes_count": 0,
+     *     "comments_count": 0
+     *   }
+     * ] </code></pre>
+     * 
+     * @Response STATUS 204 - application/json
+     * No Content
+     * <pre><code>
+     * []
+     * </code></pre>
+     * 
+     * @Response STATUS 500 - application/json
+     * Internal Server Error
+     * <pre><code>
+     * ['error : ...']
+     * </code></pre>
+     * 
+     * @todo Translate PDO/MySQL errors into meaningful response for the
+     *       RESTish API.
+     * @todo Add a json cache/buffer.
+     */
+    public function opProductFreshGET(): ?array
+    {
+        $count = $this->controller->args['maxResults'] ?? 10;
+        $offset = $this->controller->args['startAt'] ?? 0;
+        // $order_by = $this->args['orderBy'] ?? 'created_at';
+
+        try {
+            $results = $this->getFreshProducts($count, $offset);
+
+            if (empty($results)) {
+                /* No Content */
+                $this->controller->set(['status_code' => 204]);
+            } else {
+                /* OK */
+                $this->controller->set(['status_code' => 200]);
+            }
+            /* useful only if you want to do more than emit json */
+            // $this->controller->set(['data' => $results]);
+
+            return $results;
+        } catch (Exception $e) {
+            /*
+             * todo
+             *   - [ ] Have a look at PDO statement errorInfo()
+             */
+            /* Internal Server Error */
+            $this->controller->set(['status_code' => 500]);
+            return [$e->getMessage()];
+        }
+    }
+
+    /**
+     * RESTish API : Get most popular products.
+     * 
+     * @api ProductHuntAPI
+     * @endpoint Product
+     * @sub-resource Popular
+     *
+     * Pagination option is available on this resource.
+     * 
+     * @query ?controller=ProductHuntAPI&endpoint=Product&sub=Popular
+     * 
+     * @optional &maxResults= 
+     *           How many products to return (default = 10).
+     * 
+     * @optional &startAt= 
+     *           How many products to skip   (default = 0).
+     * 
+     * @return array to be emitted as json by ProductHuntAPI controller
+     * 
+     * @Example
+     * @Response STATUS 200 - application/json
+     * OK
+     * <pre><code>
+     * [
+     *   {
+     *     "product_id": 1,
+     *     "name": "Rewind",
+     *     "created_at": "2020-05-10 07:01:00",
+     *     "website": "https://rewind.netlify.app/?ref=producthunt",
+     *     "summary": "Your bookmarks, by date, with thumbnails and instant search",
+     *     "thumbnail": "public/images/products/thumbnails/1_Rewind.webp",
+     *     "votes_count": 0,
+     *     "comments_count": 0
+     *   },
+     *   {
+     *     "product_id": 2,
+     *     "name": "Buy For Life",
+     *     "created_at": "2020-05-10 07:01:00",
+     *     "website": "https://rewind.netlify.app/?ref=producthunt",
+     *     "summary": "Your bookmarks, by date, with thumbnails and instant search",
+     *     "thumbnail": "public/images/products/thumbnails/2_Buy-For-Life.webp",
+     *     "votes_count": 0,
+     *     "comments_count": 0
+     *   }
+     * ] </code></pre>
+     * 
+     * @Response STATUS 204 - application/json
+     * No Content
+     * <pre><code>
+     * []
+     * </code></pre>
+     * 
+     * @Response STATUS 500 - application/json
+     * Internal Server Error
+     * <pre><code>
+     * ['error : ...']
+     * </code></pre>
+     * 
+     * @todo Translate PDO/MySQL errors into meaningful response for the
+     *       RESTish API.
+     * @todo Add a json cache/buffer.
+     */
+    public function opProductPopularGET(): ?array
+    {
+        $count = $this->controller->args['maxResults'] ?? 10;
+        $offset = $this->controller->args['startAt'] ?? 0;
+        // $order_by = $this->args['orderBy'] ?? 'created_at';
+
+        try {
+            $results = $this->getPopularProducts($count, $offset);
 
             if (empty($results)) {
                 /* No Content */
@@ -629,70 +856,9 @@ class ProductHuntAPI extends DBPDO
      */
     public function opPOST(): ?array
     {
-        /*
-         * Insert new message
-         *   -> Return last few messages
-         * todo
-         *   - [ ] Learn how to get client ip
-         *     + [ ] See https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php
-         *   - [ ] Check user exists
-         *     + [ ] Create user if necessary
-         */
-
-        /* mock some data until it's implemented */
-        $ip = '127.0.0.1';
-
-        /* retrieve request body */
-        $post_body = json_decode(file_get_contents('php://input'), true);
-        $this->controller->set(['post_body' => $post_body]);
-
-        $msg_count = $this->controller->args['maxResults'] ?? 5;
-
-
-        // echo '<pre>'.var_export($this->args, true).'</pre><hr />';
-        try {
-            $results = $this->execute(
-                'minichat',
-                'INSERT INTO `messages`(
-                    `user_id`,
-                    `message`,
-                    `ip_address`,
-                    `created_at`
-                )
-                VALUES
-                    (?, ?, ?, ?)',
-                [
-                    1,
-                    $this->args['post_body']['message'],
-                    $ip,
-                    date('Y-m-d H:i:s')
-                ]
-
-            );
-
-            /*
-             * todo
-             *   - [ ] Append to minichat.buffer
-             *   - [ ] Remove call to opGET
-             *   - [ ] Insert into db only when buffer reaches a certain size
-             */
-            $results = $this->opGET();
-            $this->controller->set(['status_code' => 201]);
-
-            /* useful only if you want to do more than emit json */
-            // $this->controller->set(['data' => $results]);
-
-            return $results;
-        } catch (Exception $e) {
-            /*
-             * todo
-             *   - [ ] Have a look at PDO statement errorInfo()
-             */
-            /* Internal Server Error */
-            $this->controller->set(['status_code' => 500]);
-            return [$e->getMessage()];
-            // return null;
-        }
+        $this->controller->set(['status_code' => 405]);
+        // $this->args['status_code'] = 405;
+        return ['PUT : not implemented yet'];
     }
 
     /**

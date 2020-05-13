@@ -26,7 +26,43 @@ class ProductHuntAPI extends API
         $this->call();
     }
 
-    
+    /**
+     * todo Refactor ProductHuntAPI model, split internal and REST parts
+     */
+    public function runProduct(array $args = []): void
+    {
+
+        /* set model, args, ...then call() */
+        $args['endpoint'] = 'Product';
+        $this->set($args);
+        $this->call();
+    }
+
+
+    /**
+     * todo Refactor ProductHuntAPI model, split internal and REST parts
+     */
+    public function runComment(array $args = []): void
+    {
+
+        /* set model, args, ...then call() */
+        $args['endpoint'] = 'Comment';
+        $this->set($args);
+        $this->call();
+    }
+
+    /**
+     * todo Refactor ProductHuntAPI model, split internal and REST parts
+     */
+    public function runVote(array $args = []): void
+    {
+
+        /* set model, args, ...then call() */
+        $args['endpoint'] = 'Vote';
+        $this->set($args);
+        $this->call();
+    }
+
     /**
      * note
      *   Overriding Controller->cache()
