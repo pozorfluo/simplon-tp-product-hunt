@@ -41,11 +41,11 @@ class ProductHuntAPI extends DBPDO
      * @param  array $config
      * @return ProductHuntAPI
      */
-    public static function fromConfig(array $config): ProductHuntAPI
+    public static function fromConfig(array $db_configs): ProductHuntAPI
     {
         $controller = new \Controllers\ProductHuntAPI();
 
-        $controller->set(['db_configs' => $config['db_configs']]);
+        $controller->set(['db_configs' => $db_configs]);
         return new self($controller);
     }
 

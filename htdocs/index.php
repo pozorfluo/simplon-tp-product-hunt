@@ -17,6 +17,8 @@ define('DEV_GLOBALS_DUMP', true);
 
 require ROOT . 'src/Helpers/AutoLoader.php';
 
+use Helpers\Dispatcher;
+
 //------------------------------------------------------------------ session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -34,9 +36,11 @@ date_default_timezone_set('Europe/Paris');
 $t = microtime(true);
 
 
-// $dispatcher = new Dispatcher($config);
+$dispatcher = new Dispatcher($config);
 // $dispatcher->route()->cache();
-require ROOT . 'src/Pages/home.php';
+$dispatcher->route();
+
+// require ROOT . 'src/Pages/home.php';
 
 $time_spent['serving_page'] = (microtime(true) - $t);
 //------------------------------------------------------------------- config

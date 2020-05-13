@@ -1,14 +1,5 @@
  <?php
  
-use Models\ProductHuntAPI;
-
- // Connexion BDD Faire un SELECT de tout les produits 
-
-
- $producthunt_api = ProductHuntAPI::fromConfig($config);
-
-//  echo '<pre>'.var_export($producthunt_api, true).'</pre><hr />';
-
  $products = $producthunt_api->getFreshProducts();
  
  ?>

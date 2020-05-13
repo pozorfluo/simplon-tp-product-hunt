@@ -45,7 +45,7 @@ class Dispatcher
          */
         if ((!isset($this->request['controller'])
             || (!in_array($this->request['controller'], $config['components']['Controllers'], true)))) {
-            
+
             /**
              * note
              *   If you need to remember this redirection happened :
@@ -120,5 +120,16 @@ class Dispatcher
         $this->controller = new $controller_name();
 
         return $this->controller;
+    }
+
+    /**
+     * @todo Use Cache class
+     * 
+     * note
+     *   This is short-circuited until upgrade Cache is plugged in.
+     */
+    public function isCached(): bool
+    {
+        return false;
     }
 }
