@@ -7,15 +7,18 @@ namespace Controllers;
 use Models\Model;
 
 /**
- *   RESTish API setup
- *     Use the request method to define the mode of operation for this
- *     endpoint
- *   
+ * RESTish API
+ * 
+ * Setup
+ * 
  *     Controller       -> API
  *     Action           -> endpoint
  *     Sub              -> sub-resource
  *     Request Method   -> mode of operation
  *     Other Parameters -> query parameters
+ * 
+ * Use the request method to define the mode of operation for this endpoint.
+ *   
  *     
  *     Mode of operation
  *       GET    -> fetch
@@ -23,10 +26,11 @@ use Models\Model;
  *       PUT    -> update/edit
  *       DELETE -> remove
  * 
- *     Prepend mode of operation method names with 'op' to make it clear 
- *     what is meant to be a callable action and thwart some malicious 
- *     requests
- *       e.g.,
+ * Prepend mode of operation method names with 'op' to make it clear what is 
+ * meant to be a callable action and thwart some malicious requests.
+ * 
+ * e.g.,
+ 
  *         opGET()
  *         opPOSTSubresource()
  *         opPUTSubresource()

@@ -20,7 +20,8 @@ Testing
 
 # php
 composer.phar
-htdocs/vendor/*
+htdocs/vendor/
+.phpdoc/
 
 # Makefile
 cmake_install.cmake

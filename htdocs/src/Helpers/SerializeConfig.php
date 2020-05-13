@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 // namespace Helpers;
+
 /**
  * Serialize config to file if needed once the page is served 
  */

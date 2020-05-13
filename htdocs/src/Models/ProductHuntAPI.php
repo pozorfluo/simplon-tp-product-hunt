@@ -1,8 +1,5 @@
 <?php
 
-/**
- * 
- */
 
 declare(strict_types=1);
 
@@ -13,26 +10,84 @@ use Helpers\DBConfig;
 
 /**
  * ProductHunt RESTish API
- *   -> set status_code
- *   -> set data
+ * 
+ *      > set status_code
+ * 
+ *      > set data
  * 
  * note
- *   Prepend all model modes of operation meant to be callable by a request
- *   with 'op'
- *   
- *   Forbid model method name starting with 'op' before prepending wether
- *   it is meant to be callable by a request or not
+ * 
+ *     Prepend all model modes of operation meant to be callable by 
+ *     a external request with 'op'.
+ * 
+ *     Forbid model method name starting with 'op' before prepending 
+ *     wether it is meant to be callable by an external or not.
  *   
  *   e.g.,
+ * 
  *     operate() is FORBIDDEN  
  *       -> could be requested maliciously with a request for 'erate'
+ * 
  *     open() is FORBIDDEN  
  *       -> could be requested maliciously with a request for 'en'
  */
-class ConcreteAPI extends DBPDO
+class ProductHuntAPI extends DBPDO
 {
+
     /**
-     * -> Return last few messages
+     * Query database and returns an array of most recent products.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $count  How many products to return (default = 10).
+     * @param  int $offset How many products to skip   (default = 0)
+     *                     Use for pagination.
+     * 
+     * @return array <pre><code> [
+     *     'product_id'     => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'website'        => string,
+     *     'summary'        => string,
+     *     'thumbnail'      => string,
+     *     'votes_count'    => int,
+     *     'comments_count' => int
+     * ] </code></pre>
+     */
+    public function getFreshProducts(int $count = 10, int $offset = 0): array
+    {
+        return [];
+    }
+
+    /**
+     * Query database and returns an array of most popular products.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $count  How many products to return (default = 10).
+     * @param  int $offset How many products to skip   (default = 0)
+     *                     Use for pagination.
+     * 
+     * @return array <pre><code> [
+     *     'product_id'     => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'website'        => string,
+     *     'summary'        => string,
+     *     'thumbnail'      => string,
+     *     'votes_count'    => int,
+     *     'comments_count' => int
+     * ] </code></pre>
+     */
+    public function getPopularProducts(int $count = 10, int $offset = 0): array
+    {
+        return [];
+    }
+
+    /**
+     * Return last few messages
      *
      * todo
      *   - [ ] Translate PDO/MySQL errors into meaningful response for the
@@ -72,7 +127,7 @@ class ConcreteAPI extends DBPDO
 
             return $results;
         } catch (Exception $e) {
-            /**
+            /*
              * todo
              *   - [ ] Have a look at PDO statement errorInfo()
              */
@@ -87,7 +142,7 @@ class ConcreteAPI extends DBPDO
      */
     public function opPOST(): ?array
     {
-        /**
+        /*
          * Insert new message
          *   -> Return last few messages
          * todo
@@ -97,15 +152,15 @@ class ConcreteAPI extends DBPDO
          *     + [ ] Create user if necessary
          */
 
-         /* mock some data until it's implemented */
+        /* mock some data until it's implemented */
         $ip = '127.0.0.1';
-        
+
         /* retrieve request body */
         $post_body = json_decode(file_get_contents('php://input'), true);
         $this->controller->set(['post_body' => $post_body]);
-        
+
         $msg_count = $this->controller->args['maxResults'] ?? 5;
-        
+
 
         // echo '<pre>'.var_export($this->args, true).'</pre><hr />';
         try {
@@ -128,7 +183,7 @@ class ConcreteAPI extends DBPDO
 
             );
 
-            /**
+            /*
              * todo
              *   - [ ] Append to minichat.buffer
              *   - [ ] Remove call to opGET
@@ -142,7 +197,7 @@ class ConcreteAPI extends DBPDO
 
             return $results;
         } catch (Exception $e) {
-            /**
+            /*
              * todo
              *   - [ ] Have a look at PDO statement errorInfo()
              */

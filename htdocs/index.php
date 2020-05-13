@@ -35,13 +35,10 @@ echo 'hello';
 $t = microtime(true);
 
 
-
 // $dispatcher = new Dispatcher($config);
 // $dispatcher->route()->cache();
 
 $time_spent['serving_page'] = (microtime(true) - $t);
-
-
 //------------------------------------------------------------------- config
 require ROOT . 'src/Helpers/SerializeConfig.php';
 //-------------------------------------------------------------------- debug
