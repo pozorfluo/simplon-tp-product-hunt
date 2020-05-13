@@ -35,7 +35,7 @@ class ProductHuntAPI extends DBPDO
 {
 
     /**
-     * Query database and returns an array of most recent products.
+     * Get most recent products.
      * 
      * @api
      * @todo Implement query
@@ -61,7 +61,7 @@ class ProductHuntAPI extends DBPDO
     }
 
     /**
-     * Query database and returns an array of most popular products.
+     * Get most popular products.
      * 
      * @api
      * @todo Implement query
@@ -83,6 +83,223 @@ class ProductHuntAPI extends DBPDO
      */
     public function getPopularProducts(int $count = 10, int $offset = 0): array
     {
+        return [];
+    }
+
+    /**
+     * Get products associated with a given category.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $category_id
+     * @param  int $count  How many products to return (default = 10).
+     * @param  int $offset How many products to skip   (default = 0)
+     *                     Use for pagination.
+     * 
+     * @return array <pre><code> [
+     *     'product_id'     => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'website'        => string,
+     *     'summary'        => string,
+     *     'thumbnail'      => string,
+     *     'votes_count'    => int,
+     *     'comments_count' => int
+     * ] </code></pre>
+     */
+    public function getProductsCollection(
+        int $category_id,
+        int $count = 10,
+        int $offset = 0
+    ): array {
+        return [];
+    }
+
+    /**
+     * Find products whose name match given search string.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $search_string
+     * @param  int $count  How many products to return (default = 10).
+     * @param  int $offset How many products to skip   (default = 0)
+     *                     Use for pagination.
+     * 
+     * @return array <pre><code> [
+     *     'product_id'     => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'website'        => string,
+     *     'summary'        => string,
+     *     'thumbnail'      => string,
+     *     'votes_count'    => int,
+     *     'comments_count' => int
+     * ] </code></pre>
+     */
+    public function findProductsByName(
+        string $search_string,
+        int $count = 10,
+        int $offset = 0
+    ): array {
+        return [];
+    }
+
+    /**
+     * Find products whose content match given search string.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $search_string
+     * @param  int $count  How many products to return (default = 10).
+     * @param  int $offset How many products to skip   (default = 0)
+     *                     Use for pagination.
+     * 
+     * @return array <pre><code> [
+     *     'product_id'     => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'website'        => string,
+     *     'summary'        => string,
+     *     'thumbnail'      => string,
+     *     'votes_count'    => int,
+     *     'comments_count' => int
+     * ] </code></pre>
+     */
+    public function findProductsByContent(
+        string $search_string,
+        int $count = 10,
+        int $offset = 0
+    ): array {
+        return [];
+    }
+
+    /**
+     * Get products id a given user voted for.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $user_id
+     * 
+     * @return array <pre><code> [
+     *     'product_id'     => int
+     * ] </code></pre>
+     */
+    public function getUserVotes(int $user_id): array
+    {
+        return [];
+    }
+
+    /**
+     * Get comments for a given product.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $product_id
+     * 
+     * @return array <pre><code> [
+     *     'comment_id'     => int,
+     *     'product_id'     => int,
+     *     'user_id'        => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'content'        => string
+     * ] </code></pre>
+     */
+    public function getProductComments(int $product_id): array
+    {
+        return [];
+    }
+
+    /**
+     * Get user info for a given user name.
+     * 
+     * note
+     *      Returns an empty array if given user name does NOT exist.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $product_id
+     * 
+     * @return array <pre><code> [
+     *     'user_id'     => int,
+     *     'name'        => string,
+     *     'created_at'  => string date('Y-m-d H:i:s'),
+     *     'ip'          => string
+     * ] </code></pre>
+     */
+    public function getUser(string $name): array
+    {
+        return [];
+    }
+
+    /**
+     * Register a given new user.
+     * 
+     * note
+     *      Returns an empty array if operation could NOT complete.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $product_id
+     * 
+     * @return array <pre><code> [
+     *     'user_id'     => int,
+     *     'name'        => string,
+     *     'created_at'  => string date('Y-m-d H:i:s'),
+     *     'ip'          => string
+     * ] </code></pre>
+     */
+    public function addUser(string $name, string $ip): array
+    {
+        return [];
+    }
+
+    /**
+     * Register a vote for given user on given product.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $user_id
+     * @param  int $product_id
+     * 
+     * @return int Given product updated votes count.
+     */
+    public function vote(int $user_id, int $product_id): int
+    {
+        return 0;
+    }
+
+    /**
+     * Register a comment for given user on given product.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $user_id
+     * @param  int $product_id
+     * 
+     * @return array <pre><code> [
+     *     'comment_id'     => int,
+     *     'product_id'     => int,
+     *     'user_id'        => int,
+     *     'name'           => string,
+     *     'created_at'     => string date('Y-m-d H:i:s'),
+     *     'content'        => string
+     * ] </code></pre>
+     */
+    public function comment(
+        int $user_id,
+        int $product_id,
+        string $comment
+    ): array {
         return [];
     }
 

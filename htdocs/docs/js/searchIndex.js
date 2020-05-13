@@ -388,7 +388,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Models\\DBPDO\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
-            "summary": "todo\n\u0020\u0020\u002D\u0020\u005Bx\u005D\u0020Avoid\u0020instancing\u0020a\u0020DB\u0020everytime\u0020if\u0020config\u0020is\u0020up\u0020and\u0020adequate",
+            "summary": "",
             "url": "../classes/Models-DBPDO.html#method_execute"
         },                {
             "fqsen": "\\Models\\DBPDO\u003A\u003A\u0024db",
@@ -428,13 +428,58 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetFreshProducts\u0028\u0029",
             "name": "getFreshProducts",
-            "summary": "Query\u0020database\u0020and\u0020returns\u0020an\u0020array\u0020of\u0020most\u0020recent\u0020products.",
+            "summary": "Get\u0020most\u0020recent\u0020products.",
             "url": "../classes/Models-ProductHuntAPI.html#method_getFreshProducts"
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetPopularProducts\u0028\u0029",
             "name": "getPopularProducts",
-            "summary": "Query\u0020database\u0020and\u0020returns\u0020an\u0020array\u0020of\u0020most\u0020popular\u0020products.",
+            "summary": "Get\u0020most\u0020popular\u0020products.",
             "url": "../classes/Models-ProductHuntAPI.html#method_getPopularProducts"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProductsCollection\u0028\u0029",
+            "name": "getProductsCollection",
+            "summary": "Get\u0020products\u0020associated\u0020with\u0020a\u0020given\u0020category.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getProductsCollection"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AfindProductsByName\u0028\u0029",
+            "name": "findProductsByName",
+            "summary": "Find\u0020products\u0020whose\u0020name\u0020match\u0020given\u0020search\u0020string.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_findProductsByName"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AfindProductsByContent\u0028\u0029",
+            "name": "findProductsByContent",
+            "summary": "Find\u0020products\u0020whose\u0020content\u0020match\u0020given\u0020search\u0020string.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_findProductsByContent"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetUserVotes\u0028\u0029",
+            "name": "getUserVotes",
+            "summary": "Get\u0020products\u0020id\u0020a\u0020given\u0020user\u0020voted\u0020for.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getUserVotes"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProductComments\u0028\u0029",
+            "name": "getProductComments",
+            "summary": "Get\u0020comments\u0020for\u0020a\u0020given\u0020product.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getProductComments"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetUser\u0028\u0029",
+            "name": "getUser",
+            "summary": "Get\u0020user\u0020info\u0020for\u0020a\u0020given\u0020user\u0020name.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getUser"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AaddUser\u0028\u0029",
+            "name": "addUser",
+            "summary": "Register\u0020a\u0020given\u0020new\u0020user.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_addUser"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003Avote\u0028\u0029",
+            "name": "vote",
+            "summary": "Register\u0020a\u0020vote\u0020for\u0020given\u0020user\u0020on\u0020given\u0020product.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_vote"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003Acomment\u0028\u0029",
+            "name": "comment",
+            "summary": "Register\u0020a\u0020comment\u0020for\u0020given\u0020user\u0020on\u0020given\u0020product.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_comment"
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AopGET\u0028\u0029",
             "name": "opGET",
