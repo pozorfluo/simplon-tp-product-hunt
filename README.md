@@ -1,11 +1,12 @@
 # tp product-hunt
 
+## docs
+
+[wip](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Models-ProductHuntAPI.html)
+
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
-
-## docs
-[wip](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/)
 
 ## todo
 
@@ -26,9 +27,8 @@ see [board on Trello](https://trello.com/b/d41FFxTW/product-hunt)
 - Use Bootstrap to build layout and style pages.
 
 ## db setup wip
+
 ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-db.png)
-
-
 
 ## reference links
 
@@ -37,4 +37,3 @@ https://ph-graph-api-explorer.herokuapp.com/
 http://api-v2-docs.producthunt.com.s3-website-us-east-1.amazonaws.com/operation/query/  
 https://github.com/producthunt/producthunt-api  
 https://graphql.org/learn/serving-over-http/
-
