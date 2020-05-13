@@ -6,7 +6,25 @@
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
 
-## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
+![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
+
+## db setup
+
+![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-db.png)
+
+## wireframes
+
+### desktop/laptop
+
+![desktop](htdocs/resources/images/tp-product-hunt_wireframe-desktop.png)
+
+### tablet
+
+![tablet](htdocs/resources/images/tp-product-hunt_wireframe-tablet.png)
+
+### mobile
+
+![mobile](htdocs/resources/images/tp-product-hunt_wireframe-mobile.png)
 
 ## todo
 
@@ -25,10 +43,6 @@ see [board on Trello](https://trello.com/b/d41FFxTW/product-hunt)
 - Use Ajax requests directed at the backend API to update page on the client
   and display modals.
 - Use Bootstrap to build layout and style pages.
-
-## db setup wip
-
-![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-db.png)
 
 ## reference links
 
