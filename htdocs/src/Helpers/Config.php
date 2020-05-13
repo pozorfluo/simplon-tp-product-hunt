@@ -6,7 +6,9 @@ declare(strict_types=1);
 
 /**
  * Get list of registered components, database configs, etc... from config file
- * or provide/build some defaults
+ * or provide/build some defaults.
+ * 
+ * @todo Make directory separator platform agnostic.
  */
 $t = microtime(true);
 
@@ -19,7 +21,7 @@ if ($config_exists) {
 }
 
 if (!isset($config['components']) || DEV_FORCE_CONFIG_UPDATE) {
-    $src_dir = new RecursiveDirectoryIterator(ROOT . 'src/');
+    $src_dir = new RecursiveDirectoryIterator(ROOT . 'src' . DIRECTORY_SEPARATOR);
     $iterator = new RecursiveIteratorIterator($src_dir);
     $php_files = new RegexIterator(
         $iterator,
@@ -38,7 +40,7 @@ if (!isset($config['components']) || DEV_FORCE_CONFIG_UPDATE) {
         );
 
         if (!$is_interface_or_abstract) {
-            $component = array_slice(explode('/', $php_file[0]), -2);
+            $component = array_slice(explode(DIRECTORY_SEPARATOR, $php_file[0]), -2);
             $config['components'][$component[0]][] = substr($component[1], 0, -4);
         }
     }
