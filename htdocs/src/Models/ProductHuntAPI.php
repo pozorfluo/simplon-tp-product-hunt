@@ -7,6 +7,8 @@ namespace Models;
 
 use Exception;
 use Helpers\DBConfig;
+use Controllers\Controller;
+
 
 /**
  * ProductHunt RESTish API
@@ -33,6 +35,34 @@ use Helpers\DBConfig;
  */
 class ProductHuntAPI extends DBPDO
 {
+    /**
+     * Create a new ProductHuntAPI instance from a decoded config json.
+     * 
+     * @param  array $config
+     * @return ProductHuntAPI
+     */
+    public static function fromConfig(array $config): ProductHuntAPI
+    {
+        $controller = new \Controllers\ProductHuntAPI();
+
+        $controller->set(['db_configs' => $config['db_configs']]);
+        return new self($controller);
+    }
+
+        
+    /**
+     * Create a new ProductHuntAPI instance.
+     *
+     * @param  Controller|NULL $controller
+     * @return void
+     */
+    public function __construct(?Controller $controller = NULL)
+    {
+        if(is_null($controller)) {
+            $controller = new \Controllers\ProductHuntAPI();
+        }
+        parent::__construct($controller);
+    }
 
     /**
      * Get most recent products.
@@ -76,7 +106,7 @@ class ProductHuntAPI extends DBPDO
                 'created_at'     => '2020-05-10 07:01:00',
                 'website'        => 'https://rewind.netlify.app/?ref=producthunt',
                 'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'thumbnail'      => 'public/images/products/thumbnails/2_Buy-For-Life.webp',
                 'votes_count'    => 0,
                 'comments_count' => 0
             ]

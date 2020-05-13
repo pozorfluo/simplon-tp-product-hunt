@@ -7,10 +7,67 @@
 
 * {
   box-sizing: border-box;
+
 }
 
 html {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   /* font-family: IBM Plex Sans, monospace; */
+}
+
+/*### List Product ###*/
+.product-img img {
+  margin-top: 15px;
+  width: 75px;
+}
+.website img , .comment img, .up img{
+  width: 50px;
+}
+
+/*### Modal Product ###*/
+.createdDiv{
+
+  padding: 40px;
+
+}
+.modal-thumbnail{
+  width: 50px;
+  float: left;
+
+}
+
+
+.createdDiv h5{
+  flex-direction: row;
+  margin-left: 50px;
+
+}
+@media (max-width: 990px) {
+
+.title{
+  position: relative;
+  top: 25px;
+  left: 0px;
+  }
+.summary{
+margin-top: 70px;
+  }
+  .link_product{
+   margin-top: 60px;
+  }
+.product-img img{
+  position: absolute;
+  top: 0px;
+  left: 40px;
+  }
+/* #div-product{
+
+} */
+
+.modal-thumbnail{
+ position: absolute;
+ top: 60px;
+}
+
 }

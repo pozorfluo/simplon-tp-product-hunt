@@ -65,19 +65,24 @@ class CacheItem
     /**
      * Create a new CacheItem instance from a json encoded representation.
      * 
-     * @param  mixed $json_data
+     * @todo See why bench-cache-serialization is NOT using associative array
+     *       decoding option.
+     * 
+     * @param  string $json_data
      * @return CacheItem
      */
-    public static function fromJson(array $json_data): CacheItem
+    public static function fromJson(string $json_data): CacheItem
     {
+        $json_data = json_decode($json_data, true);
         return new self(
             $json_data['filename'],
             $json_data['render_time'],
             $json_data['expiry_date'],
-            ($json_data['popularity']),
+            $json_data['popularity'],
             $json_data['tags']
          );
     }
+
     /**
      * Create a new CacheItem instance.
      * 

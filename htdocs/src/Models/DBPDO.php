@@ -10,6 +10,7 @@ namespace Models;
 
 use Exception;
 use Helpers\DB;
+use Controllers\Controller;
 
 /**
  * 
@@ -21,7 +22,7 @@ class DBPDO extends Model
     /**
      * Define defaults, take arguments
      */
-    public function __construct($controller)
+    public function __construct(Controller $controller)
     {
         parent::__construct($controller);
 

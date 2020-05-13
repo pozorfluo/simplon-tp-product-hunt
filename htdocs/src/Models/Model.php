@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Models;
 
 use Controllers\Controller;
+
 /**
  * note
  *   Base class Model describes how it is initialized, should be talked to, 

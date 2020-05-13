@@ -29,7 +29,6 @@ if (session_status() === PHP_SESSION_NONE) {
 require ROOT . 'src/Helpers/Config.php';
 date_default_timezone_set('Europe/Paris');
 //--------------------------------------------------------------- playground
-echo 'hello';
 
 //---------------------------------------------------------------------- run
 $t = microtime(true);
@@ -37,6 +36,7 @@ $t = microtime(true);
 
 // $dispatcher = new Dispatcher($config);
 // $dispatcher->route()->cache();
+require ROOT . 'src/Pages/home.php';
 
 $time_spent['serving_page'] = (microtime(true) - $t);
 //------------------------------------------------------------------- config

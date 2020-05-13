@@ -109,8 +109,6 @@ abstract class API extends Controller
     ];
 
 
-
-
     public function __construct(array $args = [])
     {
         parent::__construct($args);
@@ -126,7 +124,7 @@ abstract class API extends Controller
         // header('Access-Control-Allow-Origin: *');
         // header('Access-Control-Allow-Methods: *');
 
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
     }
 
     /**
@@ -142,6 +140,8 @@ abstract class API extends Controller
      */
     protected function emit(?array $data, int $status_code): self
     {
+        header('Content-Type: application/json');
+        
         $status = self::status($status_code);
         header("HTTP/1.1 {$status_code} {$status}");
 

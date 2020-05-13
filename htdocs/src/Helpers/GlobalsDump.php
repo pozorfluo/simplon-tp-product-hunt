@@ -6,13 +6,13 @@ declare(strict_types=1);
 
 
 ?>
-<hr />
+<!-- <hr />
 <form action="" method="POST">
     <input type="submit" name="killsession" value="Kill Session" />
 </form>
 <form action="" method="POST">
     <input type="submit" name="clearcache" value="Clear Cache" />
-</form>
+</form> -->
 
 
 <?php
