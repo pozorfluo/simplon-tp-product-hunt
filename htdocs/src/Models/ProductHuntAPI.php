@@ -122,7 +122,7 @@ class ProductHuntAPI extends DBPDO
      * @api
      * @todo Implement query
      * 
-     * @param  int $search_string
+     * @param  string $search_string
      * @param  int $count  How many products to return (default = 10).
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
@@ -152,7 +152,7 @@ class ProductHuntAPI extends DBPDO
      * @api
      * @todo Implement query
      * 
-     * @param  int $search_string
+     * @param  string $search_string
      * @param  int $count  How many products to return (default = 10).
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
