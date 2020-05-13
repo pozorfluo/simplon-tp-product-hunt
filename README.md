@@ -4,6 +4,9 @@
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-flowchart.svg)
 
+## docs
+[wip](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/)
+
 ## todo
 
 see [board on Trello](https://trello.com/b/d41FFxTW/product-hunt)
