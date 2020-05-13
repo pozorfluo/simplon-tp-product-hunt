@@ -436,6 +436,16 @@ Search.appendIndex(
             "summary": "Get\u0020most\u0020popular\u0020products.",
             "url": "../classes/Models-ProductHuntAPI.html#method_getPopularProducts"
         },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetCategories\u0028\u0029",
+            "name": "getCategories",
+            "summary": "Get\u0020categories\u0020sorted\u0020by\u0020id.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getCategories"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetCategory\u0028\u0029",
+            "name": "getCategory",
+            "summary": "Get\u0020category\u0020info\u0020for\u0020a\u0020given\u0020category\u0020id.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getCategory"
+        },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProductsCollection\u0028\u0029",
             "name": "getProductsCollection",
             "summary": "Get\u0020products\u0020associated\u0020with\u0020a\u0020given\u0020category.",
@@ -461,10 +471,15 @@ Search.appendIndex(
             "summary": "Get\u0020comments\u0020for\u0020a\u0020given\u0020product.",
             "url": "../classes/Models-ProductHuntAPI.html#method_getProductComments"
         },                {
-            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetUser\u0028\u0029",
-            "name": "getUser",
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetUserById\u0028\u0029",
+            "name": "getUserById",
+            "summary": "Get\u0020user\u0020info\u0020for\u0020a\u0020given\u0020user\u0020id.",
+            "url": "../classes/Models-ProductHuntAPI.html#method_getUserById"
+        },                {
+            "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetUserbyName\u0028\u0029",
+            "name": "getUserbyName",
             "summary": "Get\u0020user\u0020info\u0020for\u0020a\u0020given\u0020user\u0020name.",
-            "url": "../classes/Models-ProductHuntAPI.html#method_getUser"
+            "url": "../classes/Models-ProductHuntAPI.html#method_getUserbyName"
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AaddUser\u0028\u0029",
             "name": "addUser",

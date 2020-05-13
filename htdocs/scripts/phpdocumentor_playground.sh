@@ -5,14 +5,14 @@ curl -L -o phpDocumentor.phar https://github.com/phpDocumentor/phpDocumentor/rel
 
 # install phpDocumentor
 chmod +x phpDocumentor.phar
-sudo mv phpDocumentor.phar /usr/local/bin/phpDocumentor
+sudo mv phpDocumentor.phar /usr/local/bin/phpDocumentor 
 
 # install graphviz
 sudo apt-get install graphviz
 
 # run in source dir, output to target dir
 # php phpDocumentor.phar -d ./src -t docs/ --template="zend"
-phpDocumentor -d ./src -t docs/ --template="clean"
+phpDocumentor -d ./src -t docs/ -s graphs.enabled=true
 
 
 # see https://github.com/phpDocumentor/phpDocumentor

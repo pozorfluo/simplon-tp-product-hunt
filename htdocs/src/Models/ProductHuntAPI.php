@@ -44,20 +44,43 @@ class ProductHuntAPI extends DBPDO
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
      * 
-     * @return array <pre><code> [
-     *     'product_id'     => int,
-     *     'name'           => string,
-     *     'created_at'     => string date('Y-m-d H:i:s'),
-     *     'website'        => string,
-     *     'summary'        => string,
-     *     'thumbnail'      => string,
-     *     'votes_count'    => int,
-     *     'comments_count' => int
+     * @return array <pre><code>[
+     *     [
+     *         'product_id'     => int,
+     *         'name'           => string,
+     *         'created_at'     => string date('Y-m-d H:i:s'),
+     *         'website'        => string,
+     *         'summary'        => string,
+     *         'thumbnail'      => string,
+     *         'votes_count'    => int,
+     *         'comments_count' => int
+     *     ], 
+     *     ...
      * ] </code></pre>
      */
     public function getFreshProducts(int $count = 10, int $offset = 0): array
     {
-        return [];
+        return [
+            [
+                'product_id'     => 1,
+                'name'           => 'Rewind',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ], [
+                'product_id'     => 2,
+                'name'           => 'Buy For Life',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ]
+        ];
     }
 
     /**
@@ -70,20 +93,100 @@ class ProductHuntAPI extends DBPDO
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
      * 
-     * @return array <pre><code> [
-     *     'product_id'     => int,
-     *     'name'           => string,
-     *     'created_at'     => string date('Y-m-d H:i:s'),
-     *     'website'        => string,
-     *     'summary'        => string,
-     *     'thumbnail'      => string,
-     *     'votes_count'    => int,
-     *     'comments_count' => int
+     * @return array <pre><code>[
+     *     [
+     *         'product_id'     => int,
+     *         'name'           => string,
+     *         'created_at'     => string date('Y-m-d H:i:s'),
+     *         'website'        => string,
+     *         'summary'        => string,
+     *         'thumbnail'      => string,
+     *         'votes_count'    => int,
+     *         'comments_count' => int
+     *     ], 
+     *     ...
      * ] </code></pre>
      */
     public function getPopularProducts(int $count = 10, int $offset = 0): array
     {
-        return [];
+        return [
+            [
+                'product_id'     => 4,
+                'name'           => 'Wedding Planning Assistant',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ], [
+                'product_id'     => 2,
+                'name'           => 'Buy For Life',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ]
+        ];
+    }
+
+    /**
+     * Get categories sorted by id.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $count  How many categories to return (default = 10).
+     * @param  int $offset How many categories to skip   (default = 0)
+     *                     Use for pagination.
+     * 
+     * @return array <pre><code>[
+     *     [
+     *         'category_id'     => int,
+     *         'name'           => string,
+     *     ], 
+     *     ...
+     * ] </code></pre>
+     */
+    public function getCategories(int $count = 10, int $offset = 0): array
+    {
+        return [
+            [
+                'category_id'    => 1,
+                'name'           => 'Tech',
+            ],
+            [
+                'category_id'    => 2,
+                'name'           => 'Dev Tools',
+            ]
+        ];
+    }
+
+    /**
+     * Get category info for a given category id.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $category_id
+     * 
+     * @return array <pre><code>[
+     *     'category_id'    => int,
+     *     'name'           => string,
+     *     'summary'        => string,
+     *     'thumbnail'      => string
+     * ] </code></pre>
+     */
+    public function getCategory(int $category_id): array
+    {
+        return [
+            'category_id'    => $category_id,
+            'name'           => 'Tech',
+            'summary'        => 'Hard, soft, high, low. Forward !',
+            'thumbnail'      => 'public/images/products/thumbnails/virtual-reality.svg'
+        ];
     }
 
     /**
@@ -97,15 +200,18 @@ class ProductHuntAPI extends DBPDO
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
      * 
-     * @return array <pre><code> [
-     *     'product_id'     => int,
-     *     'name'           => string,
-     *     'created_at'     => string date('Y-m-d H:i:s'),
-     *     'website'        => string,
-     *     'summary'        => string,
-     *     'thumbnail'      => string,
-     *     'votes_count'    => int,
-     *     'comments_count' => int
+     * @return array <pre><code>[
+     *     [
+     *         'product_id'     => int,
+     *         'name'           => string,
+     *         'created_at'     => string date('Y-m-d H:i:s'),
+     *         'website'        => string,
+     *         'summary'        => string,
+     *         'thumbnail'      => string,
+     *         'votes_count'    => int,
+     *         'comments_count' => int
+     *     ], 
+     *     ...
      * ] </code></pre>
      */
     public function getProductsCollection(
@@ -113,7 +219,27 @@ class ProductHuntAPI extends DBPDO
         int $count = 10,
         int $offset = 0
     ): array {
-        return [];
+        return [
+            [
+                'product_id'     => 5,
+                'name'           => 'Jump In Meeting',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ], [
+                'product_id'     => 6,
+                'name'           => 'ShopSavvy for Chrome',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ]
+        ];
     }
 
     /**
@@ -127,15 +253,18 @@ class ProductHuntAPI extends DBPDO
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
      * 
-     * @return array <pre><code> [
-     *     'product_id'     => int,
-     *     'name'           => string,
-     *     'created_at'     => string date('Y-m-d H:i:s'),
-     *     'website'        => string,
-     *     'summary'        => string,
-     *     'thumbnail'      => string,
-     *     'votes_count'    => int,
-     *     'comments_count' => int
+     * @return array <pre><code>[
+     *     [
+     *         'product_id'     => int,
+     *         'name'           => string,
+     *         'created_at'     => string date('Y-m-d H:i:s'),
+     *         'website'        => string,
+     *         'summary'        => string,
+     *         'thumbnail'      => string,
+     *         'votes_count'    => int,
+     *         'comments_count' => int
+     *     ], 
+     *     ...
      * ] </code></pre>
      */
     public function findProductsByName(
@@ -143,7 +272,27 @@ class ProductHuntAPI extends DBPDO
         int $count = 10,
         int $offset = 0
     ): array {
-        return [];
+        return [
+            [
+                'product_id'     => 1,
+                'name'           => 'Rewind',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ], [
+                'product_id'     => 3,
+                'name'           => 'Remoty',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ]
+        ];
     }
 
     /**
@@ -157,15 +306,18 @@ class ProductHuntAPI extends DBPDO
      * @param  int $offset How many products to skip   (default = 0)
      *                     Use for pagination.
      * 
-     * @return array <pre><code> [
-     *     'product_id'     => int,
-     *     'name'           => string,
-     *     'created_at'     => string date('Y-m-d H:i:s'),
-     *     'website'        => string,
-     *     'summary'        => string,
-     *     'thumbnail'      => string,
-     *     'votes_count'    => int,
-     *     'comments_count' => int
+     * @return array <pre><code>[
+     *     [
+     *         'product_id'     => int,
+     *         'name'           => string,
+     *         'created_at'     => string date('Y-m-d H:i:s'),
+     *         'website'        => string,
+     *         'summary'        => string,
+     *         'thumbnail'      => string,
+     *         'votes_count'    => int,
+     *         'comments_count' => int
+     *     ], 
+     *     ...
      * ] </code></pre>
      */
     public function findProductsByContent(
@@ -173,7 +325,27 @@ class ProductHuntAPI extends DBPDO
         int $count = 10,
         int $offset = 0
     ): array {
-        return [];
+        return [
+            [
+                'product_id'     => 3,
+                'name'           => 'Remoty',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ], [
+                'product_id'     => 7,
+                'name'           => 'Meeter',
+                'created_at'     => '2020-05-10 07:01:00',
+                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+                'votes_count'    => 0,
+                'comments_count' => 0
+            ]
+        ];
     }
 
     /**
@@ -184,13 +356,14 @@ class ProductHuntAPI extends DBPDO
      * 
      * @param  int $user_id
      * 
-     * @return array <pre><code> [
-     *     'product_id'     => int
+     * @return array <pre><code>[
+     *     int,
+     *     ...
      * ] </code></pre>
      */
     public function getUserVotes(int $user_id): array
     {
-        return [];
+        return [1, 2, 3, 9];
     }
 
     /**
@@ -201,18 +374,66 @@ class ProductHuntAPI extends DBPDO
      * 
      * @param  int $product_id
      * 
-     * @return array <pre><code> [
-     *     'comment_id'     => int,
-     *     'product_id'     => int,
-     *     'user_id'        => int,
-     *     'name'           => string,
-     *     'created_at'     => string date('Y-m-d H:i:s'),
-     *     'content'        => string
+     * @return array <pre><code>[
+     *     [
+     *         'comment_id'     => int,
+     *         'product_id'     => int,
+     *         'user_id'        => int,
+     *         'name'           => string,
+     *         'created_at'     => string date('Y-m-d H:i:s'),
+     *         'content'        => string
+     *     ], 
+     *     ...
      * ] </code></pre>
      */
     public function getProductComments(int $product_id): array
     {
-        return [];
+        return [
+            [
+                'comment_id'     => 1,
+                'product_id'     => $product_id,
+                'user_id'        => 1,
+                'name'           => 'JeanPlaceHaut-le-Der',
+                'created_at'     => '2020-05-10 07:01:00',
+                'content'        => 'This is a placeholder comment.'
+            ],
+            [
+                'comment_id'     => 2,
+                'product_id'     => $product_id,
+                'user_id'        => 1,
+                'name'           => 'JeanPlaceHaut-le-Der',
+                'created_at'     => '2020-05-10 07:01:01',
+                'content'        => 'This is another placeholder comment.'
+            ]
+        ];
+    }
+
+    /**
+     * Get user info for a given user id.
+     * 
+     * note
+     *      Returns an empty array if given user id does NOT exist.
+     * 
+     * @api
+     * @todo Implement query
+     * 
+     * @param  int $user_id
+     * 
+     * @return array <pre><code>[
+     *     'user_id'     => int,
+     *     'name'        => string,
+     *     'created_at'  => string date('Y-m-d H:i:s'),
+     *     'ip'          => string
+     * ] </code></pre>
+     */
+    public function getUserById(string $user_id): array
+    {
+        return [
+            'user_id'     => $user_id,
+            'name'        => 'JeanPlaceHaut-le-Der',
+            'created_at'  => '2020-05-10 07:01:00',
+            'ip'          => '127.0.0.1'
+        ];
     }
 
     /**
@@ -224,18 +445,23 @@ class ProductHuntAPI extends DBPDO
      * @api
      * @todo Implement query
      * 
-     * @param  int $product_id
+     * @param  string $name
      * 
-     * @return array <pre><code> [
+     * @return array <pre><code>[
      *     'user_id'     => int,
      *     'name'        => string,
      *     'created_at'  => string date('Y-m-d H:i:s'),
      *     'ip'          => string
      * ] </code></pre>
      */
-    public function getUser(string $name): array
+    public function getUserbyName(string $name): array
     {
-        return [];
+        return [
+            'user_id'     => 1,
+            'name'        => $name,
+            'created_at'  => '2020-05-10 07:01:00',
+            'ip'          => '127.0.0.1'
+        ];
     }
 
     /**
@@ -247,9 +473,10 @@ class ProductHuntAPI extends DBPDO
      * @api
      * @todo Implement query
      * 
-     * @param  int $product_id
+     * @param  string $name
+     * @param  string $ip
      * 
-     * @return array <pre><code> [
+     * @return array <pre><code>[
      *     'user_id'     => int,
      *     'name'        => string,
      *     'created_at'  => string date('Y-m-d H:i:s'),
@@ -258,7 +485,12 @@ class ProductHuntAPI extends DBPDO
      */
     public function addUser(string $name, string $ip): array
     {
-        return [];
+        return [
+            'user_id'     => 1,
+            'name'        => $name,
+            'created_at'  => date('Y-m-d H:i:s'),
+            'ip'          => $ip
+        ];
     }
 
     /**
@@ -274,7 +506,7 @@ class ProductHuntAPI extends DBPDO
      */
     public function vote(int $user_id, int $product_id): int
     {
-        return 0;
+        return 1;
     }
 
     /**
@@ -285,8 +517,9 @@ class ProductHuntAPI extends DBPDO
      * 
      * @param  int $user_id
      * @param  int $product_id
+     * @param  string $comment
      * 
-     * @return array <pre><code> [
+     * @return array <pre><code>[
      *     'comment_id'     => int,
      *     'product_id'     => int,
      *     'user_id'        => int,
@@ -300,7 +533,14 @@ class ProductHuntAPI extends DBPDO
         int $product_id,
         string $comment
     ): array {
-        return [];
+        return [
+            'comment_id'     => 1,
+            'product_id'     => $product_id,
+            'user_id'        => $user_id,
+            'name'           => 'JeanPlaceHaut-le-Der',
+            'created_at'     => date('Y-m-d H:i:s'),
+            'content'        => $comment
+        ];
     }
 
     /**

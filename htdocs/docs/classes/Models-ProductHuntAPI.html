@@ -124,6 +124,16 @@ open() is FORBIDDEN
                     <td class="phpdocumentor-cell">array</td>
                 </tr>
                             <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Models-ProductHuntAPI.html#method_getCategories">getCategories()</a></th>
+                    <td class="phpdocumentor-cell">Get categories sorted by id.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Models-ProductHuntAPI.html#method_getCategory">getCategory()</a></th>
+                    <td class="phpdocumentor-cell">Get category info for a given category id.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Models-ProductHuntAPI.html#method_getProductsCollection">getProductsCollection()</a></th>
                     <td class="phpdocumentor-cell">Get products associated with a given category.</td>
                     <td class="phpdocumentor-cell">array</td>
@@ -149,7 +159,12 @@ open() is FORBIDDEN
                     <td class="phpdocumentor-cell">array</td>
                 </tr>
                             <tr>
-                    <th class="phpdocumentor-heading"><a href="../classes/Models-ProductHuntAPI.html#method_getUser">getUser()</a></th>
+                    <th class="phpdocumentor-heading"><a href="../classes/Models-ProductHuntAPI.html#method_getUserById">getUserById()</a></th>
+                    <td class="phpdocumentor-cell">Get user info for a given user id.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Models-ProductHuntAPI.html#method_getUserbyName">getUserbyName()</a></th>
                     <td class="phpdocumentor-cell">Get user info for a given user name.</td>
                     <td class="phpdocumentor-cell">array</td>
                 </tr>
@@ -299,7 +314,7 @@ open() is FORBIDDEN
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">58</span>
+        <span class="phpdocumentor-element-found-in__line">61</span>
     </aside>
         <p class="phpdocumentor-summary">Get most recent products.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -347,15 +362,18 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'product_id'     => int,
-    'name'           => string,
-    'created_at'     => string date('Y-m-d H:i:s'),
-    'website'        => string,
-    'summary'        => string,
-    'thumbnail'      => string,
-    'votes_count'    => int,
-    'comments_count' => int
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'product_id'     => int,
+        'name'           => string,
+        'created_at'     => string date('Y-m-d H:i:s'),
+        'website'        => string,
+        'summary'        => string,
+        'thumbnail'      => string,
+        'votes_count'    => int,
+        'comments_count' => int
+    ],
+    ...
 ] </code></pre></span>
             
 </article>
@@ -370,7 +388,7 @@ Use for pagination.</p></section></dd>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">84</span>
+        <span class="phpdocumentor-element-found-in__line">110</span>
     </aside>
         <p class="phpdocumentor-summary">Get most popular products.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -418,15 +436,143 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'product_id'     => int,
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'product_id'     => int,
+        'name'           => string,
+        'created_at'     => string date('Y-m-d H:i:s'),
+        'website'        => string,
+        'summary'        => string,
+        'thumbnail'      => string,
+        'votes_count'    => int,
+        'comments_count' => int
+    ],
+    ...
+] </code></pre></span>
+            
+</article>
+                                    <a id="method_getCategories"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">getCategories()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">153</span>
+    </aside>
+        <p class="phpdocumentor-summary">Get categories sorted by id.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">getCategories</span>(
+                    <span class="phpdocumentor-signature__argument">
+            [                <span class="phpdocumentor-signature__argument__name">$count</span> :
+                <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">10</span> ]            </span>
+                    <span class="phpdocumentor-signature__argument">
+            ,                 <span class="phpdocumentor-signature__argument__name">$offset</span> :
+                <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$count</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                     = <span class="phpdocumentor-signature__argument__default-value">10</span>                </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>How many categories to return (default = 10).</p></section></dd>
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$offset</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"><p>How many categories to skip   (default = 0)
+Use for pagination.</p></section></dd>
+                    </dl>
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Implement query</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'category_id'     => int,
+        'name'           => string,
+    ],
+    ...
+] </code></pre></span>
+            
+</article>
+                                    <a id="method_getCategory"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">getCategory()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">182</span>
+    </aside>
+        <p class="phpdocumentor-summary">Get category info for a given category id.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">getCategory</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$category_id</span> :
+                <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$category_id</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"></section></dd>
+                    </dl>
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Implement query</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    'category_id'    => int,
     'name'           => string,
-    'created_at'     => string date('Y-m-d H:i:s'),
-    'website'        => string,
     'summary'        => string,
-    'thumbnail'      => string,
-    'votes_count'    => int,
-    'comments_count' => int
+    'thumbnail'      => string
 ] </code></pre></span>
             
 </article>
@@ -441,7 +587,7 @@ Use for pagination.</p></section></dd>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">111</span>
+        <span class="phpdocumentor-element-found-in__line">217</span>
     </aside>
         <p class="phpdocumentor-summary">Get products associated with a given category.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -498,15 +644,18 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'product_id'     => int,
-    'name'           => string,
-    'created_at'     => string date('Y-m-d H:i:s'),
-    'website'        => string,
-    'summary'        => string,
-    'thumbnail'      => string,
-    'votes_count'    => int,
-    'comments_count' => int
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'product_id'     => int,
+        'name'           => string,
+        'created_at'     => string date('Y-m-d H:i:s'),
+        'website'        => string,
+        'summary'        => string,
+        'thumbnail'      => string,
+        'votes_count'    => int,
+        'comments_count' => int
+    ],
+    ...
 ] </code></pre></span>
             
 </article>
@@ -521,7 +670,7 @@ Use for pagination.</p></section></dd>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">141</span>
+        <span class="phpdocumentor-element-found-in__line">270</span>
     </aside>
         <p class="phpdocumentor-summary">Find products whose name match given search string.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -578,15 +727,18 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'product_id'     => int,
-    'name'           => string,
-    'created_at'     => string date('Y-m-d H:i:s'),
-    'website'        => string,
-    'summary'        => string,
-    'thumbnail'      => string,
-    'votes_count'    => int,
-    'comments_count' => int
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'product_id'     => int,
+        'name'           => string,
+        'created_at'     => string date('Y-m-d H:i:s'),
+        'website'        => string,
+        'summary'        => string,
+        'thumbnail'      => string,
+        'votes_count'    => int,
+        'comments_count' => int
+    ],
+    ...
 ] </code></pre></span>
             
 </article>
@@ -601,7 +753,7 @@ Use for pagination.</p></section></dd>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">171</span>
+        <span class="phpdocumentor-element-found-in__line">323</span>
     </aside>
         <p class="phpdocumentor-summary">Find products whose content match given search string.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -658,15 +810,18 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'product_id'     => int,
-    'name'           => string,
-    'created_at'     => string date('Y-m-d H:i:s'),
-    'website'        => string,
-    'summary'        => string,
-    'thumbnail'      => string,
-    'votes_count'    => int,
-    'comments_count' => int
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'product_id'     => int,
+        'name'           => string,
+        'created_at'     => string date('Y-m-d H:i:s'),
+        'website'        => string,
+        'summary'        => string,
+        'thumbnail'      => string,
+        'votes_count'    => int,
+        'comments_count' => int
+    ],
+    ...
 ] </code></pre></span>
             
 </article>
@@ -681,7 +836,7 @@ Use for pagination.</p></section></dd>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">191</span>
+        <span class="phpdocumentor-element-found-in__line">364</span>
     </aside>
         <p class="phpdocumentor-summary">Get products id a given user voted for.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -719,8 +874,9 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'product_id'     => int
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    int,
+    ...
 ] </code></pre></span>
             
 </article>
@@ -735,7 +891,7 @@ Use for pagination.</p></section></dd>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">213</span>
+        <span class="phpdocumentor-element-found-in__line">389</span>
     </aside>
         <p class="phpdocumentor-summary">Get comments for a given product.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -773,33 +929,95 @@ Use for pagination.</p></section></dd>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
-    'comment_id'     => int,
-    'product_id'     => int,
-    'user_id'        => int,
-    'name'           => string,
-    'created_at'     => string date('Y-m-d H:i:s'),
-    'content'        => string
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    [
+        'comment_id'     => int,
+        'product_id'     => int,
+        'user_id'        => int,
+        'name'           => string,
+        'created_at'     => string date('Y-m-d H:i:s'),
+        'content'        => string
+    ],
+    ...
 ] </code></pre></span>
             
 </article>
-                                    <a id="method_getUser"></a>
+                                    <a id="method_getUserById"></a>
 <article
         class="
             phpdocumentor-method
             phpdocumentor-method--public
                                                         "
 >
-    <h4 class="phpdocumentor-method__name">getUser()</h4>
+    <h4 class="phpdocumentor-method__name">getUserById()</h4>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">236</span>
+        <span class="phpdocumentor-element-found-in__line">429</span>
+    </aside>
+        <p class="phpdocumentor-summary">Get user info for a given user id.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">public</span>
+                                <span class="phpdocumentor-signature__name">getUserById</span>(
+                    <span class="phpdocumentor-signature__argument">
+                            <span class="phpdocumentor-signature__argument__name">$user_id</span> :
+                <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </span>
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+        <section class="phpdocumentor-description"><p>note
+Returns an empty array if given user id does NOT exist.</p></section>
+    
+            <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+        <dl class="phpdocumentor-argument-list">
+                            <dt class="phpdocumentor-argument-list__entry">
+                    <span class="phpdocumentor-signature__argument__name">$user_id</span>
+                    : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                                    </dt>
+                <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"></section></dd>
+                    </dl>
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Implement query</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
+    'user_id'     => int,
+    'name'        => string,
+    'created_at'  => string date('Y-m-d H:i:s'),
+    'ip'          => string
+] </code></pre></span>
+            
+</article>
+                                    <a id="method_getUserbyName"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--public
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">getUserbyName()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">457</span>
     </aside>
         <p class="phpdocumentor-summary">Get user info for a given user name.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
-                                <span class="phpdocumentor-signature__name">getUser</span>(
+                                <span class="phpdocumentor-signature__name">getUserbyName</span>(
                     <span class="phpdocumentor-signature__argument">
                             <span class="phpdocumentor-signature__argument__name">$name</span> :
                 <span class="phpdocumentor-signature__argument__return-type">string</span>
@@ -834,7 +1052,7 @@ Returns an empty array if given user name does NOT exist.</p></section>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
     'user_id'     => int,
     'name'        => string,
     'created_at'  => string date('Y-m-d H:i:s'),
@@ -853,7 +1071,7 @@ Returns an empty array if given user name does NOT exist.</p></section>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">259</span>
+        <span class="phpdocumentor-element-found-in__line">486</span>
     </aside>
         <p class="phpdocumentor-summary">Register a given new user.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -902,7 +1120,7 @@ Returns an empty array if operation could NOT complete.</p></section>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
     'user_id'     => int,
     'name'        => string,
     'created_at'  => string date('Y-m-d H:i:s'),
@@ -921,7 +1139,7 @@ Returns an empty array if operation could NOT complete.</p></section>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">275</span>
+        <span class="phpdocumentor-element-found-in__line">507</span>
     </aside>
         <p class="phpdocumentor-summary">Register a vote for given user on given product.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -982,7 +1200,7 @@ Returns an empty array if operation could NOT complete.</p></section>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">298</span>
+        <span class="phpdocumentor-element-found-in__line">531</span>
     </aside>
         <p class="phpdocumentor-summary">Register a comment for given user on given product.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -1038,7 +1256,7 @@ Returns an empty array if operation could NOT complete.</p></section>
     
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array</span>
-                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint"> [
+                    &mdash; <span class="phpdocumentor-description"><pre class="prettyprint"><code class="prettyprint">[
     'comment_id'     => int,
     'product_id'     => int,
     'user_id'        => int,
@@ -1059,7 +1277,7 @@ Returns an empty array if operation could NOT complete.</p></section>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">314</span>
+        <span class="phpdocumentor-element-found-in__line">554</span>
     </aside>
         <p class="phpdocumentor-summary">Return last few messages</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -1093,7 +1311,7 @@ RESTish API</li>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">360</span>
+        <span class="phpdocumentor-element-found-in__line">600</span>
     </aside>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
@@ -1120,7 +1338,7 @@ RESTish API</li>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">431</span>
+        <span class="phpdocumentor-element-found-in__line">671</span>
     </aside>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
@@ -1147,7 +1365,7 @@ RESTish API</li>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ProductHuntAPI.php"><a href="../files/src-models-producthuntapi.html"><abbr title="src/Models/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">441</span>
+        <span class="phpdocumentor-element-found-in__line">681</span>
     </aside>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
