@@ -252,8 +252,6 @@ class ProductHuntAPI extends API
             $comments = ['comments' => $this->model->getProductComments($product_id)];
             $results = array_merge($product, $comments);
 
-            // $results = json_decode($product['media']);
-
             if (empty($results)) {
                 /* Not Found */
                 $this->args['status_code'] = 404;
@@ -282,7 +280,7 @@ class ProductHuntAPI extends API
      *
      * Pagination option is available on this resource.
      * 
-     * @query ?controller=ProductHuntAPI&endpoint=Products&sub=Fresh
+     * @query ?controller=ProductHuntAPI&endpoint=Product&sub=Fresh
      * 
      * @optional &maxResults= 
      *           How many products to return (default = 10).
