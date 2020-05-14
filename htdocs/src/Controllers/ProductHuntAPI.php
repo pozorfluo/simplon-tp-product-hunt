@@ -99,12 +99,7 @@ class ProductHuntAPI extends API
      * @Response STATUS 200 - application/json
      * OK
      * <pre><code>
-     * {
-     *   "article_id": 1,
-     *   "product_id": 2,
-     *   "content": "Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It's totally free and it relies on your local bookmarks, you don't have to create an account.",
-     *   "media": "[\"public/images/products/1_Rewind_0.webp\",\"public/images/products/1_Rewind_1.webp\",\"public/images/products/1_Rewind_2.webp\",\"public/images/products/1_Rewind_3.webp\",\"public/images/products/1_Rewind_4.webp\"]"
-     * }
+     * [132]
      * </code></pre>
      * 
      * @Response STATUS 204 - application/json
@@ -188,9 +183,33 @@ class ProductHuntAPI extends API
      * <pre><code>
      * {
      *   "article_id": 1,
-     *   "product_id": 2,
+     *   "product_id": 5,
      *   "content": "Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It's totally free and it relies on your local bookmarks, you don't have to create an account.",
-     *   "media": "[\"public/images/products/1_Rewind_0.webp\",\"public/images/products/1_Rewind_1.webp\",\"public/images/products/1_Rewind_2.webp\",\"public/images/products/1_Rewind_3.webp\",\"public/images/products/1_Rewind_4.webp\"]"
+     *   "media": [
+     *     "public/images/products/1_Rewind_0.webp",
+     *     "public/images/products/1_Rewind_1.webp",
+     *     "public/images/products/1_Rewind_2.webp",
+     *     "public/images/products/1_Rewind_3.webp",
+     *     "public/images/products/1_Rewind_4.webp"
+     *   ],
+     *   "comments": [
+     *     {
+     *       "comment_id": 1,
+     *       "product_id": 5,
+     *       "user_id": 1,
+     *       "name": "JeanPlaceHaut-le-Der",
+     *       "created_at": "2020-05-10 07:01:00",
+     *       "content": "This is a placeholder comment."
+     *     },
+     *     {
+     *       "comment_id": 2,
+     *       "product_id": 5,
+     *       "user_id": 1,
+     *       "name": "JeanPlaceHaut-le-Der",
+     *       "created_at": "2020-05-10 07:01:01",
+     *       "content": "This is another placeholder comment."
+     *     }
+     *   ]
      * }
      * </code></pre>
      * 
@@ -229,7 +248,11 @@ class ProductHuntAPI extends API
         $product_id = intval($this->args['product_id'] ?? 0);
 
         try {
-            $results = $this->model->getProduct($product_id);
+            $product = $this->model->getProduct($product_id);
+            $comments = ['comments' => $this->model->getProductComments($product_id)];
+            $results = array_merge($product, $comments);
+
+            // $results = json_decode($product['media']);
 
             if (empty($results)) {
                 /* Not Found */
