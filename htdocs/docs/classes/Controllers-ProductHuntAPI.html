@@ -70,11 +70,12 @@
         <aside class="phpdocumentor-element-found-in">
             <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
             :
-            <span class="phpdocumentor-element-found-in__line">16</span>
+            <span class="phpdocumentor-element-found-in__line">17</span>
         </aside>
 
         <p class="phpdocumentor-class__summary">RESTish API</p>
-        <section class="phpdocumentor-class__description"><p>Setup</p>
+        <section class="phpdocumentor-class__description"><p>Mapping between query parameters as dissected by the Dispatcher and this
+RESTish API :</p>
 <pre class="prettyprint"><code class="prettyprint">Controller       -&gt; API
 Action           -&gt; endpoint
 Sub              -&gt; sub-resource
@@ -86,29 +87,13 @@ Other Parameters -&gt; query parameters</code></pre>
   POST   -&gt; add
   PUT    -&gt; update/edit
   DELETE -&gt; remove</code></pre>
-<p>Prepend mode of operation method names with 'op' to make it clear what is
-meant to be a callable action and thwart some malicious requests.</p>
-<p>e.g.,</p>
-<pre class="prettyprint"><code class="prettyprint">    opGET()
-    opPOSTSubresource()
-    opPUTSubresource()
-    opDELETE()</code></pre>
-<p>todo</p>
-<ul>
-<li>[ ] Implement API rate limiting
-<ul>
-<li>[ ] See <a href="https://www.yiiframework.com/doc/guide/2.0/en/rest-rate-limiting">https://www.yiiframework.com/doc/guide/2.0/en/rest-rate-limiting</a></li>
-</ul></li>
-</ul></section>
+<p>Prepend names of method available for each resource with 'rest' to make it
+clear what is meant to be a callable action and thwart some malicious
+requests.</p></section>
 
         <h3>Table of Contents</h3>
         <table class="phpdocumentor-table_of_contents">
-                                        <tr>
-                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#property_timeout">$timeout</a></th>
-                    <td class="phpdocumentor-cell"></td>
-                    <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
-                </tr>
-                                                    <tr>
+                                                                <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-Controller.html#property_args">$args</a></th>
                     <td class="phpdocumentor-cell"></td>
                     <td class="phpdocumentor-cell"><a href=""><abbr title=""></abbr></a></td>
@@ -136,23 +121,22 @@ meant to be a callable action and thwart some malicious requests.</p>
                                         <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_runDefault">runDefault()</a></th>
                     <td class="phpdocumentor-cell">note
-  Prepend all model mode of operation meant to be callable by a request
-  with &#039;op&#039;</td>
+  Prepend all actions meant to be callable by a request with &#039;run&#039;</td>
                     <td class="phpdocumentor-cell">void</td>
                 </tr>
                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_runProduct">runProduct()</a></th>
-                    <td class="phpdocumentor-cell">todo Refactor ProductHuntAPI model, split internal and REST parts</td>
+                    <td class="phpdocumentor-cell"></td>
                     <td class="phpdocumentor-cell">void</td>
                 </tr>
                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_runComment">runComment()</a></th>
-                    <td class="phpdocumentor-cell">todo Refactor ProductHuntAPI model, split internal and REST parts</td>
+                    <td class="phpdocumentor-cell"></td>
                     <td class="phpdocumentor-cell">void</td>
                 </tr>
                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_runVote">runVote()</a></th>
-                    <td class="phpdocumentor-cell">todo Refactor ProductHuntAPI model, split internal and REST parts</td>
+                    <td class="phpdocumentor-cell"></td>
                     <td class="phpdocumentor-cell">void</td>
                 </tr>
                             <tr>
@@ -160,6 +144,26 @@ meant to be a callable action and thwart some malicious requests.</p>
                     <td class="phpdocumentor-cell">note
   Overriding Controller-&gt;cache()</td>
                     <td class="phpdocumentor-cell"><a href="../classes/Controllers-Controller.html"><abbr title="\Controllers\Controller">Controller</abbr></a></td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_restPOSTVote">restPOSTVote()</a></th>
+                    <td class="phpdocumentor-cell">RESTish API : Register a vote for given user on given product.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_restGETProduct">restGETProduct()</a></th>
+                    <td class="phpdocumentor-cell">RESTish API : Get product content associated to a given product id.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_restGETProductFresh">restGETProductFresh()</a></th>
+                    <td class="phpdocumentor-cell">RESTish API : Get most recent products.</td>
+                    <td class="phpdocumentor-cell">array</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-ProductHuntAPI.html#method_restGETProductPopular">restGETProductPopular()</a></th>
+                    <td class="phpdocumentor-cell">RESTish API : Get most popular products.</td>
+                    <td class="phpdocumentor-cell">array</td>
                 </tr>
                                                     <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-Controller.html#method___construct">__construct()</a></th>
@@ -195,6 +199,26 @@ meant to be a callable action and thwart some malicious requests.</p>
                     <td class="phpdocumentor-cell">mixed</td>
                 </tr>
                             <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restGET">restGET()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restPOST">restPOST()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restPUT">restPUT()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restDELETE">restDELETE()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-Controller.html#method_set">set()</a></th>
                     <td class="phpdocumentor-cell"></td>
                     <td class="phpdocumentor-cell">self</td>
@@ -221,25 +245,6 @@ meant to be a callable action and thwart some malicious requests.</p>
         
                     <section>
                 <h3 class="phpdocumentor-properties__header">Properties</h3>
-                                    <a id="property_timeout"></a>
-<article
-        class="
-            phpdocumentor-property
-            phpdocumentor-property--protected
-                                "
->
-    <h4 class="phpdocumentor-property__name">$timeout</h4>
-    <aside class="phpdocumentor-element-found-in">
-        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
-        :
-        <span class="phpdocumentor-element-found-in__line">18</span>
-    </aside>
-        <code class="phpdocumentor-signature phpdocumentor-code ">
-        <span class="phpdocumentor-signature__visibility">protected</span>
-                <span class="phpdocumentor-signature__type">mixed</span>
-        <span class="phpdocumentor-signature__name">$timeout</span>
-         = <span class="phpdocumentor-signature__default-value">30</span>    </code>
-    </article>
                                                                     <a id="property_args"></a>
 <article
         class="
@@ -350,11 +355,10 @@ meant to be a callable action and thwart some malicious requests.</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">21</span>
+        <span class="phpdocumentor-element-found-in__line">19</span>
     </aside>
         <p class="phpdocumentor-summary">note
-  Prepend all model mode of operation meant to be callable by a request
-  with &#039;op&#039;</p>
+  Prepend all actions meant to be callable by a request with &#039;run&#039;</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
                                 <span class="phpdocumentor-signature__name">runDefault</span>(
@@ -392,7 +396,6 @@ meant to be a callable action and thwart some malicious requests.</p>
         :
         <span class="phpdocumentor-element-found-in__line">32</span>
     </aside>
-        <p class="phpdocumentor-summary">todo Refactor ProductHuntAPI model, split internal and REST parts</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
                                 <span class="phpdocumentor-signature__name">runProduct</span>(
@@ -428,9 +431,8 @@ meant to be a callable action and thwart some malicious requests.</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">45</span>
+        <span class="phpdocumentor-element-found-in__line">47</span>
     </aside>
-        <p class="phpdocumentor-summary">todo Refactor ProductHuntAPI model, split internal and REST parts</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
                                 <span class="phpdocumentor-signature__name">runComment</span>(
@@ -466,9 +468,8 @@ meant to be a callable action and thwart some malicious requests.</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">57</span>
+        <span class="phpdocumentor-element-found-in__line">61</span>
     </aside>
-        <p class="phpdocumentor-summary">todo Refactor ProductHuntAPI model, split internal and REST parts</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
                                 <span class="phpdocumentor-signature__name">runVote</span>(
@@ -504,7 +505,7 @@ meant to be a callable action and thwart some malicious requests.</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">70</span>
+        <span class="phpdocumentor-element-found-in__line">76</span>
     </aside>
         <p class="phpdocumentor-summary">note
   Overriding Controller-&gt;cache()</p>
@@ -515,20 +516,452 @@ meant to be a callable action and thwart some malicious requests.</p>
         : <span class="phpdocumentor-signature__response_type"><a href="../classes/Controllers-Controller.html"><abbr title="\Controllers\Controller">Controller</abbr></a></span>
     </code>
 
-        <section class="phpdocumentor-description"><p>This controller emits json content and need to set an appropriate
-header before serving.</p>
-<p>The html cache behaviour is not suitable for calls to this RESTish
-API controller</p>
-<p>As a hacky workaround, this turns cache() into a NOP</p>
-<p>todo</p>
-<ul>
-<li>[ ] Handle Dispatcher-level cache for json emission more gracefully</li>
-</ul></section>
     
     
         
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="../classes/Controllers-Controller.html"><abbr title="\Controllers\Controller">Controller</abbr></a></span>
+            
+</article>
+                                    <a id="method_restPOSTVote"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--protected
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restPOSTVote()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">135</span>
+    </aside>
+        <p class="phpdocumentor-summary">RESTish API : Register a vote for given user on given product.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                                <span class="phpdocumentor-signature__name">restPOSTVote</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>ProductHuntAPI</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">endpoint</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Vote</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">query</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>?controller=ProductHuntAPI&amp;endpoint=Vote&amp;user_id={id}&amp;product_id={id}</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Example</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 200 - application/json
+OK</p>
+<pre class="prettyprint"><code class="prettyprint">
+{
+  "article_id": 1,
+  "product_id": 2,
+  "content": "Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It's totally free and it relies on your local bookmarks, you don't have to create an account.",
+  "media": "[\"public/images/products/1_Rewind_0.webp\",\"public/images/products/1_Rewind_1.webp\",\"public/images/products/1_Rewind_2.webp\",\"public/images/products/1_Rewind_3.webp\",\"public/images/products/1_Rewind_4.webp\"]"
+}
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 204 - application/json
+No Content</p>
+<pre class="prettyprint"><code class="prettyprint">
+[]
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 400 - application/json
+Bad Request</p>
+<pre class="prettyprint"><code class="prettyprint">
+['ERROR : missing or invalid parameter product_id']
+['ERROR : missing or invalid parameter user_id']
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 500 - application/json
+Internal Server Error</p>
+<pre class="prettyprint"><code class="prettyprint">
+['ERROR : ...']
+</code></pre></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Translate PDO/MySQL errors into meaningful response for the
+RESTish API.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Add a json cache/buffer.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Have a look at PDO statement errorInfo().</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Handle situation where vote has already been cast.</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><p>to be emitted as json by ProductHuntAPI controller</p></span>
+            
+</article>
+                                    <a id="method_restGETProduct"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--protected
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restGETProduct()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">220</span>
+    </aside>
+        <p class="phpdocumentor-summary">RESTish API : Get product content associated to a given product id.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                                <span class="phpdocumentor-signature__name">restGETProduct</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>ProductHuntAPI</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">endpoint</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Product</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">query</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>?controller=ProductHuntAPI&amp;endpoint=Product&amp;product_id={id}</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Example</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 200 - application/json
+OK</p>
+<pre class="prettyprint"><code class="prettyprint">
+{
+  "article_id": 1,
+  "product_id": 2,
+  "content": "Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It's totally free and it relies on your local bookmarks, you don't have to create an account.",
+  "media": "[\"public/images/products/1_Rewind_0.webp\",\"public/images/products/1_Rewind_1.webp\",\"public/images/products/1_Rewind_2.webp\",\"public/images/products/1_Rewind_3.webp\",\"public/images/products/1_Rewind_4.webp\"]"
+}
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 204 - application/json
+No Content</p>
+<pre class="prettyprint"><code class="prettyprint">
+[]
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 400 - application/json
+Bad Request</p>
+<pre class="prettyprint"><code class="prettyprint">
+['ERROR : missing or invalid parameter product_id']
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 500 - application/json
+Internal Server Error</p>
+<pre class="prettyprint"><code class="prettyprint">
+['ERROR : ...']
+</code></pre></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Translate PDO/MySQL errors into meaningful response for the
+RESTish API.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Add a json cache/buffer.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Have a look at PDO statement errorInfo().</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><p>to be emitted as json by ProductHuntAPI controller</p></span>
+            
+</article>
+                                    <a id="method_restGETProductFresh"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--protected
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restGETProductFresh()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">316</span>
+    </aside>
+        <p class="phpdocumentor-summary">RESTish API : Get most recent products.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                                <span class="phpdocumentor-signature__name">restGETProductFresh</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>ProductHuntAPI</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">endpoint</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Product</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">sub-resource</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Fresh</p>
+<p>Pagination option is available on this resource.</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">query</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>?controller=ProductHuntAPI&amp;endpoint=Products&amp;sub=Fresh</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">optional</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>&amp;maxResults=
+How many products to return (default = 10).</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">optional</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>&amp;startAt=
+How many products to skip   (default = 0).</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Example</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 200 - application/json
+OK</p>
+<pre class="prettyprint"><code class="prettyprint">
+[
+  {
+    "product_id": 1,
+    "name": "Rewind",
+    "created_at": "2020-05-10 07:01:00",
+    "website": "https://rewind.netlify.app/?ref=producthunt",
+    "summary": "Your bookmarks, by date, with thumbnails and instant search",
+    "thumbnail": "public/images/products/thumbnails/1_Rewind.webp",
+    "votes_count": 0,
+    "comments_count": 0
+  },
+  {
+    "product_id": 2,
+    "name": "Buy For Life",
+    "created_at": "2020-05-10 07:01:00",
+    "website": "https://rewind.netlify.app/?ref=producthunt",
+    "summary": "Your bookmarks, by date, with thumbnails and instant search",
+    "thumbnail": "public/images/products/thumbnails/2_Buy-For-Life.webp",
+    "votes_count": 0,
+    "comments_count": 0
+  }
+] </code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 204 - application/json
+No Content</p>
+<pre class="prettyprint"><code class="prettyprint">
+[]
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 500 - application/json
+Internal Server Error</p>
+<pre class="prettyprint"><code class="prettyprint">
+['ERROR : ...']
+</code></pre></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Translate PDO/MySQL errors into meaningful response for the
+RESTish API.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Add a json cache/buffer.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Have a look at PDO statement errorInfo().</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><p>to be emitted as json by ProductHuntAPI controller</p></span>
+            
+</article>
+                                    <a id="method_restGETProductPopular"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--protected
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restGETProductPopular()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/ProductHuntAPI.php"><a href="../files/src-controllers-producthuntapi.html"><abbr title="src/Controllers/ProductHuntAPI.php">ProductHuntAPI.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">407</span>
+    </aside>
+        <p class="phpdocumentor-summary">RESTish API : Get most popular products.</p>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">protected</span>
+                                <span class="phpdocumentor-signature__name">restGETProductPopular</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array</span>
+    </code>
+
+    
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">api</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>ProductHuntAPI</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">endpoint</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Product</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">sub-resource</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Popular</p>
+<p>Pagination option is available on this resource.</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">query</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>?controller=ProductHuntAPI&amp;endpoint=Product&amp;sub=Popular</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">optional</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>&amp;maxResults=
+How many products to return (default = 10).</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">optional</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>&amp;startAt=
+How many products to skip   (default = 0).</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Example</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 200 - application/json
+OK</p>
+<pre class="prettyprint"><code class="prettyprint">
+[
+  {
+    "product_id": 1,
+    "name": "Rewind",
+    "created_at": "2020-05-10 07:01:00",
+    "website": "https://rewind.netlify.app/?ref=producthunt",
+    "summary": "Your bookmarks, by date, with thumbnails and instant search",
+    "thumbnail": "public/images/products/thumbnails/1_Rewind.webp",
+    "votes_count": 0,
+    "comments_count": 0
+  },
+  {
+    "product_id": 2,
+    "name": "Buy For Life",
+    "created_at": "2020-05-10 07:01:00",
+    "website": "https://rewind.netlify.app/?ref=producthunt",
+    "summary": "Your bookmarks, by date, with thumbnails and instant search",
+    "thumbnail": "public/images/products/thumbnails/2_Buy-For-Life.webp",
+    "votes_count": 0,
+    "comments_count": 0
+  }
+] </code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 204 - application/json
+No Content</p>
+<pre class="prettyprint"><code class="prettyprint">
+[]
+</code></pre></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">Response</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>STATUS 500 - application/json
+Internal Server Error</p>
+<pre class="prettyprint"><code class="prettyprint">
+['ERROR : ...']
+</code></pre></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Translate PDO/MySQL errors into meaningful response for the
+RESTish API.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Add a json cache/buffer.</p></section></dd>
+                                    <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Have a look at PDO statement errorInfo().</p></section></dd>
+                                    </dl>
+    
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array</span>
+                    &mdash; <span class="phpdocumentor-description"><p>to be emitted as json by ProductHuntAPI controller</p></span>
             
 </article>
                                                                     <a id="method___construct"></a>
@@ -669,7 +1102,7 @@ API controller</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">156</span>
+        <span class="phpdocumentor-element-found-in__line">155</span>
     </aside>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
@@ -754,6 +1187,114 @@ API controller</p>
         
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_restGET"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restGET()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">215</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restGET</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
+            
+</article>
+                                    <a id="method_restPOST"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restPOST()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">227</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restPOST</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
+            
+</article>
+                                    <a id="method_restPUT"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restPUT()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">239</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restPUT</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
+            
+</article>
+                                    <a id="method_restDELETE"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restDELETE()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">251</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restDELETE</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
             
 </article>
                                     <a id="method_set"></a>

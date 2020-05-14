@@ -70,11 +70,12 @@
         <aside class="phpdocumentor-element-found-in">
             <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
             :
-            <span class="phpdocumentor-element-found-in__line">43</span>
+            <span class="phpdocumentor-element-found-in__line">44</span>
         </aside>
 
         <p class="phpdocumentor-class__summary">RESTish API</p>
-        <section class="phpdocumentor-class__description"><p>Setup</p>
+        <section class="phpdocumentor-class__description"><p>Mapping between query parameters as dissected by the Dispatcher and this
+RESTish API :</p>
 <pre class="prettyprint"><code class="prettyprint">Controller       -&gt; API
 Action           -&gt; endpoint
 Sub              -&gt; sub-resource
@@ -86,20 +87,9 @@ Other Parameters -&gt; query parameters</code></pre>
   POST   -&gt; add
   PUT    -&gt; update/edit
   DELETE -&gt; remove</code></pre>
-<p>Prepend mode of operation method names with 'op' to make it clear what is
-meant to be a callable action and thwart some malicious requests.</p>
-<p>e.g.,</p>
-<pre class="prettyprint"><code class="prettyprint">    opGET()
-    opPOSTSubresource()
-    opPUTSubresource()
-    opDELETE()</code></pre>
-<p>todo</p>
-<ul>
-<li>[ ] Implement API rate limiting
-<ul>
-<li>[ ] See <a href="https://www.yiiframework.com/doc/guide/2.0/en/rest-rate-limiting">https://www.yiiframework.com/doc/guide/2.0/en/rest-rate-limiting</a></li>
-</ul></li>
-</ul></section>
+<p>Prepend names of method available for each resource with 'rest' to make it
+clear what is meant to be a callable action and thwart some malicious
+requests.</p></section>
 
         <h3>Table of Contents</h3>
         <table class="phpdocumentor-table_of_contents">
@@ -156,15 +146,35 @@ meant to be a callable action and thwart some malicious requests.</p>
                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_cache">cache()</a></th>
                     <td class="phpdocumentor-cell">note
-  Overriding Controller-&gt;cache()</td>
+  May be called on a Controller who never (or not yet) received args,
+  in which case it does nothing</td>
                     <td class="phpdocumentor-cell"><a href="../classes/Controllers-Controller.html"><abbr title="\Controllers\Controller">Controller</abbr></a></td>
                 </tr>
                             <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_runDefault">runDefault()</a></th>
                     <td class="phpdocumentor-cell">note
-  Prepend all model mode of operation meant to be callable by a request
-  with &#039;op&#039;</td>
+  Prepend all actions meant to be callable by a request with &#039;run&#039;</td>
                     <td class="phpdocumentor-cell">mixed</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restGET">restGET()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restPOST">restPOST()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restPUT">restPUT()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
+                </tr>
+                            <tr>
+                    <th class="phpdocumentor-heading"><a href="../classes/Controllers-API.html#method_restDELETE">restDELETE()</a></th>
+                    <td class="phpdocumentor-cell"></td>
+                    <td class="phpdocumentor-cell">array|null</td>
                 </tr>
                                                     <tr>
                     <th class="phpdocumentor-heading"><a href="../classes/Controllers-Controller.html#method___construct">__construct()</a></th>
@@ -222,7 +232,7 @@ meant to be a callable action and thwart some malicious requests.</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">58</span>
+        <span class="phpdocumentor-element-found-in__line">59</span>
     </aside>
             <p class="phpdocumentor-summary">Associate a status string to a status code integer.</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
@@ -232,12 +242,10 @@ meant to be a callable action and thwart some malicious requests.</p>
         = <span class="phpdocumentor-signature__default-value">[100 =&gt; &#039;Continue&#039;, 101 =&gt; &#039;Switching Protocols&#039;, 200 =&gt; &#039;OK&#039;, 201 =&gt; &#039;Created&#039;, 202 =&gt; &#039;Accepted&#039;, 203 =&gt; &#039;Non-Authoritative Information&#039;, 204 =&gt; &#039;No Content&#039;, 205 =&gt; &#039;Reset Content&#039;, 206 =&gt; &#039;Partial Content&#039;, 300 =&gt; &#039;Multiple Choices&#039;, 301 =&gt; &#039;Moved Permanently&#039;, 302 =&gt; &#039;Found&#039;, 303 =&gt; &#039;See Other&#039;, 304 =&gt; &#039;Not Modified&#039;, 305 =&gt; &#039;Use Proxy&#039;, 307 =&gt; &#039;Temporary Redirect&#039;, 400 =&gt; &#039;Bad Request&#039;, 401 =&gt; &#039;Unauthorized&#039;, 402 =&gt; &#039;Payment Required&#039;, 403 =&gt; &#039;Forbidden&#039;, 404 =&gt; &#039;Not Found&#039;, 405 =&gt; &#039;Method Not Allowed&#039;, 406 =&gt; &#039;Not Acceptable&#039;, 407 =&gt; &#039;Proxy Authentication Required&#039;, 408 =&gt; &#039;Request Time-out&#039;, 409 =&gt; &#039;Conflict&#039;, 410 =&gt; &#039;Gone&#039;, 411 =&gt; &#039;Length Required&#039;, 412 =&gt; &#039;Precondition Failed&#039;, 413 =&gt; &#039;Request Entity Too Large&#039;, 414 =&gt; &#039;Request-URI Too Large&#039;, 415 =&gt; &#039;Unsupported Media Type&#039;, 416 =&gt; &#039;Requested range not satisfiable&#039;, 417 =&gt; &#039;Expectation Failed&#039;, 421 =&gt; &#039;Misdirected Request&#039;, 422 =&gt; &#039;Unprocessable Entity&#039;, 423 =&gt; &#039;Locked&#039;, 424 =&gt; &#039;Failed Dependency&#039;, 425 =&gt; &#039;Too Early&#039;, 426 =&gt; &#039;Upgrade Required&#039;, 428 =&gt; &#039;Precondition Required&#039;, 429 =&gt; &#039;Too Many Requests&#039;, 431 =&gt; &#039;Request Header Fields Too Large&#039;, 451 =&gt; &#039;Unavailable For Legal Reasons&#039;, 500 =&gt; &#039;Internal Server Error&#039;, 501 =&gt; &#039;Not Implemented&#039;, 502 =&gt; &#039;Bad Gateway&#039;, 503 =&gt; &#039;Service Unavailable&#039;, 504 =&gt; &#039;Gateway Time-out&#039;, 505 =&gt; &#039;HTTP Version not supported&#039;]</span>
     </code>
         <section class="phpdocumentor-description">1xx Informational
-  2xx Success
-  3xx Redirection
-  4xx Client Error
-  5xx Server Error
-
-See [MDN HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)</section>
+2xx Success
+3xx Redirection
+4xx Client Error
+5xx Server Error</section>
     </article>
                                             </section>
         
@@ -353,7 +361,7 @@ See [MDN HTTP response status codes](https://developer.mozilla.org/en-US/docs/We
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">112</span>
+        <span class="phpdocumentor-element-found-in__line">113</span>
     </aside>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
@@ -480,7 +488,7 @@ See [MDN HTTP response status codes](https://developer.mozilla.org/en-US/docs/We
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">156</span>
+        <span class="phpdocumentor-element-found-in__line">155</span>
     </aside>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
@@ -507,10 +515,11 @@ See [MDN HTTP response status codes](https://developer.mozilla.org/en-US/docs/We
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">199</span>
+        <span class="phpdocumentor-element-found-in__line">200</span>
     </aside>
         <p class="phpdocumentor-summary">note
-  Overriding Controller-&gt;cache()</p>
+  May be called on a Controller who never (or not yet) received args,
+  in which case it does nothing</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
                                 <span class="phpdocumentor-signature__name">cache</span>(
@@ -518,18 +527,27 @@ See [MDN HTTP response status codes](https://developer.mozilla.org/en-US/docs/We
         : <span class="phpdocumentor-signature__response_type"><a href="../classes/Controllers-Controller.html"><abbr title="\Controllers\Controller">Controller</abbr></a></span>
     </code>
 
-        <section class="phpdocumentor-description"><p>This controller emits json content and need to set an appropriate
+    
+    
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">note</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Overriding Controller-&gt;cache()</p>
+<p>This controller emits json content and need to set an appropriate
 header before serving.</p>
 <p>The html cache behaviour is not suitable for calls to this RESTish
 API controller</p>
-<p>As a hacky workaround, this turns cache() into a NOP</p>
-<p>todo</p>
-<ul>
+<p>As a hacky workaround, this turns cache() into a NOP</p></section></dd>
+                                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">todo</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><ul>
 <li>[ ] Handle Dispatcher-level cache for json emission more gracefully</li>
-</ul></section>
+</ul></section></dd>
+                                    </dl>
     
-    
-        
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="../classes/Controllers-Controller.html"><abbr title="\Controllers\Controller">Controller</abbr></a></span>
             
@@ -545,11 +563,10 @@ API controller</p>
     <aside class="phpdocumentor-element-found-in">
         <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
         :
-        <span class="phpdocumentor-element-found-in__line">209</span>
+        <span class="phpdocumentor-element-found-in__line">210</span>
     </aside>
         <p class="phpdocumentor-summary">note
-  Prepend all model mode of operation meant to be callable by a request
-  with &#039;op&#039;</p>
+  Prepend all actions meant to be callable by a request with &#039;run&#039;</p>
         <code class="phpdocumentor-signature phpdocumentor-code ">
         <span class="phpdocumentor-signature__visibility">public</span>
         <span class="phpdocumentor-signature__abstract">abstract</span>                        <span class="phpdocumentor-signature__name">runDefault</span>(
@@ -571,9 +588,125 @@ API controller</p>
                 <dd class="phpdocumentor-argument-list__definition"><section class="phpdocumentor-description"></section></dd>
                     </dl>
     
-        
+                <h5 class="phpdocumentor-tag-list__heading">Tags</h5>
+        <dl class="phpdocumentor-tag-list">
+                                                <dt class="phpdocumentor-tag-list__entry">
+                        <span class="phpdocumentor-tag__name">note</span>
+                    </dt>
+                    <dd class="phpdocumentor-tag-list__definition"><section class="phpdocumentor-description"><p>Prepend all model mode of operation meant to be callable by a request
+with 'op'</p></section></dd>
+                                    </dl>
+    
             <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">mixed</span>
+            
+</article>
+                                    <a id="method_restGET"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restGET()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">215</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restGET</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
+            
+</article>
+                                    <a id="method_restPOST"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restPOST()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">227</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restPOST</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
+            
+</article>
+                                    <a id="method_restPUT"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restPUT()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">239</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restPUT</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
+            
+</article>
+                                    <a id="method_restDELETE"></a>
+<article
+        class="
+            phpdocumentor-method
+            phpdocumentor-method--private
+                                                        "
+>
+    <h4 class="phpdocumentor-method__name">restDELETE()</h4>
+    <aside class="phpdocumentor-element-found-in">
+        <abbr class="phpdocumentor-element-found-in__file" title="src/Controllers/API.php"><a href="../files/src-controllers-api.html"><abbr title="src/Controllers/API.php">API.php</abbr></a></abbr>
+        :
+        <span class="phpdocumentor-element-found-in__line">251</span>
+    </aside>
+        <code class="phpdocumentor-signature phpdocumentor-code ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+                                <span class="phpdocumentor-signature__name">restDELETE</span>(
+                )
+        : <span class="phpdocumentor-signature__response_type">array|null</span>
+    </code>
+
+    
+    
+        
+            <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array|null</span>
             
 </article>
                                                                     <a id="method___construct"></a>
