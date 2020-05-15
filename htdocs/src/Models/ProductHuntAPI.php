@@ -619,12 +619,33 @@ class ProductHuntAPI extends DBPDO
      */
     public function getUserbyName(string $name): array
     {
-        return [
-            'user_id'     => 1,
-            'name'        => $name,
-            'created_at'  => '2020-05-10 07:01:00',
-            'ip'          => '127.0.0.1'
-        ];
+        if ($name === '') {
+            return [];
+        }
+
+        $user = $this->execute(
+            'product_hunt',
+            'SELECT
+                 `user_id`,
+                 `name`,
+                 `created_at`,
+                 `ip`
+             FROM
+                 `users`
+             WHERE
+                 `name` = ?;',
+            [$name]
+        );
+
+        if (!empty($user)) {
+            $user = $user[0];
+        }
+
+        if (isset($user['ip'])) {
+            $user['ip'] = long2ip($user['ip']);
+        }
+
+        return $user;
     }
 
     /**
@@ -673,7 +694,7 @@ class ProductHuntAPI extends DBPDO
         if (($user_id <= 0) || ($product_id <= 0)) {
             return [];
         }
-        
+
         $insert_result = $this->execute(
             'product_hunt',
             'INSERT INTO `votes`(

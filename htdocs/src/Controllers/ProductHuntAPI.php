@@ -115,6 +115,7 @@ class ProductHuntAPI extends API
      * ['ERROR : missing or invalid parameter product_id.']
      * ['ERROR : missing or invalid parameter user_id.']
      * ['ERROR : vote has already been cast for this used_id, product_id.']
+     * ['ERROR : user_id or product_id does NOT exist, cannot cast vote.']
      * </code></pre>
      * 
      * @Response STATUS 500 - application/json
@@ -163,12 +164,21 @@ class ProductHuntAPI extends API
             return $results;
         } catch (PDOException | Exception $e) {
             $error_msg = $e->getMessage();
+
             $duplicate_entry = 'Integrity constraint violation: 1062 Duplicate entry';
             if (strpos($error_msg, $duplicate_entry) !== false) {
                 /* Bad Request */
                 $this->args['status_code'] = 400;
-                return ['ERROR : vote already been cast for this used_id, product_id.'];
+                return ['ERROR : vote already been cast for this user_id, product_id.'];
             }
+
+            $fk_constraint_fail = 'Integrity constraint violation: 1452';
+            if (strpos($error_msg, $fk_constraint_fail) !== false) {
+                /* Bad Request */
+                $this->args['status_code'] = 400;
+                return ['ERROR : user_id or product_id does NOT exist, cannot cast vote.'];
+            }
+
             /* Internal Server Error */
             $this->args['status_code'] = 500;
             return [$error_msg];
