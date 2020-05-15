@@ -162,16 +162,33 @@ class ProductHuntAPI extends DBPDO
      */
     public function getCategories(int $count = 10, int $offset = 0): array
     {
-        return [
-            [
-                'category_id'    => 1,
-                'name'           => 'Tech',
-            ],
-            [
-                'category_id'    => 2,
-                'name'           => 'Dev Tools',
-            ]
-        ];
+        if ($count < 0) {
+            $count = 10;
+        }
+        if ($offset < 0) {
+            $offset = 0;
+        }
+
+        return $this->execute(
+            'product_hunt',
+            'SELECT
+                `category_id`,
+                `name`
+            FROM
+                `categories`
+            LIMIT ? OFFSET ?;',
+            [$count, $offset]
+        );
+        // return [
+        //     [
+        //         'category_id'    => 1,
+        //         'name'           => 'Tech',
+        //     ],
+        //     [
+        //         'category_id'    => 2,
+        //         'name'           => 'Dev Tools',
+        //     ]
+        // ];
     }
 
     /**
