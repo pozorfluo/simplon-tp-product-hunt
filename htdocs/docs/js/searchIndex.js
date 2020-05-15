@@ -513,7 +513,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProduct\u0028\u0029",
             "name": "getProduct",
-            "summary": "Get\u0020product\u0020content\u0020associated\u0020to\u0020a\u0020given\u0020product\u0020id.",
+            "summary": "Get\u0020product\u0020content\u0020associated\u0020with\u0020a\u0020given\u0020product\u0020id.",
             "url": "../classes/Models-ProductHuntAPI.html#method_getProduct"
         },                {
             "fqsen": "\\Models\\ProductHuntAPI\u003A\u003AgetProductsCollection\u0028\u0029",
