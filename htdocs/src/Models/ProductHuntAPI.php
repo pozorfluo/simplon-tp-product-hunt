@@ -172,23 +172,13 @@ class ProductHuntAPI extends DBPDO
         return $this->execute(
             'product_hunt',
             'SELECT
-                `category_id`,
-                `name`
-            FROM
-                `categories`
-            LIMIT ? OFFSET ?;',
+                 `category_id`,
+                 `name`
+             FROM
+                 `categories`
+             LIMIT ? OFFSET ?;',
             [$count, $offset]
         );
-        // return [
-        //     [
-        //         'category_id'    => 1,
-        //         'name'           => 'Tech',
-        //     ],
-        //     [
-        //         'category_id'    => 2,
-        //         'name'           => 'Dev Tools',
-        //     ]
-        // ];
     }
 
     /**
@@ -208,12 +198,23 @@ class ProductHuntAPI extends DBPDO
      */
     public function getCategory(int $category_id): array
     {
-        return [
-            'category_id'    => $category_id,
-            'name'           => 'Tech',
-            'summary'        => 'Hard, soft, high, low. Forward !',
-            'thumbnail'      => 'public/images/products/thumbnails/virtual-reality.svg'
-        ];
+        if ($category_id < 0) {
+            $category_id = 0;
+        }
+
+        return $this->execute(
+            'product_hunt',
+            'SELECT
+                 `category_id`,
+                 `name`,
+                 `summary`,
+                 `thumbnail`
+             FROM
+                 `categories`
+             WHERE
+            `category_id` = ?;',
+            [$category_id]
+        );
     }
     /**
      * Get product content associated to a given product id.
