@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace Models;
 
 use Exception;
+use PDOException;
 use Helpers\DBConfig;
 use Controllers\Controller;
 
@@ -247,12 +248,12 @@ class ProductHuntAPI extends DBPDO
      */
     public function getCategory(int $category_id): array
     {
-        if ($category_id < 0) {
+        if ($category_id <= 0) {
             // $category_id = 0;
             return [];
         }
 
-        return $this->execute(
+        $category = $this->execute(
             'product_hunt',
             'SELECT
                  `category_id`,
@@ -265,9 +266,11 @@ class ProductHuntAPI extends DBPDO
             `category_id` = ?;',
             [$category_id]
         );
+
+        return $category[0];
     }
     /**
-     * Get product content associated to a given product id.
+     * Get product content associated with a given product id.
      * 
      * @api
      * @todo Implement query
@@ -280,15 +283,26 @@ class ProductHuntAPI extends DBPDO
      *     'product_id'     => int,
      *     'content'        => string,
      *     'media'          => array[string, ...]
+     *     'comments'       => [
+     *                             [
+     *                                 'comment_id'     => int,
+     *                                 'product_id'     => int,
+     *                                 'user_id'        => int,
+     *                                 'name'           => string,
+     *                                 'created_at'     => string date('Y-m-d H:i:s'),
+     *                                 'content'        => string
+     *                             ], 
+     *                             ...
+     *                         ]
      * ] </code></pre>
      */
     public function getProduct(int $product_id): array
     {
-        if ($product_id < 0) {
+        if ($product_id <= 0) {
             return [];
         }
 
-         $product = $this->execute(
+        $product = $this->execute(
             'product_hunt',
             'SELECT
                  `product_id`,
@@ -302,11 +316,11 @@ class ProductHuntAPI extends DBPDO
             [$product_id]
         );
 
-        if(isset($product[0]['media'])) {
+        if (isset($product[0]['media'])) {
             $product[0]['media'] = json_decode($product[0]['media']);
         }
 
-        return $product;
+        return $product[0];
     }
 
     /**
@@ -624,9 +638,44 @@ class ProductHuntAPI extends DBPDO
      * 
      * @return int Given product updated votes count.
      */
+
     public function vote(int $user_id, int $product_id): int
     {
-        return 1;
+        if (($user_id <= 0) || ($product_id <= 0)) {
+            return [];
+        }
+        // try {
+            $insert_result = $this->execute(
+                'product_hunt',
+                'INSERT INTO `votes`(
+                `product_id`,
+                `user_id`,
+                `created_at`
+            )
+            VALUES(?, ?, ?);',
+                [$product_id, $user_id, date('Y-m-d H:i:s')]
+            );
+        // } catch (PDOException $e) {
+        //     $error_msg = $e->getMessage();
+        //     $duplicate_entry = 'Integrity constraint violation: 1062 Duplicate entry';
+        //     if (strpos($error_msg, $duplicate_entry) !== false) {
+        //         return -1;
+        //     }
+        //     return -2;
+        // }
+
+        $result = $this->execute(
+            'product_hunt',
+            'SELECT
+                 COUNT(`product_id`) AS votes_count
+             FROM
+                 `votes`
+             WHERE
+                 `product_id` = ?;',
+            [$product_id]
+        );
+
+        return $result[0]['votes_count'];
     }
 
     /**
@@ -663,3 +712,7 @@ class ProductHuntAPI extends DBPDO
         ];
     }
 }
+
+// * @return int|null Given product updated votes count or null if failed to
+// *                  insert. Insertion failure is most likely to occur when
+// *                  trying insert a vote that has already been registered.

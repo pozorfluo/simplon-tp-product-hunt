@@ -99,6 +99,20 @@ ORDER BY
     `votes_count` DESC, `products`.`created_at` DESC
 LIMIT 10 OFFSET 0
 
+-- --------------------------------------------------------
+
+--
+-- public function getProduct(int $product_id): array
+--
+SELECT
+    `articles`.`product_id`,
+    `articles`.`article_id`,
+    `articles`.`content`,
+    `articles`.`media`
+FROM 
+    `articles`
+WHERE
+    `articles`.`product_id` = 1;
 
 
 -- SELECT
