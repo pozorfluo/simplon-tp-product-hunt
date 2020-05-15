@@ -23,7 +23,6 @@ INSERT INTO `products`(
     `summary`,
     `website`,
     `thumbnail`,
-    `votes_count`
 )
 VALUES(
     1,
@@ -31,8 +30,7 @@ VALUES(
     'Rewind',
     'Your bookmarks, by date, with thumbnails and instant search',
     'https://rewind.netlify.app/?ref=producthunt',
-    'public/images/products/thumbnails/1_Rewind.webp',
-    0
+    'public/images/products/thumbnails/1_Rewind.webp'
 ),(
     2,
     '2020-05-10 07:00:00',
@@ -47,64 +45,56 @@ VALUES(
     'Remoty',
     'Time tracking, async daily standups & payroll exports',
     'https://remoty.dev?ref=producthunt',
-    'public/images/products/thumbnails/3_Remoty.webp',
-    0
+    'public/images/products/thumbnails/3_Remoty.webp'
 ),(
     4,
     '2020-05-10 07:12:00',
     'Wedding Planning Assistant',
     'Everything you need to plan your wedding',
     'https://planning.wedding?ref=producthunt',
-    'public/images/products/thumbnails/4_Wedding-Planning-Assistant.webp',
-    0
+    'public/images/products/thumbnails/4_Wedding-Planning-Assistant.webp'
 ),(
     5,
     '2020-05-10 07:00:00',
     'Jump In Meeting',
     'Connect to your conference calls from the menu bar',
     'https://jumpinm.com?ref=producthunt',
-    'public/images/products/thumbnails/5_Jump-In-Meeting.webp',
-    0
+    'public/images/products/thumbnails/5_Jump-In-Meeting.webp'
 ),(
     6,
     '2020-05-08 19:45:51',
     'ShopSavvy for Chrome',
     'Automatically compare prices between over 30,000+ retailers.',
     'https://chrome.google.com/webstore/detail/shopsavvy/megchchilhekbbnfcklodmndefbhkbco?ref=producthunt',
-    'public/images/products/thumbnails/6_ShopSavvy-for-Chrome.webp',
-    0
+    'public/images/products/thumbnails/6_ShopSavvy-for-Chrome.webp'
 ),(
     7,
     '2020-05-10 07:00:00',
     'Meeter',
     'Hop in and out of calls, directly from your menu bar',
     'https://trymeeter.com/?ref=producthunt',
-    'public/images/products/thumbnails/7_Meeter.webp',
-    0
+    'public/images/products/thumbnails/7_Meeter.webp'
 ),(
     8,
     '2020-05-06 06:40:19',
     'OffScreen 2.0',
     'Less screen time, more focus.',
     'https://apps.apple.com/us/app/offscreen-less-screen-time/id1474340105?pt=119361776&ct=ph&mt=8&ref=producthunt&at=1000l6eA',
-    'public/images/products/thumbnails/8_OffScreen-2.0.webp',
-    0
+    'public/images/products/thumbnails/8_OffScreen-2.0.webp'
 ),(
     9,
     '2020-05-06 12:52:02',
     'ScrollTrotter',
     'How many miles have you scrolled today?',
     'https://chrome.google.com/webstore/detail/scrolltrotter/mppejknbhapogefdpekbpalahphlhgdm?ref=producthunt',
-    'public/images/products/thumbnails/9_ScrollTrotter.webp',
-    0
+    'public/images/products/thumbnails/9_ScrollTrotter.webp'
 ),(
     10,
     '2020-05-10 08:01:00',
     'Calendarist',
     'Time blocking companion for Google Calendar',
     'https://trycalendarist.com?ref=producthunt',
-    'public/images/products/thumbnails/10_Calendarist.webp',
-    0
+    'public/images/products/thumbnails/10_Calendarist.webp'
 );
 
 
