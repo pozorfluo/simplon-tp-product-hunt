@@ -13,104 +13,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Placeholder data for table `categories`
---
-
-INSERT INTO `categories`(
-    `category_id`,
-    `name`,
-    `summary`,
-    `thumbnail`
-)
-VALUES(
-        1,
-        'Tech',
-        'Hard, soft, high, low. Forward !',
-        'public/images/products/thumbnails/virtual-reality.svg'
-),(
-        2,
-        'Dev Tools',
-        'So many tools to help you procrastinate !',
-        'public/images/products/thumbnails/programming.svg'
-),(
-        3,
-        'AI',
-        'There''s a bot for that too !',
-        'public/images/products/thumbnails/robot.svg'
-),(
-        4,
-        'Social',
-        'Get in touch.',
-        'public/images/products/thumbnails/programming.svg'
-),(
-        5,
-        'Science',
-        'Only one thing is infinite : the time you spend on the internet.',
-        'public/images/products/thumbnails/atom.svg'
-),(
-        6,
-        'Health',
-        'Some of us haven''t hit the singularity yet and need to take care of their mortal substrate.',
-        'public/images/products/thumbnails/test-tube.svg'
-),(
-        7,
-        'Gaming',
-        'BOOM !!! Headshot !',
-        'public/images/products/thumbnails/rubik.svg'
-);
-
--- --------------------------------------------------------
-
---
--- Placeholder data for table `collections`
---
-
-INSERT INTO `collections`(`product_id`, `category_id`)
-VALUES(1, 1),(1, 4),(2, 1),(2, 3),(3, 2),(3, 1),(4, 2),(4, 6),(4, 7),(5, 2),
-      (5, 3),(5, 1),(6, 2),(6, 7),(7, 2),(7, 4),(8, 2),(8, 6),(9, 1),(9, 2),
-      (10, 2);
-
--- --------------------------------------------------------
-
---
--- Placeholder data for table `users`
---
-
-INSERT INTO `users`(`user_id`, `name`, `created_at`, `ip`)
-VALUES(
-    1,
-    'JeanPlaceHaut-le-Der',
-    '2020-05-10 07:01:00',
-    INET_ATON('127.0.0.1')
-);
--- --------------------------------------------------------
-
---
--- Placeholder data for table `votes`
---
-
-INSERT INTO `votes`(`product_id`, `user_id`, `created_at`)
-VALUES(
-    1,
-    1,
-    '2020-05-10 07:01:01'
-),(
-    2,
-    1,
-    '2020-05-10 07:01:02'
-),(
-    3,
-    1,
-    '2020-05-10 07:01:03'
-),(
-    9,
-    1,
-    '2020-05-10 07:01:04'
-);
-
--- --------------------------------------------------------
-
---
 -- Placeholder data for table `products`
 --
 
@@ -236,7 +138,7 @@ VALUES(
 ),(
     4,
     4,
-    'WA for everyone who plans the wedding and wedding professionals. 🥑 Useful tools of the wedding projects 💪🏼 Collaborate in real-time 🎯 Cloud storage, easy sharing 🚀 Marketing tools for vendors and venues 🌻 Multiple languages supported 😎 Security first!',
+    'WA for everyone who plans the wedding and wedding professionals. 🥑 Useful tools of the wedding projects 💪🏼 Collaborate in real-time 🎯 Cloud storage, easy sharing  Marketing tools for vendors and venues 🌻 Multiple languages supported 😎 Security first!',
     '["public/images/products/4_Wedding-Planning-Assistant_0.webp","public/images/products/4_Wedding-Planning-Assistant_1.webp","public/images/products/4_Wedding-Planning-Assistant_2.webp","public/images/products/4_Wedding-Planning-Assistant_3.webp","public/images/products/4_Wedding-Planning-Assistant_4.webp","public/images/products/4_Wedding-Planning-Assistant_5.webp","public/images/products/4_Wedding-Planning-Assistant_6.webp","public/images/products/4_Wedding-Planning-Assistant_7.webp","public/images/products/4_Wedding-Planning-Assistant_8.webp"]'
 ),(
     5,
@@ -246,7 +148,7 @@ VALUES(
 ),(
     6,
     6,
-    'Check the price automatically at over 30,000 retailers instantly when you visit any product. Know every retailer\'s price before choosing which to buy from. Important details like arrival date and estimated shipping cost are also shown, compare it all!',
+    'Check the price automatically at over 30,000 retailers instantly when you visit any product. Know every retailers price before choosing which to buy from. Important details like arrival date and estimated shipping cost are also shown, compare it all!',
     '["public/images/products/6_ShopSavvy-for-Chrome_0.webp","public/images/products/6_ShopSavvy-for-Chrome_1.webp","public/images/products/6_ShopSavvy-for-Chrome_2.webp","public/images/products/6_ShopSavvy-for-Chrome_3.webp","public/images/products/6_ShopSavvy-for-Chrome_4.webp","public/images/products/6_ShopSavvy-for-Chrome_5.webp"]'
 ),(
     7,
@@ -268,6 +170,251 @@ VALUES(
     10,
     'A free time blocking app that works with Google Calendar. Calendarist gives you a clear picture of your daily life and keeps you on track to reach your goals.',
     '["public/images/products/10_Calendarist_0.webp","public/images/products/10_Calendarist_1.webp","public/images/products/10_Calendarist_2.webp","public/images/products/10_Calendarist_3.webp","public/images/products/10_Calendarist_4.webp"]'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Placeholder data for table `categories`
+--
+
+INSERT INTO `categories`(
+    `category_id`,
+    `name`,
+    `summary`,
+    `thumbnail`
+)
+VALUES(
+        1,
+        'Tech',
+        'Hard, soft, high, low. Forward !',
+        'public/images/products/thumbnails/virtual-reality.svg'
+),(
+        2,
+        'Dev Tools',
+        'So many tools to help you procrastinate !',
+        'public/images/products/thumbnails/programming.svg'
+),(
+        3,
+        'AI',
+        'There''s a bot for that too !',
+        'public/images/products/thumbnails/robot.svg'
+),(
+        4,
+        'Social',
+        'Get in touch.',
+        'public/images/products/thumbnails/programming.svg'
+),(
+        5,
+        'Science',
+        'Only one thing is infinite : the time you spend on the internet.',
+        'public/images/products/thumbnails/atom.svg'
+),(
+        6,
+        'Health',
+        'Some of us haven''t hit the singularity yet and need to take care of their mortal substrate.',
+        'public/images/products/thumbnails/test-tube.svg'
+),(
+        7,
+        'Gaming',
+        'BOOM !!! Headshot !',
+        'public/images/products/thumbnails/rubik.svg'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Placeholder data for table `collections`
+--
+
+INSERT INTO `collections`(`product_id`, `category_id`)
+VALUES(1, 1),(1, 4),(2, 1),(2, 3),(3, 2),(3, 1),(4, 2),(4, 6),(4, 7),(5, 2),
+      (5, 3),(5, 1),(6, 2),(6, 7),(7, 2),(7, 4),(8, 2),(8, 6),(9, 1),(9, 2),
+      (10, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Placeholder data for table `users`
+--
+
+INSERT INTO `users`(`user_id`, `name`, `created_at`, `ip`)
+VALUES(
+    1,
+    'JeanPlaceHaut-le-Der',
+    '2020-05-10 07:01:00',
+    INET_ATON('127.0.0.1')
+);
+-- --------------------------------------------------------
+
+--
+-- Placeholder data for table `votes`
+--
+
+INSERT INTO `votes`(`product_id`, `user_id`, `created_at`)
+VALUES(
+    1,
+    1,
+    '2020-05-10 07:01:01'
+),(
+    2,
+    1,
+    '2020-05-10 07:01:02'
+),(
+    3,
+    1,
+    '2020-05-10 07:01:03'
+),(
+    9,
+    1,
+    '2020-05-10 07:01:04'
+);
+
+-- --------------------------------------------------------
+
+--
+-- Placeholder data for table `comments`
+--
+
+INSERT INTO `comments`(
+    `comment_id`,
+    `product_id`,
+    `user_id`,
+    `created_at`,
+    `content`
+)
+VALUES(
+    1,
+    1,
+    1,
+    '2020-05-10 07:01:01',
+    'Message 1 on Product 1 from user 1'
+),(
+    2,
+    1,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 2 on Product 1 from user 1'
+),(
+    3,
+    1,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 3 on Product 1 from user 1'
+),(
+    4,
+    1,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 4 on Product 1 from user 1'
+),(
+    5,
+    2,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 1 on Product 2 from user 1'
+),(
+    6,
+    2,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 2 on Product 2 from user 1'
+),(
+    7,
+    2,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 3 on Product 2 from user 1'
+),(
+    8,
+    3,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 1 on Product 3 from user 1'
+),(
+    9,
+    3,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 2 on Product 3 from user 1'
+),(
+    10,
+    3,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 3 on Product 3 from user 1'
+),(
+    11,
+    4,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 1 on Product 4 from user 1'
+),(
+    12,
+    4,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 2 on Product 4 from user 1'
+),(
+    13,
+    4,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 3 on Product 4 from user 1'
+),(
+    14,
+    5,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 1 on Product 5 from user 1'
+),(
+    15,
+    5,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 2 on Product 5 from user 1'
+),(
+    16,
+    5,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 3 on Product 5 from user 1'
+),(
+    17,
+    6,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 1 on Product 6 from user 1'
+),(
+    18,
+    6,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 2 on Product 6 from user 1'
+),(
+    19,
+    6,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 3 on Product 6 from user 1'
+),(
+    20,
+    6,
+    1,
+    '2020-05-10 07:01:02',
+    'Message 1 on Product 6 from user 1'
+),(
+    21,
+    6,
+    1,
+    '2020-05-10 07:01:03',
+    'Message 2 on Product 6 from user 1'
+),(
+    22,
+    6,
+    1,
+    '2020-05-10 07:01:04',
+    'Message 3 on Product 6 from user 1'
 );
 
 COMMIT;

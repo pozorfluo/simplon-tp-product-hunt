@@ -70,27 +70,62 @@ class ProductHuntAPI extends DBPDO
      */
     public function getFreshProducts(int $count = 10, int $offset = 0): array
     {
-        return [
-            [
-                'product_id'     => 1,
-                'name'           => 'Rewind',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ], [
-                'product_id'     => 2,
-                'name'           => 'Buy For Life',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/2_Buy-For-Life.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ]
-        ];
+        if ($count < 0) {
+            $count = 10;
+        }
+        if ($offset < 0) {
+            $offset = 0;
+        }
+
+        return $this->execute(
+            'product_hunt',
+            'SELECT
+                 `products`.`product_id`,
+                 `products`.`created_at`,
+                 `products`.`name`,
+                 `products`.`summary`,
+                 `products`.`website`,
+                 `products`.`thumbnail`,
+                 COUNT(`comments`.`product_id`) AS `comments_count`,
+                 COUNT(`votes`.`product_id`) AS `votes_count`
+             FROM 
+                 `products`
+             LEFT JOIN
+                 `comments`
+             ON
+                 `products`.`product_id` = `comments`.`product_id`
+             LEFT JOIN
+                 `votes`
+             ON
+                 `products`.`product_id` = `votes`.`product_id`
+             GROUP BY
+                 `products`.`product_id`
+             ORDER BY
+                 `products`.`created_at` DESC
+             LIMIT ? OFFSET ?;',
+            [$count, $offset]
+        );
+        // return [
+        //     [
+        //         'product_id'     => 1,
+        //         'name'           => 'Rewind',
+        //         'created_at'     => '2020-05-10 07:01:00',
+        //         'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+        //         'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+        //         'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
+        //         'votes_count'    => 0,
+        //         'comments_count' => 0
+        //     ], [
+        //         'product_id'     => 2,
+        //         'name'           => 'Buy For Life',
+        //         'created_at'     => '2020-05-10 07:01:00',
+        //         'website'        => 'https://rewind.netlify.app/?ref=producthunt',
+        //         'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
+        //         'thumbnail'      => 'public/images/products/thumbnails/2_Buy-For-Life.webp',
+        //         'votes_count'    => 0,
+        //         'comments_count' => 0
+        //     ]
+        // ];
     }
 
     /**
@@ -119,27 +154,41 @@ class ProductHuntAPI extends DBPDO
      */
     public function getPopularProducts(int $count = 10, int $offset = 0): array
     {
-        return [
-            [
-                'product_id'     => 4,
-                'name'           => 'Wedding Planning Assistant',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ], [
-                'product_id'     => 2,
-                'name'           => 'Buy For Life',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ]
-        ];
+        if ($count < 0) {
+            $count = 10;
+        }
+        if ($offset < 0) {
+            $offset = 0;
+        }
+
+        return $this->execute(
+            'product_hunt',
+            'SELECT
+                 `products`.`product_id`,
+                 `products`.`created_at`,
+                 `products`.`name`,
+                 `products`.`summary`,
+                 `products`.`website`,
+                 `products`.`thumbnail`,
+                 COUNT(`comments`.`product_id`) AS `comments_count`,
+                 COUNT(`votes`.`product_id`) AS `votes_count`
+             FROM 
+                 `products`
+             LEFT JOIN
+                 `comments`
+             ON
+                 `products`.`product_id` = `comments`.`product_id`
+             LEFT JOIN
+                 `votes`
+             ON
+                 `products`.`product_id` = `votes`.`product_id`
+             GROUP BY
+                 `products`.`product_id`
+             ORDER BY
+                `votes_count` DESC, `products`.`created_at` DESC
+             LIMIT ? OFFSET ?;',
+            [$count, $offset]
+        );
     }
 
     /**

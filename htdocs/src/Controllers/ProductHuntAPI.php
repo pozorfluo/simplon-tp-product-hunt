@@ -336,8 +336,13 @@ class ProductHuntAPI extends API
      */
     protected function restGETProductFresh(): ?array
     {
-        $count = $this->args['maxResults'] ?? 10;
-        $offset = $this->args['startAt'] ?? 0;
+        $count = (isset($this->args['maxResults'])) ?
+            intval($this->args['maxResults'])
+            : 10;
+
+        $offset = (isset($this->args['startAt'])) ?
+            intval($this->args['startAt'])
+            : 0;
         // $order_by = $this->args['orderBy'] ?? 'created_at';
 
         try {
@@ -427,8 +432,14 @@ class ProductHuntAPI extends API
      */
     protected function restGETProductPopular(): ?array
     {
-        $count = $this->args['maxResults'] ?? 10;
-        $offset = $this->args['startAt'] ?? 0;
+        $count = (isset($this->args['maxResults'])) ?
+            intval($this->args['maxResults'])
+            : 10;
+
+        $offset = (isset($this->args['startAt'])) ?
+            intval($this->args['startAt'])
+            : 0;
+
         // $order_by = $this->args['orderBy'] ?? 'created_at';
 
         try {

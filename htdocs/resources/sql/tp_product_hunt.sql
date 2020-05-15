@@ -22,10 +22,8 @@ CREATE TABLE `products` (
     `summary` VARCHAR(255) NOT NULL,
     `website` VARCHAR(512) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL,
     `thumbnail` VARCHAR(255) CHARACTER SET 'ascii' COLLATE 'ascii_general_ci' NOT NULL,
-    `votes_count` MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (`product_id`),
-    INDEX freshness (`created_at`),
-    INDEX popularity (`votes_count`)
+    INDEX freshness (`created_at`)
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 --
