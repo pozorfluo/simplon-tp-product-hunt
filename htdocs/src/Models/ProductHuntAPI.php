@@ -593,7 +593,7 @@ class ProductHuntAPI extends DBPDO
         }
 
         if (isset($user['ip'])) {
-            $user['ip'] = long2ip($user['ip']);
+            $user['ip'] = inet_ntop($user['ip']);
         }
 
         return $user;
@@ -642,7 +642,7 @@ class ProductHuntAPI extends DBPDO
         }
 
         if (isset($user['ip'])) {
-            $user['ip'] = long2ip($user['ip']);
+            $user['ip'] = inet_ntop($user['ip']);
         }
 
         return $user;
@@ -669,7 +669,11 @@ class ProductHuntAPI extends DBPDO
      */
     public function addUser(string $name, string $ip): array
     {
-        if ($name === '' || !filter_var($ip, FILTER_VALIDATE_IP)) {
+        if ($name === '' || !filter_var(
+            $ip,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6
+        )) {
             return [];
         }
 
@@ -684,7 +688,7 @@ class ProductHuntAPI extends DBPDO
                 ?,
                 ?,
                 ?);',
-                [$name, date('Y-m-d H:i:s'), ip2long($ip)]
+                [$name, date('Y-m-d H:i:s'), inet_pton($ip)]
             );
         } catch (PDOException $e) {
             $error_msg = $e->getMessage();

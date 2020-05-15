@@ -70,11 +70,13 @@ CREATE TABLE `collections` (
 --
 -- Table structure for table `users`
 --
+-- ALTER TABLE `users` CHANGE `ip` `ip` VARBINARY(16) NOT NULL; 
+
 CREATE TABLE `users` (
     `user_id` MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` CHAR(32) NOT NULL,
     `created_at` DATETIME NOT NULL,
-    `ip` INT UNSIGNED NOT NULL ,
+    `ip` VARBINARY(16) NOT NULL ,
     PRIMARY KEY (`user_id`),
     UNIQUE INDEX username (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
