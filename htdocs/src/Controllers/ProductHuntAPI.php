@@ -90,7 +90,7 @@ class ProductHuntAPI extends API
      * 
      * @api ProductHuntAPI
      * @endpoint Vote
-     *
+     * @mode POST 
      * 
      * @query ?controller=ProductHuntAPI&endpoint=Vote&user_id={id}&product_id={id}
      *
@@ -180,8 +180,7 @@ class ProductHuntAPI extends API
      * 
      * @api ProductHuntAPI
      * @endpoint Product
-     *
-     * 
+     * @mode GET 
      * @query ?controller=ProductHuntAPI&endpoint=Product&product_id={id}
      *
      * @return array to be emitted as json by ProductHuntAPI controller
@@ -286,7 +285,8 @@ class ProductHuntAPI extends API
      * @api ProductHuntAPI
      * @endpoint Product
      * @sub-resource Fresh
-     *
+     * @mode GET
+     * 
      * Pagination option is available on this resource.
      * 
      * @query ?controller=ProductHuntAPI&endpoint=Product&sub=Fresh
@@ -382,6 +382,7 @@ class ProductHuntAPI extends API
      * @api ProductHuntAPI
      * @endpoint Product
      * @sub-resource Popular
+     * @mode GET
      *
      * Pagination option is available on this resource.
      * 

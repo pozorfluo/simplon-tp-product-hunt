@@ -267,7 +267,11 @@ class ProductHuntAPI extends DBPDO
             [$category_id]
         );
 
-        return $category[0];
+        if (!empty($category)) {
+            $category = $category[0];
+        }
+
+        return $category;
     }
     /**
      * Get product content associated with a given product id.
@@ -316,11 +320,15 @@ class ProductHuntAPI extends DBPDO
             [$product_id]
         );
 
-        if (isset($product[0]['media'])) {
-            $product[0]['media'] = json_decode($product[0]['media']);
+        if (!empty($product)) {
+            $product = $product[0];
         }
 
-        return $product[0];
+        if (isset($product['media'])) {
+            $product['media'] = json_decode($product['media']);
+        }
+
+        return $product;
     }
 
     /**
@@ -560,14 +568,35 @@ class ProductHuntAPI extends DBPDO
      *     'ip'          => string
      * ] </code></pre>
      */
-    public function getUserById(string $user_id): array
+    public function getUserById(int $user_id): array
     {
-        return [
-            'user_id'     => $user_id,
-            'name'        => 'JeanPlaceHaut-le-Der',
-            'created_at'  => '2020-05-10 07:01:00',
-            'ip'          => '127.0.0.1'
-        ];
+        if ($user_id <= 0) {
+            return [];
+        }
+
+        $user = $this->execute(
+            'product_hunt',
+            'SELECT
+                 `user_id`,
+                 `name`,
+                 `created_at`,
+                 `ip`
+             FROM
+                 `users`
+             WHERE
+                 `user_id` = ?;',
+            [$user_id]
+        );
+
+        if (!empty($user)) {
+            $user = $user[0];
+        }
+
+        if (isset($user['ip'])) {
+            $user['ip'] = long2ip($user['ip']);
+        }
+
+        return $user;
     }
 
     /**
@@ -644,25 +673,18 @@ class ProductHuntAPI extends DBPDO
         if (($user_id <= 0) || ($product_id <= 0)) {
             return [];
         }
-        // try {
-            $insert_result = $this->execute(
-                'product_hunt',
-                'INSERT INTO `votes`(
+        
+        $insert_result = $this->execute(
+            'product_hunt',
+            'INSERT INTO `votes`(
                 `product_id`,
                 `user_id`,
                 `created_at`
             )
             VALUES(?, ?, ?);',
-                [$product_id, $user_id, date('Y-m-d H:i:s')]
-            );
-        // } catch (PDOException $e) {
-        //     $error_msg = $e->getMessage();
-        //     $duplicate_entry = 'Integrity constraint violation: 1062 Duplicate entry';
-        //     if (strpos($error_msg, $duplicate_entry) !== false) {
-        //         return -1;
-        //     }
-        //     return -2;
-        // }
+            [$product_id, $user_id, date('Y-m-d H:i:s')]
+        );
+
 
         $result = $this->execute(
             'product_hunt',
@@ -674,6 +696,10 @@ class ProductHuntAPI extends DBPDO
                  `product_id` = ?;',
             [$product_id]
         );
+
+        // if (!empty($result)) {
+        //     $result = $result[0];
+        // }
 
         return $result[0]['votes_count'];
     }
