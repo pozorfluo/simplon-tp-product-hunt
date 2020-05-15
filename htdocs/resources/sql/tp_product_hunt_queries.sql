@@ -115,6 +115,49 @@ WHERE
     `articles`.`product_id` = 1;
 
 
+-- --------------------------------------------------------
+
+--
+-- public function getUserbyName(string $name): array
+--
+SELECT
+    `user_id`,
+    `name`,
+    `created_at`,
+    `ip`
+FROM
+    `users`
+WHERE
+    `name` = "JeanPlaceHaut-le-Der";
+
+-- --------------------------------------------------------
+
+--
+-- public function getUserById(int $user_id): array
+--
+SELECT
+    `user_id`,
+    `name`,
+    `created_at`,
+    `ip`
+FROM
+    `users`
+WHERE
+    `user_id` = 1;
+
+-- --------------------------------------------------------
+
+--
+-- public function addUser(string $name, string $ip): array
+--
+INSERT INTO `users`(`name`, `created_at`, `ip`)
+VALUES(
+    'JeanPlaceHaut-le-Der',
+    '2020-05-10 07:01:00',
+    INET_ATON('127.0.0.1')
+);
+
+
 -- SELECT
 --     `products`.`product_id`,
 --     `products`.`created_at`,

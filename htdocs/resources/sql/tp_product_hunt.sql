@@ -76,7 +76,7 @@ CREATE TABLE `users` (
     `created_at` DATETIME NOT NULL,
     `ip` INT UNSIGNED NOT NULL ,
     PRIMARY KEY (`user_id`),
-    INDEX username (`name`)
+    UNIQUE INDEX username (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 --

@@ -6,7 +6,7 @@ declare(strict_types=1);
 namespace Models;
 
 use Exception;
-use PDOException;
+use PDO, PDOException;
 use Helpers\DBConfig;
 use Controllers\Controller;
 
@@ -669,12 +669,38 @@ class ProductHuntAPI extends DBPDO
      */
     public function addUser(string $name, string $ip): array
     {
-        return [
-            'user_id'     => 1,
-            'name'        => $name,
-            'created_at'  => date('Y-m-d H:i:s'),
-            'ip'          => $ip
-        ];
+        if ($name === '' || !filter_var($ip, FILTER_VALIDATE_IP)) {
+            return [];
+        }
+
+        try {
+            $user = $this->execute(
+                'product_hunt',
+                'INSERT INTO `users`(
+                `name`, 
+                `created_at`, 
+                `ip`)
+            VALUES(
+                ?,
+                ?,
+                ?);',
+                [$name, date('Y-m-d H:i:s'), ip2long($ip)]
+            );
+        } catch (PDOException $e) {
+            $error_msg = $e->getMessage();
+
+            $duplicate_entry = 'Integrity constraint violation: 1062 Duplicate entry';
+            if (strpos($error_msg, $duplicate_entry) !== false) {
+                /* Name already exists */
+                return [];
+            } else {
+                throw $e;
+            }
+        }
+
+        $user = $this->getUserById(intval($this->db->pdo->lastInsertId()));
+
+        return $user;
     }
 
     /**
