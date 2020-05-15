@@ -2,7 +2,8 @@
 
 ## docs
 
-[ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Models-ProductHuntAPI.html)
+### [RESTish ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Controllers-ProductHuntAPI.html)
+#### [server side ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Models-ProductHuntAPI.html)
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)
 
