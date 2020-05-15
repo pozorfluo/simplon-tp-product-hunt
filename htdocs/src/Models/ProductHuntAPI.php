@@ -248,7 +248,8 @@ class ProductHuntAPI extends DBPDO
     public function getCategory(int $category_id): array
     {
         if ($category_id < 0) {
-            $category_id = 0;
+            // $category_id = 0;
+            return [];
         }
 
         return $this->execute(
@@ -283,12 +284,29 @@ class ProductHuntAPI extends DBPDO
      */
     public function getProduct(int $product_id): array
     {
-        return [
-            'article_id' => 1,
-            'product_id' => $product_id,
-            'content'    => 'Rewind displays your bookmarks filtered by date, with thumbnails and instant search. It takes one click to see the links you saved yesterday, last week, last month. It\'s totally free and it relies on your local bookmarks, you don\'t have to create an account.',
-            'media'      => json_decode('["public/images/products/1_Rewind_0.webp","public/images/products/1_Rewind_1.webp","public/images/products/1_Rewind_2.webp","public/images/products/1_Rewind_3.webp","public/images/products/1_Rewind_4.webp"]')
-        ];
+        if ($product_id < 0) {
+            return [];
+        }
+
+         $product = $this->execute(
+            'product_hunt',
+            'SELECT
+                 `product_id`,
+                 `article_id`,
+                 `content`,
+                 `media`
+             FROM 
+                 `articles`
+             WHERE
+                `product_id` = ?;',
+            [$product_id]
+        );
+
+        if(isset($product[0]['media'])) {
+            $product[0]['media'] = json_decode($product[0]['media']);
+        }
+
+        return $product;
     }
 
     /**
