@@ -569,11 +569,12 @@ class ProductHuntAPI extends DBPDO
 
         if (!empty($user)) {
             $user = $user[0];
+            
+            if (isset($user['ip'])) {
+                $user['ip'] = inet_ntop($user['ip']);
+            }
         }
 
-        if (isset($user['ip'])) {
-            $user['ip'] = inet_ntop($user['ip']);
-        }
 
         return $user;
     }

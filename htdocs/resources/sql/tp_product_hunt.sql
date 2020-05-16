@@ -117,9 +117,4 @@ CREATE TABLE `comments` (
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
--- Find all votes by a given user
--- Find all comments for a given product
--- Count comments for a given product
--- Find all comments content for a given product
-
 COMMIT;

@@ -17,6 +17,9 @@ use Models\Model;
  */
 class ProductHuntAPI extends API
 {
+    /**
+     * 
+     */
     public function runDefault(array $args = []): void
     {
         /* set model, args, ...then call() */

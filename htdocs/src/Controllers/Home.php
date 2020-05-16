@@ -32,14 +32,26 @@ class Home extends Controller
          *     - Make a ProductHuntAPI instance available for use inside
          *       Hamza's pages.
          */
-        
+
         $this->set($args);
-        
+
         $producthunt_api = ProductHuntAPI::fromConfig($this->args['db_configs']);
-        
+
         require ROOT . 'src/Pages/home.php';
 
 
         // $this->serve();
+    }
+    /**
+     * 
+     */
+    public function runLogout(array $args = []): void
+    {
+        if (isset($_COOKIE['user_name'])) {
+            setcookie('user_name', '', strtotime('-1 year'), '/');
+        }
+
+        header('Refresh: 0; url=/', TRUE, 302);
+        exit();
     }
 }

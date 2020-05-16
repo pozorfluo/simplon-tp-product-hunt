@@ -44,7 +44,11 @@ class Dispatcher
          * Redirect to Home if query string specifies junk controller
          */
         if ((!isset($this->request['controller'])
-            || (!in_array($this->request['controller'], $config['components']['Controllers'], true)))) {
+            || (!in_array(
+                    $this->request['controller'],
+                    $config['components']['Controllers'],
+                    true
+                )))) {
 
             /**
              * note
