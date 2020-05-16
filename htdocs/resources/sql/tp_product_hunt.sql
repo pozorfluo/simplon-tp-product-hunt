@@ -93,7 +93,7 @@ CREATE TABLE `votes` (
     CONSTRAINT `constraint_votes_product_fk`
         FOREIGN KEY `products_fk` (`product_id`) REFERENCES `products` (`product_id`)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT `constraint_votes_category_fk`
+    CONSTRAINT `constraint_votes_user_fk`
         FOREIGN KEY `users_fk` (`user_id`) REFERENCES `users` (`user_id`)
         ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;

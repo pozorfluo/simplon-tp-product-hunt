@@ -108,8 +108,30 @@ a:focus {
     drop-shadow(1px 1px 1px var(--color-shadow))
     drop-shadow(-8px -12px 20px var(--color-limelight));
   color: var(--color-black-active);
+  z-index: 10;
 }
 
+img {
+  opacity: 80%;
+}
+
+img:hover,
+img:focus {
+  opacity: 100%;
+}
+
+input,
+select,
+button,
+textarea {
+  background-color: var(--color-white);
+  color: var(--color-alt);
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  border: 2px !important;
+  font-weight: bolder;
+}
 /*### Modal Product ###*/
 .createdDiv {
   padding: 40px;

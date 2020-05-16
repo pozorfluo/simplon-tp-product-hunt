@@ -40,9 +40,8 @@ include ROOT . 'src/Partials/header.php'
 
     <div class="row ">
 
-        <div class=" col-xl-3 col-lg-1 ">
-        </div>
-        <div class="col-xl-6 col-lg-10 text-center m-0 p-0 ">
+
+        <div class="col-12 col-md-11 col-lg-10 col-xl-8 text-center m-0 p-0 mx-auto">
 
             <?php
             if (isset($_COOKIE['user_name'])) {
@@ -53,9 +52,6 @@ include ROOT . 'src/Partials/header.php'
             }
             ?>
 
-        </div>
-
-        <div class=" col-xl-3 col-lg-1 ">
         </div>
 
     </div>
