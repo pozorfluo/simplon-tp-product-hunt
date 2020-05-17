@@ -1,5 +1,5 @@
 # tp product-hunt
-
+![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-screenshot.png)
 ## docs
 
 ### [RESTish ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Controllers-ProductHuntAPI.html)
