@@ -104,7 +104,7 @@ function productDisplay ($products,$userId,$votesList){
             // $products = $producthunt_api->getProductsCollection(10);
             $products = $producthunt_api->getFreshProducts();
 
-            productDisplay ($products,$userId,$votesList);
+            productDisplay ($products, $userId['user_id'], $votesList);
         }
         //Affichage des produit par catégorie
         else if (isset($_POST['orderBy']) && $_POST['orderBy'] === 'catégorie'){ 
@@ -115,20 +115,20 @@ function productDisplay ($products,$userId,$votesList){
     
                 $products = $producthunt_api->getProductsCollection($categorie[$i]['category_id']);
 
-                    productDisplay ($products,$userId,$votesList);
+                    productDisplay ($products, $userId['user_id'], $votesList);
             }
         }
         //Affichage des produit par date de création
         else if (isset($_POST['orderBy']) && $_POST['orderBy'] === 'created_at'){ 
             $products = $producthunt_api->getFreshProducts();
 
-            productDisplay ($products,$userId,$votesList);
+            productDisplay ($products, $userId['user_id'], $votesList);
         }
         //Affichage des produit par Vote
         else if (isset($_POST['orderBy']) && $_POST['orderBy'] === 'up_vote') {
             $products = $producthunt_api->getPopularProducts();
 
-            productDisplay ($products,$userId,$votesList);
+            productDisplay ($products, $userId['user_id'], $votesList);
         }
         
         }else{//Affichage d'une catégorie de produit
@@ -136,7 +136,7 @@ function productDisplay ($products,$userId,$votesList){
             
                 $categorie = $producthunt_api->getCategory($_GET['category']);
                 $products = $producthunt_api->getProductsCollection(intval($categorie['category_id']));
-                productDisplay ($products,$userId,$votesList);
+                productDisplay ($products, $userId['user_id'], $votesList);
             
             }
         }

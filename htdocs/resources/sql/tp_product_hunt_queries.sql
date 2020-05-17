@@ -157,6 +157,17 @@ VALUES(
     INET_ATON('127.0.0.1')
 );
 
+-- --------------------------------------------------------
+
+--
+-- public function getUserVotes(int $user_id): array
+--
+SELECT
+    `product_id`
+FROM
+    `votes`
+WHERE
+    `user_id` = 1;
 
 -- SELECT
 --     `products`.`product_id`,

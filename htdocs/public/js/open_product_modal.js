@@ -29,6 +29,8 @@ const  btn_upVotes = document.querySelectorAll('.btn-upvote')
         const userId = btn_upVote.getAttribute('data-user-id')
         const id = btn_upVote.getAttribute('data-product-id')
         const userVoted = btn_upVote.getAttribute('data-user-id-voted')
+        console.log(userId);
+        console.log(id);
 
         if (userVoted == true) {
             
@@ -40,10 +42,12 @@ const  btn_upVotes = document.querySelectorAll('.btn-upvote')
             
         btn_upVote.addEventListener('click', function (event) {
 
-                    event.stopPropagation();
+            event.stopPropagation();
             listVote('?controller=ProductHuntAPI&endpoint=Vote&user_id='+ userId +'&product_id='+id);
             this.classList.add('disabled')
-        },true)  
+            console.log(event.currentTarget.childNodes[3]);
+            event.currentTarget.childNodes[3].innerText = parseInt(event.currentTarget.childNodes[3].innerText) + 1;
+        }, {capture : true, once : true})  
              
         }
 

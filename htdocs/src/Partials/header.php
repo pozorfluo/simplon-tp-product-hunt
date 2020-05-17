@@ -83,7 +83,10 @@
             <div class="collapse navbar-collapse m-0 justify-content-end " id="navbarSupportedContent">
               	<div class="align-items-end flex-column">
 				  <?php if (isset($_COOKIE['user_name'])){?>
-                      <a class="nav-link" href="?controller=Home&action=Logout" ><h4>Sign Out</h4></a>
+                      <a class="nav-link" href="?controller=Home&action=Logout">
+                          <?= $_COOKIE['user_name']?>
+                          <h5 class="d-flex justify-content-end">Sign Out</h5>
+                      </a>
                     <?php } ?>
             	</div>  
 			</div>            

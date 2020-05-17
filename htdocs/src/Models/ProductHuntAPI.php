@@ -484,7 +484,22 @@ class ProductHuntAPI extends DBPDO
      */
     public function getUserVotes(int $user_id): array
     {
-        return [1, 2, 3, 9];
+        if ($user_id <= 0) {
+            return [];
+        }
+
+        $products = $this->execute(
+            'product_hunt',
+            'SELECT
+                 `product_id`
+             FROM
+                 `votes`
+             WHERE
+                 `user_id` = ?;',
+            [$user_id]
+        );
+
+        return array_column($products, 'product_id');
     }
 
     /**

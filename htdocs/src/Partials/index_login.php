@@ -5,8 +5,8 @@
            <input id="user_name" name="user_name" type="text" placeholder="Nom d'utilisateur" required><br>
 
          <section class = "m-3">
-             <button class="m-2 btn btn-lg btn-secondary  " id = "button">Envoyer</button>
-            <button class="m-2 btn btn-lg btn-secondary " type="reset">Annuler</button>
+             <button class="m-2 btn btn-lg btn-success" id = "button">Envoyer</button>
+            <button class="m-2 btn btn-lg btn-success" type="reset">Annuler</button>
          </section>
     </form>
 

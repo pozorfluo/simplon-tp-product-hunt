@@ -31,7 +31,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require ROOT . 'src/Helpers/Config.php';
 date_default_timezone_set('Europe/Paris');
 //--------------------------------------------------------------- playground
-// use Models\ProductHuntAPI;
+
 
 // function getIp() {
 //     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -59,9 +59,11 @@ date_default_timezone_set('Europe/Paris');
 //  echo '<pre>'.var_export($_SERVER['HTTP_FORWARDED'], true).'</pre><hr />';
 
 // echo '<pre>'.var_export(getIp(), true).'</pre><hr />';
-
+// use Models\ProductHuntAPI;
 // $api = ProductHuntAPI::fromConfig($config['db_configs']);
 
+// echo '<pre>'.var_export($api->getUserVotes(1), true).'</pre><hr />';
+// exit();
 // echo '<pre>'.var_export($api->addUser('JeanPlaceHaut-le-Der', '127.0.0.1'), true).'</pre><hr />';
 // echo '<pre>'.var_export($api->addUser('JeanPlaqsdqceqsdqsHaut-le-Der', '127.0.0.1'), true).'</pre><hr />';
 // echo '<pre>'.var_export($api->getUserbyName('JeanPlaqsdqceqsdqsHaut-le-Der'), true).'</pre><hr />';
@@ -81,7 +83,7 @@ date_default_timezone_set('Europe/Paris');
 // echo '<pre>'.var_export($api->getUserById(0), true).'</pre><hr />';
 // echo '<pre>'.var_export($api->getUserById(3), true).'</pre><hr />';
 // echo '<pre>'.var_export($api->getUser('JeanPlaceHaut-le-Der'), true).'</pre><hr />';
-// exit();
+
 // echo '<pre>'.var_export($api->vote(1, 3), true).'</pre><hr />';
 // echo '<pre>'.var_export($api->getProduct(1), true).'</pre><hr />';
 // echo '<pre>'.var_export($api->getCategories(), true).'</pre><hr />';
