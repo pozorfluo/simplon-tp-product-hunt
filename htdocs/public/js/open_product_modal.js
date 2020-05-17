@@ -2,7 +2,7 @@
 
 const products_ids = document.querySelectorAll('#div-product') 
 const  modalContent = document.querySelector('.modal-content') 
-const  btn_upVotes = document.querySelectorAll('#btn_upVote') 
+const  btn_upVotes = document.querySelectorAll('.btn-upvote') 
 
 
 //Lancement de la requete au produit sélectionné
@@ -32,8 +32,8 @@ const  btn_upVotes = document.querySelectorAll('#btn_upVote')
 
         if (userVoted == true) {
             
-            btn_upVote.classList.add('btn-info')
-            btn_upVote.classList.add('bg-info')
+            // btn_upVote.classList.add('btn-info')
+            // btn_upVote.classList.add('bg-info')
             btn_upVote.classList.add('disabled')
 
         }else{ 
@@ -93,15 +93,11 @@ function displayModalContent (url,productName,productVoteCount,productSummary,pr
                             +'</div>'
 
                             +'<div class="up row-lg d-flex justify-content-end align-items-center">'
-                                + '<div class="col-xl-1 d-flex justify-content-center align-items-center ">'
-                                    + '<div class="col-lg-1 d-flex justify-content-center align-items-center ">'
-                                        + '<button class="btn btn-outline-secondary">UpVote</button>'
-                                    +'</div>'
-                                +'</div>'
+                            +'<h6>'+ productVoteCount.textContent +'</h6>'
                                 + '<div class="col-xl-1 d-flex justify-content-center align-items-center ">'
                                     + '<div class="col-lg-1 d-flex justify-content-center align-items-center">'
-                                        +'<img src="./public/images/icons/upvote.png"></img>'
-                                        +'<h6>'+ productVoteCount.textContent +'</h6>'
+                                        +'<img src="./public/images/icons/upvote.svg" height="64" width="64"></img>'
+
                                     +'</div>'
                                 +'</div>'
                             +'</div>'
@@ -112,7 +108,7 @@ function displayModalContent (url,productName,productVoteCount,productSummary,pr
 
                         +'<div class=" mt-5 modalMain mb-4 border">'
                 
-                            +'<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">'
+                            +'<div id="carouselControls" class="carousel slide" data-ride="carousel">'
                             +'  <div class="carousel-inner">';
                             
             for (let j = 0; j < datas.media.length; j++) {
@@ -121,18 +117,18 @@ function displayModalContent (url,productName,productVoteCount,productSummary,pr
                 }else{
                     active = ''
                 }
-                modal += '<div class="carousel-item'+ active +'">'
-                        +'<img src="' + datas.media[j] +'" class=" w-100 img-fluid" >'
+                modal += '<div class="carousel-item '+ active +'">'
+                        +'<img src="' + datas.media[j] +'" class="d-block w-100 img-fluid" >'
                         +'</div>'
 
             }
             modal +=
                '  </div>'
-               +'  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">'
+               +'  <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">'
                +'    <span class="carousel-control-prev-icon" aria-hidden="true"></span>'
                +'    <span class="sr-only">Previous</span>'
                +'  </a>'
-               +'  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">'
+               +'  <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">'
                +'    <span class="carousel-control-next-icon" aria-hidden="true"></span>'
                +'    <span class="sr-only">Next</span>'
                +'  </a>'
@@ -142,7 +138,7 @@ function displayModalContent (url,productName,productVoteCount,productSummary,pr
                        +'<p class = "mt-5">'+ datas.content + '</p>'+'<br>'
                     +'</div>'
                     +'<div class=" mt-5 modalMain mb-4 border">'
-                        +'<img src="public/images/icons/website-link.png" style="width:50px"></img>'
+                        +'<img src="public/images/icons/website-link.svg" style="width:50px"></img>'
                         +'<a href="'+ productWebsite+'">'+'Site Web'+'</a>'+'<br>'
                     +'</div>'
 
@@ -155,7 +151,7 @@ function displayModalContent (url,productName,productVoteCount,productSummary,pr
                         +'<h6>'+ 'Commentaires : ' + '</h6>'
                         
                     
-                            +'<img  class="img-fluid"style="width:50px" src="./public/images/icons/comments.png"></img>'
+                            +'<img  class="img-fluid"style="width:50px" src="./public/images/icons/comments.svg"></img>'
                             
                         
                         +'</div>';

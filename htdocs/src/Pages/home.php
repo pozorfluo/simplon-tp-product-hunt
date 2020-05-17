@@ -34,11 +34,11 @@ if (isset($_COOKIE['user_name'])) {
 include ROOT . 'src/Partials/header.php' 
 ?>
 
-<main class='container-fluid d-flex justify-content-center flex-column pt-5 border '>
+<main class='container-fluid d-flex justify-content-center flex-column pt-5 border-0 '>
 
     <!-- <h1 class="mb-5 text-center"> Product Hunts </h1> -->
 
-    <div class="row ">
+    <div class="row">
 
 
         <div class="col-12 col-md-11 col-lg-10 col-xl-8 text-center m-0 p-0 mx-auto">

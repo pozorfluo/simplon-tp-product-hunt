@@ -2,14 +2,15 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+            <?php readfile(ROOT . 'resources/fonts/font-ibmplexsans.min.html');?>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <link rel="stylesheet" href="./public/css/style.css">
             <title>Product Hunt</title>
             
 </head>
-<body> 
+<body class="pt-5 mt-5"> 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 		
 			<a class="navbar-brand" href="index.php">
 			<img src="./public/images/icons/product-hunt.png" >
@@ -25,11 +26,15 @@
                     
             	  	<div class="col-5 justify-content-center p-0">
 						
-					 	 <form class="form-inline">
-            	          <input class="form-control form-control-sm " type="search" placeholder="Search" aria-label="Search">
-            	          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					 	 <form class="form-inline input-group">
+            	          <input class="form-control " type="text" placeholder="..." aria-label="Search">
+                          
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="submit">Search</button>
+                            </div>
 						</form> 
-						
+                        
+
 					</div>
 
 					<div class="col-4 d-flex justify-content-center  p-0 mr-4 mt-0">
@@ -39,40 +44,38 @@
 								
 								<div class="row">
 
-                                    
 									<a href='#' onclick='document.getElementById("created_at").submit()'>Récent</a>
 									<form  method="post" id="up_vote" action="index.php"> 
                                         <input type="hidden" name="orderBy" value="up_vote"/> 
                                     </form> 
                                     
-                                    <a href='#' onclick='document.getElementById("up_vote").submit()'>| Populaire |</a>
+                                    <a href='#' onclick='document.getElementById("up_vote").submit()'>| Populaire</a>
                                     <form  method="post" id="created_at" action="index.php"> 
                                         <input type="hidden" name="orderBy" value="created_at"/> 
                                     </form> 
-                                    
-                                    <a href='#' onclick='document.getElementById("catégorie").submit()'>Catégories</a>	
-									<form  method="post" id="catégorie" action="index.php"> 
-										<input type="hidden" name="orderBy" value="catégorie"/> 
-									</form> 
-       
+                                           
 								</div>
 							</div>
 						<?php } ?>
-					</div>
-					<div class="col-3 d-flex justify-content-center  p-0">
-						<form  method="post" action="index.php"> 
+                    </div>
 
-							<select name="catégorie_list" id="catégorie_list">
-								<?php 
-								$categorie = $producthunt_api->getCategories();
-								for ($i=0; $i <count($categorie) ; $i++) { 
-									echo ("<option value=".$categorie[$i]['category_id'].">".$categorie[$i]['name']."</option>");
-								}?>
-	
-							</select>
-							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Choisir</button>
-						</form>
-					</div>
+
+<div class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    Categories <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<?php 
+
+    $categorie = $producthunt_api->getCategories();
+    for ($i=0; $i <count($categorie) ; $i++) { 
+        // echo ("<option value=".$categorie[$i]['category_id'].">".$categorie[$i]['name']."</option>");
+        echo '<a class="dropdown-item" href="?category='.$categorie[$i]['category_id'].'">'.$categorie[$i]['name'].'</a>';
+    }
+?>
+</ul>
+</div>
+
 
 			<?php }?>
             </div>
@@ -80,7 +83,7 @@
             <div class="collapse navbar-collapse m-0 justify-content-end " id="navbarSupportedContent">
               	<div class="align-items-end flex-column">
 				  <?php if (isset($_COOKIE['user_name'])){?>
-                      <a class="nav-link" href="?controller=Home&action=Logout" ><h4>Deconnexion</h4></a>
+                      <a class="nav-link" href="?controller=Home&action=Logout" ><h4>Sign Out</h4></a>
                     <?php } ?>
             	</div>  
 			</div>            
