@@ -102,6 +102,82 @@ LIMIT 10 OFFSET 0
 -- --------------------------------------------------------
 
 --
+-- public function getProductsCollection(
+--     int $category_id,
+--     int $count = 10,
+--     int $offset = 0
+-- ): array
+--
+SELECT
+    `products`.`product_id`,
+    `products`.`created_at`,
+    `products`.`name`,
+    `products`.`summary`,
+    `products`.`website`,
+    `products`.`thumbnail`,
+    COUNT(`comments`.`product_id`) AS `comments_count`,
+    COUNT(`votes`.`product_id`) AS `votes_count`
+FROM 
+    `products`
+INNER JOIN
+    `collections`
+ON
+    `products`.`product_id` = `collections`.`product_id`
+LEFT JOIN
+    `comments`
+ON
+    `products`.`product_id` = `comments`.`product_id`
+LEFT JOIN
+    `votes`
+ON
+    `products`.`product_id` = `votes`.`product_id`
+WHERE
+    `collections`.`category_id` = 1    
+GROUP BY
+    `products`.`product_id`
+ORDER BY
+    `votes_count` DESC, `products`.`created_at` DESC
+LIMIT 10 OFFSET 0
+
+-- --------------------------------------------------------
+
+--
+-- public function findProductsByName(
+--     string $search_string,
+--     int $count = 10,
+--     int $offset = 0
+-- ): array 
+--
+SELECT
+    `products`.`product_id`,
+    `products`.`created_at`,
+    `products`.`name`,
+    `products`.`summary`,
+    `products`.`website`,
+    `products`.`thumbnail`,
+    COUNT(`comments`.`product_id`) AS `comments_count`,
+    COUNT(`votes`.`product_id`) AS `votes_count`
+FROM 
+    `products`
+LEFT JOIN
+    `comments`
+ON
+    `products`.`product_id` = `comments`.`product_id`
+LEFT JOIN
+    `votes`
+ON
+    `products`.`product_id` = `votes`.`product_id`
+WHERE
+    `products`.`name` LIKE '%cal%'
+GROUP BY
+    `products`.`product_id`
+ORDER BY
+    `votes_count` DESC, `products`.`created_at` DESC
+LIMIT 10 OFFSET 0
+
+-- --------------------------------------------------------
+
+--
 -- public function getProduct(int $product_id): array
 --
 SELECT

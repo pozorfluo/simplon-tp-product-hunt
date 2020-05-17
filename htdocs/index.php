@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 define('ROOT', __DIR__ . '/');
 define('DEV_FORCE_CONFIG_UPDATE', false);
-define('DEV_GLOBALS_DUMP', false);
+define('DEV_GLOBALS_DUMP', true);
 
 require ROOT . 'src/Helpers/AutoLoader.php';
 

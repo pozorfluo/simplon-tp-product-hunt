@@ -72,23 +72,30 @@ function productDisplay ($products,$userId,$votesList){
     } //Fermeture Fonction
 ?>
 
-<div class="row px-2 pb-2">
+<div class="row px-3 pb-2">
+        <a href='#' onclick='document.getElementById("created_at").submit()'>
+            Fresh
+        </a>
+        <form  method="post" id="up_vote" action="index.php"> 
+            <input type="hidden" name="orderBy" value="up_vote"/> 
+        </form> 
 
-<a href='#' onclick='document.getElementById("created_at").submit()'>Récent</a>
-<form  method="post" id="up_vote" action="index.php"> 
-    <input type="hidden" name="orderBy" value="up_vote"/> 
-</form> 
+        <span class="mx-2 separator">|</span>
+        <a href='#' onclick='document.getElementById("up_vote").submit()'>
+            Popular
+        </a>
 
-<a href='#' onclick='document.getElementById("up_vote").submit()'>| Populaire |</a>
-<form  method="post" id="created_at" action="index.php"> 
-    <input type="hidden" name="orderBy" value="created_at"/> 
-</form> 
+        <form  method="post" id="created_at" action="index.php"> 
+            <input type="hidden" name="orderBy" value="created_at"/> 
+        </form> 
+        <span class="mx-2 separator">|</span>
 
-<a href='#' onclick='document.getElementById("catégorie").submit()'>Catégories</a>	
-<form  method="post" id="catégorie" action="index.php"> 
-    <input type="hidden" name="orderBy" value="catégorie"/> 
-</form> 
-
+        <a href='#' onclick='document.getElementById("catégorie").submit()'>
+            Categories
+        </a>	
+        <form  method="post" id="catégorie" action="index.php"> 
+            <input type="hidden" name="orderBy" value="catégorie"/> 
+        </form> 
 </div>
 
 <?php
@@ -96,51 +103,40 @@ function productDisplay ($products,$userId,$votesList){
     $votesList = $producthunt_api->getUserVotes($userId['user_id']);
     
 
-    if ((isset($_GET['category']) ) == null){
-        //Affichage des produit par defaut
-        if (isset($_POST['orderBy']) == null || $_POST['orderBy'] === 'default'){
- 
-        
-            // $products = $producthunt_api->getProductsCollection(10);
-            $products = $producthunt_api->getFreshProducts();
+//Affichage d'une catégorie de produit
+if (isset($_GET['category'])) {
+    $products = $producthunt_api->getProductsCollection(intval($_GET['category']));
+    productDisplay($products, $userId['user_id'], $votesList);
+} else {
+    //Affichage des produits triés par ..
+    if (isset($_POST['orderBy'])) {
+        //catégorie
+        if ($_POST['orderBy'] === 'catégorie') {
+            $categorie = $producthunt_api->getCategories();
 
-            productDisplay ($products, $userId['user_id'], $votesList);
-        }
-        //Affichage des produit par catégorie
-        else if (isset($_POST['orderBy']) && $_POST['orderBy'] === 'catégorie'){ 
-           $categorie = $producthunt_api->getCategories();
-            for ($i=0; $i < count($categorie) ; $i++) { 
-                echo '<h3>'."Catégorie : ".$categorie[$i]['name'].'</h3>';
-                echo '<br>';
-    
+            for ($i = 0; $i < count($categorie); $i++) {
+                echo '<h3 class ="category-separator">' . $categorie[$i]['name'] . '</h3>';
                 $products = $producthunt_api->getProductsCollection($categorie[$i]['category_id']);
-
-                    productDisplay ($products, $userId['user_id'], $votesList);
+                productDisplay($products, $userId['user_id'], $votesList);
             }
         }
-        //Affichage des produit par date de création
-        else if (isset($_POST['orderBy']) && $_POST['orderBy'] === 'created_at'){ 
+
+        //date de création
+        else if ($_POST['orderBy'] === 'created_at') {
             $products = $producthunt_api->getFreshProducts();
-
-            productDisplay ($products, $userId['user_id'], $votesList);
+            productDisplay($products, $userId['user_id'], $votesList);
         }
-        //Affichage des produit par Vote
-        else if (isset($_POST['orderBy']) && $_POST['orderBy'] === 'up_vote') {
+        //popularité
+        else if ($_POST['orderBy'] === 'up_vote') {
             $products = $producthunt_api->getPopularProducts();
-
-            productDisplay ($products, $userId['user_id'], $votesList);
+            productDisplay($products, $userId['user_id'], $votesList);
         }
-        
-        }else{//Affichage d'une catégorie de produit
-             if (isset($_GET['category']) ) {
-            
-                $categorie = $producthunt_api->getCategory($_GET['category']);
-                $products = $producthunt_api->getProductsCollection(intval($categorie['category_id']));
-                productDisplay ($products, $userId['user_id'], $votesList);
-            
-            }
-        }
-
+    } else {
+        //Affichage des produits par défaut
+        $products = $producthunt_api->getFreshProducts();
+        productDisplay($products, $userId['user_id'], $votesList);
+    }
+}
 
 
 

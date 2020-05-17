@@ -44,14 +44,14 @@
 								
 								<div class="row">
 
-									<a href='#' onclick='document.getElementById("created_at").submit()'>Récent</a>
-									<form  method="post" id="up_vote" action="index.php"> 
-                                        <input type="hidden" name="orderBy" value="up_vote"/> 
-                                    </form> 
-                                    
-                                    <a href='#' onclick='document.getElementById("up_vote").submit()'>| Populaire</a>
-                                    <form  method="post" id="created_at" action="index.php"> 
+									<a href='#' onclick='document.getElementById("created_at").submit()'>Fresh</a>
+									<form  method="post" id="created_at" action="index.php"> 
                                         <input type="hidden" name="orderBy" value="created_at"/> 
+                                    </form> 
+                                    <span class="mx-2">|</span>
+                                    <a href='#' onclick='document.getElementById("up_vote").submit()'>Popular</a>
+                                    <form  method="post" id="up_vote" action="index.php"> 
+                                        <input type="hidden" name="orderBy" value="up_vote"/> 
                                     </form> 
                                            
 								</div>
@@ -62,14 +62,13 @@
 
 <div class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-    Categories <span class="caret"></span>
+    Categories<span class="caret"></span>
 </a>
 <ul class="dropdown-menu">
 <?php 
 
     $categorie = $producthunt_api->getCategories();
     for ($i=0; $i <count($categorie) ; $i++) { 
-        // echo ("<option value=".$categorie[$i]['category_id'].">".$categorie[$i]['name']."</option>");
         echo '<a class="dropdown-item" href="?category='.$categorie[$i]['category_id'].'">'.$categorie[$i]['name'].'</a>';
     }
 ?>

@@ -337,27 +337,51 @@ class ProductHuntAPI extends DBPDO
         int $count = 10,
         int $offset = 0
     ): array {
-        return [
-            [
-                'product_id'     => 5,
-                'name'           => 'Jump In Meeting',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ], [
-                'product_id'     => 6,
-                'name'           => 'ShopSavvy for Chrome',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ]
-        ];
+
+        if ($category_id <= 0) {
+            return [];
+        }
+        if ($count < 0) {
+            $count = 10;
+        }
+        if ($offset < 0) {
+            $offset = 0;
+        }
+
+        return $this->execute(
+            'product_hunt',
+            'SELECT
+                 `products`.`product_id`,
+                 `products`.`created_at`,
+                 `products`.`name`,
+                 `products`.`summary`,
+                 `products`.`website`,
+                 `products`.`thumbnail`,
+                 COUNT(`comments`.`product_id`) AS `comments_count`,
+                 COUNT(`votes`.`product_id`) AS `votes_count`
+             FROM 
+                 `products`
+             INNER JOIN
+                 `collections`
+             ON
+                 `products`.`product_id` = `collections`.`product_id`
+             LEFT JOIN
+                 `comments`
+             ON
+                 `products`.`product_id` = `comments`.`product_id`
+             LEFT JOIN
+                 `votes`
+             ON
+                 `products`.`product_id` = `votes`.`product_id`
+             WHERE
+                 `collections`.`category_id` = ?    
+             GROUP BY
+                 `products`.`product_id`
+             ORDER BY
+                 `votes_count` DESC, `products`.`created_at` DESC
+             LIMIT ? OFFSET ?;',
+            [$category_id, $count, $offset]
+        );
     }
 
     /**
@@ -391,27 +415,46 @@ class ProductHuntAPI extends DBPDO
         int $count = 10,
         int $offset = 0
     ): array {
-        return [
-            [
-                'product_id'     => 1,
-                'name'           => 'Rewind',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ], [
-                'product_id'     => 3,
-                'name'           => 'Remoty',
-                'created_at'     => '2020-05-10 07:01:00',
-                'website'        => 'https://rewind.netlify.app/?ref=producthunt',
-                'summary'        => 'Your bookmarks, by date, with thumbnails and instant search',
-                'thumbnail'      => 'public/images/products/thumbnails/1_Rewind.webp',
-                'votes_count'    => 0,
-                'comments_count' => 0
-            ]
-        ];
+        
+        $search_string = '%'.$search_string.'%';
+
+        if ($count < 0) {
+            $count = 10;
+        }
+        if ($offset < 0) {
+            $offset = 0;
+        }
+
+        return $this->execute(
+            'product_hunt',
+            'SELECT
+                 `products`.`product_id`,
+                 `products`.`created_at`,
+                 `products`.`name`,
+                 `products`.`summary`,
+                 `products`.`website`,
+                 `products`.`thumbnail`,
+                 COUNT(`comments`.`product_id`) AS `comments_count`,
+                 COUNT(`votes`.`product_id`) AS `votes_count`
+             FROM 
+                 `products`
+             LEFT JOIN
+                 `comments`
+             ON
+                 `products`.`product_id` = `comments`.`product_id`
+             LEFT JOIN
+                 `votes`
+             ON
+                 `products`.`product_id` = `votes`.`product_id`
+             WHERE
+                 `products`.`name` LIKE ?
+             GROUP BY
+                 `products`.`product_id`
+             ORDER BY
+                 `votes_count` DESC, `products`.`created_at` DESC
+             LIMIT ? OFFSET ?;',
+            [$search_string, $count, $offset]
+        );
     }
 
     /**
@@ -584,7 +627,7 @@ class ProductHuntAPI extends DBPDO
 
         if (!empty($user)) {
             $user = $user[0];
-            
+
             if (isset($user['ip'])) {
                 $user['ip'] = inet_ntop($user['ip']);
             }
