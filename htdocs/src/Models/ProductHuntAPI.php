@@ -86,8 +86,8 @@ class ProductHuntAPI extends DBPDO
                  `products`.`summary`,
                  `products`.`website`,
                  `products`.`thumbnail`,
-                 COUNT(`comments`.`product_id`) AS `comments_count`,
-                 COUNT(`votes`.`product_id`) AS `votes_count`
+                 COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+                 COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
              FROM 
                  `products`
              LEFT JOIN
@@ -148,8 +148,8 @@ class ProductHuntAPI extends DBPDO
                  `products`.`summary`,
                  `products`.`website`,
                  `products`.`thumbnail`,
-                 COUNT(`comments`.`product_id`) AS `comments_count`,
-                 COUNT(`votes`.`product_id`) AS `votes_count`
+                 COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+                 COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
              FROM 
                  `products`
              LEFT JOIN
@@ -357,8 +357,8 @@ class ProductHuntAPI extends DBPDO
                  `products`.`summary`,
                  `products`.`website`,
                  `products`.`thumbnail`,
-                 COUNT(`comments`.`product_id`) AS `comments_count`,
-                 COUNT(`votes`.`product_id`) AS `votes_count`
+                 COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+                 COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
              FROM 
                  `products`
              INNER JOIN
@@ -434,8 +434,8 @@ class ProductHuntAPI extends DBPDO
                  `products`.`summary`,
                  `products`.`website`,
                  `products`.`thumbnail`,
-                 COUNT(`comments`.`product_id`) AS `comments_count`,
-                 COUNT(`votes`.`product_id`) AS `votes_count`
+                 COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+                 COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
              FROM 
                  `products`
              LEFT JOIN

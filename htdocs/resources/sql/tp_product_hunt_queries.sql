@@ -50,8 +50,8 @@ SELECT
     `products`.`summary`,
     `products`.`website`,
     `products`.`thumbnail`,
-    COUNT(`comments`.`product_id`) AS `comments_count`,
-    COUNT(`votes`.`product_id`) AS `votes_count`
+    COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+    COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
 FROM 
     `products`
 LEFT JOIN
@@ -81,8 +81,8 @@ SELECT
     `products`.`summary`,
     `products`.`website`,
     `products`.`thumbnail`,
-    COUNT(`comments`.`product_id`) AS `comments_count`,
-    COUNT(`votes`.`product_id`) AS `votes_count`
+    COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+    COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
 FROM 
     `products`
 LEFT JOIN
@@ -115,8 +115,8 @@ SELECT
     `products`.`summary`,
     `products`.`website`,
     `products`.`thumbnail`,
-    COUNT(`comments`.`product_id`) AS `comments_count`,
-    COUNT(`votes`.`product_id`) AS `votes_count`
+    COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+    COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
 FROM 
     `products`
 INNER JOIN
@@ -155,8 +155,8 @@ SELECT
     `products`.`summary`,
     `products`.`website`,
     `products`.`thumbnail`,
-    COUNT(`comments`.`product_id`) AS `comments_count`,
-    COUNT(`votes`.`product_id`) AS `votes_count`
+    COUNT(DISTINCT `comments`.`comment_id`) AS `comments_count`,
+    COUNT(DISTINCT `votes`.`user_id`) AS `votes_count`
 FROM 
     `products`
 LEFT JOIN
@@ -244,228 +244,3 @@ FROM
     `votes`
 WHERE
     `user_id` = 1;
-
--- SELECT
---     `products`.`product_id`,
---     `products`.`created_at`,
---     `products`.`name`,
---     `products`.`summary`,
---     `products`.`website`,
---     `products`.`thumbnail`,
---     COUNT(`comments`.`product_id`) AS `comments_count`
--- FROM 
---     `products`
--- LEFT JOIN
---     `comments`
--- ON
---     `products`.`product_id` = `comments`.`product_id`
--- GROUP BY
---     `products`.`product_id`
--- -- ORDER BY
--- --     `products`.`created_at` DESC
--- LIMIT 10 OFFSET 0
-
-
-
--- SELECT
---     *
--- FROM 
---     `products`
--- LEFT JOIN
---     (
---         SELECT
---             `comments`.`product_id`,
---             COUNT(*) as `comments_count`
---         FROM
---             `comments`
---         LEFT JOIN
---             (
---             SELECT 
---                     `products`.`product_id`,
---                     `products`.`created_at`
---                 FROM
---                     `products`
---                 ORDER BY
---                     `products`.`created_at` DESC
---                 LIMIT 10 OFFSET 0
---             ) AS `products_fresh`
---             ON
---                 `comments`.`product_id` =`products_fresh`.`product_id`
---         GROUP BY
---             `comments`.`product_id`
---     ) AS comments_fresh
--- ON
---     `products`.`product_id` = `comments_fresh`.`product_id`
-
-
-
-
--- SELECT
---     `comments`.`product_id`,
---     COUNT(*) as `comments_count`
--- FROM
---     `comments`
--- LEFT JOIN
---     (
---     SELECT 
---             `products`.`product_id`,
---             `products`.`created_at`
---         FROM
---             `products`
---         ORDER BY
---             `products`.`created_at` DESC
---         LIMIT 10 OFFSET 0
---     ) AS `products_fresh`
---     ON
---         `comments`.`product_id` =`products_fresh`.`product_id`
--- GROUP BY
---     `comments`.`product_id`
-
-
-
-
-
-
-
-
-
--- SELECT
---     *
--- FROM 
---     `products`
--- LEFT JOIN
---     (
---         SELECT
---             `comments`.`product_id`,
---             COUNT(*) as `comments_count`
---         FROM
---             `comments`
---         GROUP BY
---             `comments`.`product_id`
---     ) AS comments_fresh
--- ON
---     `products`.`product_id` = `comments_fresh`.`product_id`
-
-
--- SELECT
---     `products_fresh`.`product_id`,
---     `products_fresh`.`created_at`,
---     `products_fresh`.`name`,
---     `products_fresh`.`summary`,
---     `products_fresh`.`website`,
---     `products_fresh`.`thumbnail`,
---     COUNT(`products_fresh`.`product_id`) AS `comments_count`
--- FROM
---     `comments`
--- RIGHT JOIN(
---     SELECT 
---         `products`.`product_id`,
---         `products`.`created_at`,
---         `products`.`name`,
---         `products`.`summary`,
---         `products`.`website`,
---         `products`.`thumbnail`
---     FROM
---         `products`
---     ORDER BY
---         `products`.`created_at` DESC
---     LIMIT 10 OFFSET 0
-
--- ) AS `products_fresh`
--- ON
---     `comments`.`product_id` =`products_fresh`.`product_id`
--- GROUP BY
---     `products_fresh`.`product_id`
-
-
-
-
-
-
--- SELECT
---     `products`.`product_id`,
---     `products`.`created_at`,
---     `products`.`name`,
---     `products`.`summary`,
---     `products`.`website`,
---     `products`.`thumbnail`,
---     `comments_counts_sq`.`comments_count`
--- FROM
---     `products`
--- LEFT JOIN(
---     SELECT `comments`.`product_id`,
---         COUNT(*) AS `comments_count`
---     FROM
---         `comments`
---     GROUP BY
---         `comments`.`product_id`
--- ) AS `comments_counts_sq`
--- ON
---     `products`.`product_id` = `comments_counts_sq`.`product_id`
--- ORDER BY
---     `products`.`created_at`
--- DESC
--- LIMIT 10 OFFSET 0;
-
-
-
-
--- SELECT
---     `comments`.`product_id`,
---     COUNT(*) as `comments_count`
-
--- FROM
---     `comments`
--- GROUP BY
---     `comments`.`product_id`
-
--- SELECT
---     `products`.`product_id`,
---     `products`.`created_at`,
---     `products`.`name`,
---     `products`.`summary`,
---     `products`.`website`,
---     `products`.`thumbnail`,
---     (
---     SELECT
---         COUNT(*)
---     FROM
---         `votes`
---     WHERE
---         `votes`.`product_id` = `products`.`product_id`
---     ) AS `votes_count`,
---     (
---         SELECT
---             COUNT(*)
---         FROM
---             `comments`
---         WHERE
---             `comments`.`product_id` = `products`.`product_id`
---     ) AS `comments_count`
--- FROM
---     `products`
--- ORDER BY
---     `products`.`created_at` DESC
--- LIMIT 10 OFFSET 0;
-
-
-
-
--- SELECT
---     `products`.`product_id`,
---     `products`.`created_at`,
---     `products`.`name`,
---     `products`.`summary`,
---     `products`.`website`,
---     `products`.`thumbnail`,
---     `products`.`votes_count`,
--- 	COUNT(*) as `comments_count`
--- FROM
---     `products`
--- LEFT JOIN 
---     `comments` ON `products`.`product_id` = `comments`.`product_id`
--- GROUP BY
---     `comments`.`product_id`
--- WHERE
---     1;
-

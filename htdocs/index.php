@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 define('ROOT', __DIR__ . '/');
 define('DEV_FORCE_CONFIG_UPDATE', false);
-define('DEV_GLOBALS_DUMP', true);
+define('DEV_GLOBALS_DUMP', false);
 
 require ROOT . 'src/Helpers/AutoLoader.php';
 
@@ -110,4 +110,4 @@ $time_spent['serving_page'] = (microtime(true) - $t);
 //------------------------------------------------------------------- config
 require ROOT . 'src/Helpers/SerializeConfig.php';
 //-------------------------------------------------------------------- debug
-require ROOT . 'src/Helpers/DebugInfo.php';
+// require ROOT . 'src/Helpers/DebugInfo.php';

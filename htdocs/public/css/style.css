@@ -25,6 +25,7 @@ html {
 
 body {
   font-family: IBM Plex Sans;
+  min-height: 100vh;
   background-color: var(--color-white);
   background: linear-gradient(
     0deg,

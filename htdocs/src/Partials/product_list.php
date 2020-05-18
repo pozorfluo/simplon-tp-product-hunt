@@ -132,9 +132,24 @@ if (isset($_GET['category'])) {
             productDisplay($products, $userId['user_id'], $votesList);
         }
     } else {
-        //Affichage des produits par défaut
-        $products = $producthunt_api->getFreshProducts();
-        productDisplay($products, $userId['user_id'], $votesList);
+        //Affichage des résultats de la recherche
+        if (isset($_GET['search'])) {
+            $products = $producthunt_api->findProductsByName($_GET['search']);
+            if(empty($products)){
+                echo '<h3 class ="category-separator">Sorry ! We couldn\'t find any results matching "'
+                    /* enough to thwart basic stuff like <script>alert(document.cookie)</script> */
+                    .htmlspecialchars($_GET['search'], ENT_QUOTES, 'UTF-8')
+                    .'".</h3>';
+            }
+            else {
+                productDisplay($products, $userId['user_id'], $votesList);
+            }
+        }
+        else {
+            //Affichage des produits par défaut
+            $products = $producthunt_api->getFreshProducts();
+            productDisplay($products, $userId['user_id'], $votesList);
+        }
     }
 }
 

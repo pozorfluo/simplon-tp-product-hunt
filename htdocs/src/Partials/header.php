@@ -26,14 +26,12 @@
                     
             	  	<div class="col-5 justify-content-center p-0">
 						
-					 	 <form class="form-inline input-group">
-            	          <input class="form-control " type="text" placeholder="..." aria-label="Search">
-                          
+					 	 <form class="form-inline input-group" id="search" method="GET" action="index.php">
+            	          <input class="form-control" type="text" name="search" placeholder="..." aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn btn-success" type="submit">Search</button>
                             </div>
 						</form> 
-                        
 
 					</div>
 
