@@ -33,6 +33,13 @@ class Dispatcher
      *
      * @param  array $config
      * @return void
+     * 
+     * @todo Consider making a set 
+     *       ( or a ghetto-set e.g., [component => bool $is_instantiable] )
+     *       out of registered components instead of an array.
+     * 
+     * @todo Bench break even count of registered components for 
+     *       isset/array_key_exists vs in_array.
      */
     public function __construct(array $config)
     {
@@ -79,12 +86,15 @@ class Dispatcher
     }
 
     /**
-     * todo
+     * @todo
      *   - [x] Figure out how to prevent a call to a method that does
      *         NOT represent an action ?!
      *     + [x] Consider prepending / appending with 'run' or Action' 
      *           both to make it clear what is meant to be a callable 
      *           action and thwart malicious requests
+     * @todo Move the controller instancing logic to a method in Controller base
+     *       class that returns the appropriate Controller all setup with given
+     *       request as args.
      */
     public function route(): self
     {
@@ -115,7 +125,9 @@ class Dispatcher
     }
 
     /**
-     * 
+     * @todo Move the controller instancing logic to a method in Controller base
+     *       class that returns the appropriate Controller all setup with given
+     *       request as args.
      */
     public function load(): Controller
     {
@@ -130,7 +142,7 @@ class Dispatcher
      * @todo Use Cache class
      * 
      * note
-     *   This is short-circuited until upgrade Cache is plugged in.
+     *   This is short-circuited until upgraded Cache is plugged in.
      */
     public function isCached(): bool
     {

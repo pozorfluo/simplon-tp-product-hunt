@@ -7,8 +7,6 @@ declare(strict_types=1);
 /**
  * Get list of registered components, database configs, etc... from config file
  * or provide/build some defaults.
- * 
- * @todo Make directory separator platform agnostic.
  */
 $t = microtime(true);
 

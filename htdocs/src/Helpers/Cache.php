@@ -11,8 +11,7 @@ use Controllers\Controller;
  *   If a cache file exists and is referenced in the trove and is not past its 
  *   expiration date, it is considered valid and Dispatcher will serve it.
  * 
- * todo
- *   - [x] Forbid instancing multiple Cache with the same name
+ * @todo - [x] Forbid instancing multiple Cache with the same name
  */
 class Cache
 {
