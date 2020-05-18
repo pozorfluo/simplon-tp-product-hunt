@@ -9,7 +9,7 @@
   --color-white: #ffffff;
   --color-off-white: #f6f6f8;
   --color-alt-white: #f0f1f3;
-  --color-shadow: rgba(0, 34, 49, 0.2);
+  --color-shadow: rgba(0, 34, 49, 0.15);
   --color-limelight: rgba(255, 255, 255, 0.75);
   --max-width: 75vmin;
 }
