@@ -1,8 +1,57 @@
 # tp product-hunt
+
+### [live website](http://emjjjpl.cluster029.hosting.ovh.net/)
+
+## installation
+
+1. Clone this repository
+
+   ```shell
+   git clone --depth=1 https://github.com/pozorfluo/simplon-tp-product-hunt.git
+   ```
+
+1. Setup the database with :
+
+   ```
+   htdocs/resources/sql/tp_product_hunt.sql
+   ```
+
+   If this fails for your setup, use the following for improved compatibility :
+
+   ```
+   htdocs/resources/sql/tp_product_hunt_bootstrap.sql
+   ```
+
+   _( note : this will bootstrap the database with test data )_
+
+1. In index.php, change DEV_FORCE_CONFIG_UPDATE to true
+   ```php
+   define('DEV_FORCE_CONFIG_UPDATE', true);
+   ```
+1. Navigate to index.php in your environment
+   - A .env file is created with a skeleton config for this app.
+   - Update the default db configuration in .env to match your environment.
+     e.g.,
+   ```json
+     "db_configs": {
+       "product_hunt": {
+       "DB_DRIVER": "mysql",
+       "DB_HOST": "127.0.0.1",
+       "DB_PORT": "3306",
+       "DB_CHARSET": "utf8mb4",
+       "DB_NAME": "tp_product_hunt",
+       "DB_USER": "your_user_name",
+       "DB_PASSWORD": "your_db_password"
+       }
+   ```
+1. Navigate to index.php
+
 ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt-screenshot.png)
+
 ## docs
 
 ### [RESTish ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Controllers-ProductHuntAPI.html)
+
 #### [server side ProductHuntAPI](https://pozorfluo.github.io/simplon-tp-product-hunt/htdocs/docs/classes/Models-ProductHuntAPI.html)
 
 ## ![simplon-tp-product-hunt](htdocs/resources/images/tp-product-hunt.svg)

@@ -29,6 +29,11 @@ CREATE TABLE `products` (
 --
 -- Table structure for table `articles`
 --
+-- note
+--   This is the MariaDB version.
+--   MySql 5.7 and above should support JSON type
+--   If all else fails use LONGTEXT
+--
 CREATE TABLE `articles` (
     `article_id` MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
     `product_id` MEDIUMINT UNSIGNED NOT NULL,
