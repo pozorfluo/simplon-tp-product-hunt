@@ -20,10 +20,15 @@ abstract class Controller
 
     protected $model;
     protected $view;
-    protected $layout = "Minimal";
+    protected $layout = 'Minimal';
 
     protected $rendered_page = '';
 
+    public static function bar()
+    {
+        echo "test\n";
+    }
+    
     public function __construct(array $args = [])
     {
         $this->args = $args;
@@ -41,7 +46,6 @@ abstract class Controller
          */
         $this->args['model'] = $associated_class;
         $this->args['view'] = $associated_class;
-
     }
 
     /**

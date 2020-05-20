@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Helpers;
 
 use Controllers\Controller;
+use Interfaces\Loadable;
 
 /**
  * Translate and dispatch a QUERY_STRING to the appropriate Controller or serve
@@ -23,6 +24,10 @@ use Controllers\Controller;
 class Dispatcher
 {
     protected $request;
+
+    /**
+     * @var Loadable
+     */
     protected $controller;
 
     const CACHE_TTL = 30; /* seconds */

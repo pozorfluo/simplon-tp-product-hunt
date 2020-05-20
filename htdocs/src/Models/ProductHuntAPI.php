@@ -21,6 +21,13 @@ class ProductHuntAPI extends DBPDO
      * 
      * @param  array $config
      * @return ProductHuntAPI
+     * 
+     * @todo Return entities instead of assoc arrays in next more oop-ish 
+     *       iteration.
+     * @todo Consider returning a generic 'EntityInterface' instead of an entity
+     *       to be able to move things around in a specific entity
+     *       implementation and NOT break to many things.
+     * 
      */
     public static function fromConfig(array $db_configs): ProductHuntAPI
     {

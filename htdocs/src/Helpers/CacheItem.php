@@ -43,7 +43,7 @@ class CacheItem
      * 
      * Early Expiration may happen before that expiry date.
      *
-     * @var mixed
+     * @var int
      */
     public $expiry_date;
     

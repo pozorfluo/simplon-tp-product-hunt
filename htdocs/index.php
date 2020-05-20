@@ -34,7 +34,8 @@ date_default_timezone_set('Europe/Paris');
 
 //---------------------------------------------------------------------- run
 $t = microtime(true);
-
+use Controllers\Controller;
+Controller::bar();
 $dispatcher = new Dispatcher($config);
 // $dispatcher->route()->cache();
 $dispatcher->route();
